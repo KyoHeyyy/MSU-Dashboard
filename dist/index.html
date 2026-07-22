@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MSU Dashboard</title>
+    <script type="module" crossorigin src="/assets/index-Dnr3TDiz.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BD3964fe.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MapleStory Universe</p>
+          <h1>Game Dashboard</h1>
+          <p class="subcopy">日々の確認を静かに、見やすくまとめる個人用ダッシュボード。</p>
+        </div>
+        <div class="topbar-meta">
+          <span class="pill">Local Only</span>
+          <span class="pill">Mock Data</span>
+        </div>
+      </header>
+
+      <section class="summary-grid" aria-label="Summary">
+        <article class="summary-card">
+          <span class="summary-label">Daily Completion</span>
+          <strong>67%</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Boss Progress</span>
+          <strong>3 / 6</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Weekly Rewards</span>
+          <strong>3 Characters</strong>
+        </article>
+      </section>
+
+      <nav class="view-tabs" aria-label="Timeframe tabs">
+        <button class="tab-button active" id="tab-daily" type="button" data-view="daily" aria-selected="true">
+          DAILY
+        </button>
+        <button class="tab-button" id="tab-weekly" type="button" data-view="weekly" aria-selected="false">
+          WEEKLY
+        </button>
+      </nav>
+
+      <section class="debug-panel" aria-label="Debug response">
+        <div class="debug-panel-header">
+          <h2>Debug JSON</h2>
+          <span class="panel-tag">Temporary</span>
+        </div>
+        <pre id="debug-json">Waiting for API response...</pre>
+      </section>
+
+      <main class="dashboard-view">
+        <section id="daily-view" class="dashboard-grid view-panel active" data-view="daily">
+          <section class="board-panel panel-daily">
+            <div class="panel-header">
+              <h2>Daily</h2>
+              <span class="panel-tag">デイリー管理</span>
+            </div>
+            <div id="daily-board" class="card-list"></div>
+          </section>
+        </section>
+
+        <section id="weekly-view" class="dashboard-grid view-panel" data-view="weekly">
+          <section class="board-panel panel-boss">
+            <div class="panel-header">
+              <h2>Boss</h2>
+              <span class="panel-tag">討伐状況</span>
+            </div>
+            <div id="boss-board" class="card-list"></div>
+          </section>
+
+          <section class="board-panel panel-weekly">
+            <div class="panel-header">
+              <h2>Weekly Rewards</h2>
+              <span class="panel-tag">アカウント集計</span>
+            </div>
+            <div id="weekly-board" class="card-list"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+  </body>
+</html>
