@@ -318,13 +318,22 @@ h1 {
 
 .boss-name-pill {
   display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.boss-name-chip {
+  display: inline-flex;
   align-items: center;
   padding: 6px 10px;
   border-radius: 999px;
   background: rgba(72, 199, 142, 0.16);
   border: 1px solid rgba(72, 199, 142, 0.24);
   color: #dff7eb;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .switch {

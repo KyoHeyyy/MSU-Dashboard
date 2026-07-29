@@ -1,4 +1,6 @@
-import { fetchCharacterList, getWalletAddressFromUrl } from './msuApi.js';
+import { fetchCharacterList, getWalletAddressFromUrl, loadCharacterRaffleInformation } from './msuApi.js';
+import { NON_BOSS_LAYER_IDS } from '../config/nonBossLayerIds.js';
+import { LAYER_ID_TO_BOSS_NAME } from '../config/layerIdToBossName.js';
 
 const DAILY_TASK_LABELS = ['Daily Quest', 'Dungeon Clear', 'Guild Donation', 'Pet Feed', 'Ride Check'];
 const debugJsonElement = document.querySelector('#debug-json');
@@ -66,6 +68,7 @@ async function loadCharacterRows() {
           character: name,
           level,
           job: jobName,
+          assetKey: entry.assetKey ?? entry.data?.assetKey ?? '',
           linkBuff: true,
           tasks: DAILY_TASK_LABELS.map((label, index) => ({
             label,
@@ -180,11 +183,27 @@ async function renderWeeklyRewards() {
   if (!container) return;
 
   container.innerHTML = '<div class="loading-text">キャラクター情報を読み込み中...</div>';
+  const walletAddress = getWalletAddressFromUrl();
   const characterRows = await loadCharacterRows();
+  const selectedCharacters = characterRows.slice(0, 15); // count character
 
-  const rows = characterRows
-    .map((entry, index) => {
-      const bossName = dummyBossNames[index % dummyBossNames.length];
+  const rows = await Promise.all(
+    selectedCharacters.map(async (entry, index) => {
+      const characterAssetKey = entry.assetKey || entry.data?.assetKey || '';
+      const rafflePayload = characterAssetKey
+        ? await loadCharacterRaffleInformation(characterAssetKey, walletAddress)
+        : null;
+
+      const bossNames = (rafflePayload?.data?.informations || [])
+        .map((information) => information?.layerId)
+        .filter(Boolean)
+        .map((layerId) => String(layerId))
+        .filter((layerId) => !NON_BOSS_LAYER_IDS.includes(layerId))
+        .map((layerId) => LAYER_ID_TO_BOSS_NAME[layerId] || layerId);
+
+      const bossName = bossNames.length > 0
+        ? bossNames.map((layerId) => `<span class="boss-name-chip">${layerId}</span>`).join('')
+        : '';
       const iconMarkup = entry.icon
         ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
         : `<span class="char-icon">🧙</span>`;
@@ -204,7 +223,7 @@ async function renderWeeklyRewards() {
         </tr>
       `;
     })
-    .join('');
+  );
 
   container.innerHTML = `
     <div class="weekly-character-table-wrap">
@@ -215,7 +234,7 @@ async function renderWeeklyRewards() {
             <th>Boss</th>
           </tr>
         </thead>
-        <tbody>${rows}</tbody>
+        <tbody>${rows.join('')}</tbody>
       </table>
     </div>
   `;

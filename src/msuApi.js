@@ -109,7 +109,7 @@ async function fetchWithRetry(url, options = {}, { retryCount = RETRY_COUNT, ret
 }
 
 async function fetchCharacterListFromApi(walletAddress) {
-  const url = `${MSU_API_BASE_URL}/accounts/${encodeURIComponent(walletAddress)}/characters`;
+  const url = `${MSU_API_BASE_URL}/accounts/${encodeURIComponent(walletAddress)}/characters?size=100`;
   const headers = {
     'Content-Type': 'application/json',
     'x-nxopen-api-key': MSU_API_KEY
@@ -136,6 +136,28 @@ async function fetchCharacterList(walletAddress = getWalletAddressFromUrl()) {
   return normalizeCharacterEntries(payload);
 }
 
+async function fetchCharacterRaffleInformation(characterAssetKey, walletAddress = getWalletAddressFromUrl()) {
+  const url = `${MSU_API_BASE_URL}/msn/characters/${encodeURIComponent(characterAssetKey)}/raffles?walletAddress=${encodeURIComponent(walletAddress)}`;
+  const headers = {
+    'Content-Type': 'application/json',
+    'x-nxopen-api-key': MSU_API_KEY
+  };
+
+  return fetchWithRetry(url, { headers });
+}
+
+async function loadCharacterRaffleInformation(characterAssetKey, walletAddress = getWalletAddressFromUrl()) {
+  const cacheKey = `${RAFFLE_INFO_DIR}/${walletAddress}/${characterAssetKey}.json`;
+  const cached = readCacheFile(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  const payload = await fetchCharacterRaffleInformation(characterAssetKey, walletAddress);
+  writeCacheFile(cacheKey, payload);
+  return payload;
+}
+
 export {
   DEFAULT_WALLET_ADDRESS,
   getWalletAddressFromUrl,
@@ -146,6 +168,8 @@ export {
   getLocalStorageCacheKey,
   fetchCharacterListFromApi,
   loadCharacters,
+  loadCharacterRaffleInformation,
+  fetchCharacterRaffleInformation,
   CACHE_FILE_NAME,
   CHARACTERS_DIR,
   RAFFLE_INFO_DIR,
