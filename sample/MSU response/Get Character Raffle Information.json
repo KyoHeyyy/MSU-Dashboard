@@ -1,0 +1,1290 @@
+{
+  "success": true,
+  "data": {
+    "characterAssetKey": "CHARd0j2orbfpavs73dqduu0",
+    "informations": [
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T12:22:58.256666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 5,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 6,
+                "itemId": 1003719,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205028,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 1003719,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-28T15:54:07.976666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 3,
+                "itemId": 4310156,
+                "rotationId": 0
+              },
+              {
+                "idx": 31,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 32,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205034,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 31,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310156,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 32,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 5,
+            "clearedAt": "2026-07-29T06:28:24.710Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 7,
+            "clearedAt": "2026-07-29T04:51:16.796666666Z",
+            "rewardKeys": []
+          }
+        ],
+        "isHidden": false,
+        "layerId": 305014,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [],
+        "state": "RAFFLE_STATE_PARTICIPATE_FAIL"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 6,
+            "clearedAt": "2026-07-28T18:21:44.846666666Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 2,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 3,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 4,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 5,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 6,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 7,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 8,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 9,
+                "itemId": 2832959,
+                "rotationId": 61
+              },
+              {
+                "idx": 10,
+                "itemId": 2832959,
+                "rotationId": 61
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 308070,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 8,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 10,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 7,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 9,
+              "itemId": 2832959,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T12:20:05.873333333Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 3,
+                "itemId": 4310396,
+                "rotationId": 0
+              },
+              {
+                "idx": 4,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 5,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205032,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310396,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T12:21:21.840Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205031,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T12:15:45.046666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 10,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205038,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 10,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-28T18:21:44.826666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 3,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 4,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 12,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 13,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205039,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 12,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 13,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-29T07:11:12.043333333Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-29T06:24:59.126666666Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-29T05:37:59.080Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-29T04:48:10.240Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-29T04:01:59.986666666Z",
+            "rewardKeys": []
+          }
+        ],
+        "isHidden": false,
+        "layerId": 305001,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [],
+        "state": "RAFFLE_STATE_PARTICIPATE_FAIL"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T12:22:56.880Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 3,
+                "itemId": 4310396,
+                "rotationId": 0
+              },
+              {
+                "idx": 22,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205029,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310396,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 22,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 6,
+            "clearedAt": "2026-07-23T12:15:45.056666666Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 2,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 3,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 4,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 5,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 6,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 7,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 8,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 9,
+                "itemId": 2832958,
+                "rotationId": 61
+              },
+              {
+                "idx": 10,
+                "itemId": 2832958,
+                "rotationId": 61
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 308071,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 9,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 8,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 7,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 10,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          },
+          {
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 2832958,
+              "rotationId": 61
+            },
+            "tokenCount": 6
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-25T16:59:32.173333333Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-25T16:59:28.526666666Z",
+            "rewardKeys": [
+              {
+                "idx": 2,
+                "itemId": 5002807,
+                "rotationId": 55
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-25T16:59:25.066666666Z",
+            "rewardKeys": []
+          }
+        ],
+        "isHidden": false,
+        "layerId": 306322,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 5002807,
+              "rotationId": 55
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-28T15:57:46.956666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 3,
+                "itemId": 4310199,
+                "rotationId": 0
+              },
+              {
+                "idx": 5,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 6,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 31,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205035,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310199,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 31,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T12:18:33.296666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 5,
+                "itemId": 1022277,
+                "rotationId": 0
+              },
+              {
+                "idx": 6,
+                "itemId": 1102574,
+                "rotationId": 0
+              },
+              {
+                "idx": 15,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 16,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205033,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 1102574,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 16,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 1022277,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 15,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T12:22:59.580Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 4,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 5,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 21,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 22,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 60
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 205030,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 21,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 22,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 60
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          },
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-29T03:03:46.900Z",
+            "rewardKeys": []
+          }
+        ],
+        "isHidden": false,
+        "layerId": 304003,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [],
+        "state": "RAFFLE_STATE_PARTICIPATE_FAIL"
+      },
+      {
+        "clearInformations": [
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-29T08:10:43.180Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-29T07:10:18.490Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-29T06:10:17.546666666Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-29T05:08:29.936666666Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-29T04:07:25.870Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          }
+        ],
+        "isHidden": false,
+        "layerId": 305024,
+        "nextRaffleAt": "2026-07-30T00:00:00Z",
+        "participationRewards": [
+          {
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 4310402,
+              "rotationId": 0
+            },
+            "tokenCount": 3
+          }
+        ],
+        "state": "RAFFLE_STATE_PARTICIPATE_SUCCESS"
+      }
+    ],
+    "updatedAt": "2026-07-29T15:47:03.687772709Z",
+    "walletAddress": "0x24eb476d0E7B9d2099323E633FF0f16f5A64c067"
+  },
+  "traceId": "6a6a20770000000043340383e1cca7c0"
+}

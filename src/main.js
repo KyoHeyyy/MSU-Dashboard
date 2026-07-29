@@ -1,4 +1,5 @@
-const WALLET_URL = '/navigator/api/navigator/inventory/0x24eb476d0E7B9d2099323E633FF0f16f5A64c067/characters-v2?size=42';
+import { fetchCharacterList, getWalletAddressFromUrl } from './msuApi.js';
+
 const DAILY_TASK_LABELS = ['Daily Quest', 'Dungeon Clear', 'Guild Donation', 'Pet Feed', 'Ride Check'];
 const debugJsonElement = document.querySelector('#debug-json');
 
@@ -37,17 +38,7 @@ const bossData = [
   { name: 'Elite Boss', defeated: 0, total: 2, status: '未着手' }
 ];
 
-const weeklyRewardData = [
-  {
-    walletId: 'xxxxxxxx',
-    account: 'Account 01',
-    characters: [
-      { name: 'キャラA', reward: 'Legendary Chest' },
-      { name: 'キャラB', reward: 'Epic Chest' },
-      { name: 'キャラC', reward: 'Rare Chest' }
-    ]
-  }
-];
+const dummyBossNames = ['Abyss Boss', 'Weekly Boss', 'Elite Boss', 'Raid Boss', 'Dungeon Boss'];
 
 function setDebugJson(message) {
   if (!debugJsonElement) return;
@@ -58,33 +49,35 @@ function formatDebugJson(message) {
   return typeof message === 'string' ? message : JSON.stringify(message, null, 2);
 }
 
-async function fetchCharacterList() {
+async function loadCharacterRows() {
   try {
-    const response = await fetch(WALLET_URL);
-    const rawText = await response.text();
-    setDebugJson(`status: ${response.status}\n\n${formatDebugJson(rawText).slice(0, 4000)}`);
+    const walletAddress = getWalletAddressFromUrl();
+    const payload = await fetchCharacterList(walletAddress);
+    const rows = payload
+      .map((entry) => {
+        const characterData = entry.data ?? {};
+        const name = entry.character ?? entry.name ?? 'Unknown';
+        const level = characterData.level ?? 0;
+        const imageUrl = characterData.imageUrl ?? '';
+        const jobName = characterData.job?.jobName ?? '';
 
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
-    }
-
-    const data = JSON.parse(rawText);
-    const characters = data?.characters ?? [];
-
-    return characters
-      .map((entry) => ({
-        icon: entry.character?.imageUrl ?? '',
-        character: entry.character?.name ?? 'Unknown',
-        level: entry.character?.level ?? 0,
-        job: entry.character?.job?.jobName ?? '',
-        linkBuff: true,
-        tasks: DAILY_TASK_LABELS.map((label, index) => ({
-          label,
-          done: index % 2 === 0,
-          type: index % 2 === 0 ? 'checkbox' : 'toggle'
-        }))
-      }))
+        return {
+          icon: imageUrl,
+          character: name,
+          level,
+          job: jobName,
+          linkBuff: true,
+          tasks: DAILY_TASK_LABELS.map((label, index) => ({
+            label,
+            done: index % 2 === 0,
+            type: index % 2 === 0 ? 'checkbox' : 'toggle'
+          }))
+        };
+      })
       .sort((a, b) => b.level - a.level);
+
+    setDebugJson(`wallet: ${walletAddress}\n\n${formatDebugJson(payload).slice(0, 4000)}`);
+    return rows;
   } catch (error) {
     console.error('Character fetch failed:', error);
     setDebugJson(`ERROR\n${error instanceof Error ? error.message : String(error)}`);
@@ -156,7 +149,7 @@ async function renderDaily() {
   if (!container) return;
 
   container.innerHTML = '<div class="loading-text">キャラクター一覧を取得中...</div>';
-  const characterRows = await fetchCharacterList();
+  const characterRows = await loadCharacterRows();
   renderDailyTable(characterRows);
 }
 
@@ -182,34 +175,50 @@ function renderBoss() {
     .join('');
 }
 
-function renderWeeklyRewards() {
+async function renderWeeklyRewards() {
   const container = document.querySelector('#weekly-board');
   if (!container) return;
 
-  container.innerHTML = weeklyRewardData
-    .map(
-      (account) => `
-        <article class="info-card">
-          <div class="card-title-row">
-            <h3>${account.account}</h3>
-            <span class="count-badge">wallet: ${account.walletId}</span>
-          </div>
-          <ul class="reward-list">
-            ${account.characters
-              .map(
-                (char) => `
-                  <li>
-                    <strong>${char.name}</strong>
-                    <span>${char.reward}</span>
-                  </li>
-                `
-              )
-              .join('')}
-          </ul>
-        </article>
-      `
-    )
+  container.innerHTML = '<div class="loading-text">キャラクター情報を読み込み中...</div>';
+  const characterRows = await loadCharacterRows();
+
+  const rows = characterRows
+    .map((entry, index) => {
+      const bossName = dummyBossNames[index % dummyBossNames.length];
+      const iconMarkup = entry.icon
+        ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
+        : `<span class="char-icon">🧙</span>`;
+
+      return `
+        <tr>
+          <td>
+            <div class="char-cell">
+              ${iconMarkup}
+              <div>
+                <div class="char-name">${entry.character}</div>
+                <div class="char-meta">Lv. ${entry.level}${entry.job ? ` · ${entry.job}` : ''}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="boss-name-pill">${bossName}</span></td>
+        </tr>
+      `;
+    })
     .join('');
+
+  container.innerHTML = `
+    <div class="weekly-character-table-wrap">
+      <table class="weekly-character-table">
+        <thead>
+          <tr>
+            <th>Character</th>
+            <th>Boss</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
 }
 
 function setupTabs() {

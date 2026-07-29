@@ -292,6 +292,41 @@ h1 {
   color: var(--muted);
 }
 
+.weekly-character-table-wrap {
+  overflow-x: auto;
+}
+
+.weekly-character-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.weekly-character-table th,
+.weekly-character-table td {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  padding: 12px 10px;
+  text-align: left;
+}
+
+.weekly-character-table thead th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.boss-name-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(72, 199, 142, 0.16);
+  border: 1px solid rgba(72, 199, 142, 0.24);
+  color: #dff7eb;
+  font-size: 0.85rem;
+}
+
 .switch {
   position: relative;
   display: inline-flex;

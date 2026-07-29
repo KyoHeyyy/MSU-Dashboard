@@ -20,3 +20,11 @@ npm run dev
 ```bash
 npm run build
 ```
+
+
+
+
+```powershell
+Set-Location 'd:\dev\MSU Dashboard'; cmd /c npm run dev -- --host 0.0.0.0
+```
+http://localhost:5173/

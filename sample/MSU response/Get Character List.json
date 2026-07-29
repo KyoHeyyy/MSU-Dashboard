@@ -1,0 +1,460 @@
+{
+  "success": true,
+  "data": {
+    "characters": [
+      {
+        "assetKey": "CHARd0is9frfpavs73dp048g",
+        "categoryNo": 1020106007,
+        "data": {
+          "classCode": 16,
+          "combatPower": "2125091",
+          "expr": "9.037",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIzMzAwYTE3MDI4NzJhMTQ5MjIxM2EzNjc4N2ExMDA2Mjg3YTEwMTI0NzhhMTAyMjIzMWExMDMyMzM5YTEwNTM5OTlhMTA2MDAyNmExMDczNzYyYTEwODI3ODVhMTEwMzU4OGExMzUyOTEzYTUyMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 523,
+          "level": 211,
+          "world": 2
+        },
+        "name": "Vulkaron",
+        "tokenId": "1399008584753811193780229803557431303855019490421"
+      },
+      {
+        "assetKey": "CHARd0j2orbfpavs73dqduu0",
+        "categoryNo": 1020106006,
+        "data": {
+          "classCode": 16,
+          "combatPower": "14209315",
+          "expr": "24.890",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTUwMTc2MTk5YTE3MDM0OTZhMTQ4MjE2OGE0MzM1M2ExMDA0NjM0YTEwMTI0NzhhMTAyMjIzMWExMDMyMTM2YTEwNTQxNjdhMTA2MjE2OWExMDczMzI4YTEwODI4NDhhMTEwMjU3NGExMzUyOTAzYTUxMmEwYTNhOTlhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "jobCode": 513,
+          "level": 243,
+          "world": 2
+        },
+        "name": "chanmaji",
+        "tokenId": "436725594544212416274293186359755489084469569690"
+      },
+      {
+        "assetKey": "CHARd0jhldtgurmc73co9o9g",
+        "categoryNo": 1020105007,
+        "data": {
+          "classCode": 8,
+          "combatPower": "10044463",
+          "expr": "4.954",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGExMmEyMDQwMWExNzAyNzY3YTEzMzIyNzRhNjUyNjdhMTAwNjI4N2ExMDEyNDc4YTEwMjIyMzFhMTAzMjMzOWExMDUzOTk5YTEwNjIxNjhhMTA3MjUzMWExMDgyNzg1YTExMDM2ODJhMTM1MjI4MmE0MjJhMGE3YTk5YTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "jobCode": 423,
+          "level": 231,
+          "world": 2
+        },
+        "name": "WingTulip",
+        "tokenId": "1417228863979002755278599706989470704900181479426"
+      },
+      {
+        "assetKey": "CHARd0ot129blh1s73arsc60",
+        "categoryNo": 1020105006,
+        "data": {
+          "classCode": 8,
+          "combatPower": "2162249",
+          "expr": "26.095",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwNDAxYTE3MDI5NzFhMTQ3MjIxNGEzNjc4MGExMDA2MzAxYTEwMTI4MjVhMTAyMjMzNGExMDMyMzM5YTEwNTQwMzJhMTA2MjE2OGExMDcyMzc2YTEwODI3ODlhMTEwMzAyNGExMzUyMjkyYTQxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 413,
+          "level": 210,
+          "world": 2
+        },
+        "name": "chanmaaji",
+        "tokenId": "896205787173321905134013255069246111463691594710"
+      },
+      {
+        "assetKey": "CHARd0tb2vspl5ic73emoc2g",
+        "categoryNo": 1020103009,
+        "data": {
+          "classCode": 2,
+          "combatPower": "42665",
+          "expr": "17.135",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMjAxYTBhMTM4MjEwNGEzNzc4MGExMDA2NjQ2YTBhMGEwYTEwNTQyNjlhMTA2MTAzOWExMDc0MDA3YTEwODI1OTlhMGExMzU0MTQwYTIyMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 222,
+          "level": 164,
+          "world": 2
+        },
+        "name": "XF777777",
+        "tokenId": "693801451138916146454899926478514472371345816281"
+      },
+      {
+        "assetKey": "CHARd1019fj6t7hs73bf4r90",
+        "categoryNo": 1020102009,
+        "data": {
+          "classCode": 1,
+          "combatPower": "1914459",
+          "expr": "35.073",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTI2MjY3Mjk5YTE3MDM5MTFhMTQyMjE0MGEzNzc5M2ExMDA3MTg5YTEwMTIzNzlhMTAyMjIzMWExMDMyMTM2YTEwNTM5OTlhMTA2MjE2NWExMDczMDMwYTEwODI3ODVhMTEwMjUxMGExMzUyMjEzYTEyMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 123,
+          "level": 215,
+          "world": 2
+        },
+        "name": "cf997",
+        "tokenId": "1181757039835312981470407422612762891605030859021"
+      },
+      {
+        "assetKey": "CHARd12quajau45s73fppu40",
+        "categoryNo": 1020104007,
+        "data": {
+          "classCode": 4,
+          "combatPower": "109271",
+          "expr": "0.814",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwNDAxYTBhMTQ2MjIyM2EzMDAwMGEwYTBhMTAyMjIzMmEwYTEwNDAwMzZhMTA2MDAyNmEwYTBhMTEwMjg3MWEwYTMyMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 323,
+          "level": 200,
+          "world": 2
+        },
+        "name": "DougDwight",
+        "tokenId": "1220577295561799967911157376276932241384579359898"
+      },
+      {
+        "assetKey": "CHARd138acngmqgc739u0sqg",
+        "categoryNo": 1020104006,
+        "data": {
+          "classCode": 4,
+          "combatPower": "129928",
+          "expr": "36.048",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwNDAxYTBhMTQ1MjIzNmEzMDAwMGEwYTBhMGEwYTEwNDAwMzZhMTA2MDAyNmExMDc0MDA3YTBhMTEwMjg3MWExMzU0MTYwYTMxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 313,
+          "level": 200,
+          "world": 2
+        },
+        "name": "FTGG",
+        "tokenId": "806341716775942592146746873055278949135616856300"
+      },
+      {
+        "assetKey": "CHARd1919l9qahks73a7gng0",
+        "categoryNo": 1020103008,
+        "data": {
+          "classCode": 2,
+          "combatPower": "0",
+          "expr": "59.683",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMTk0YTBhMTM3MjIwNWEzMTAwMmExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MTAzOWExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 212,
+          "level": 176,
+          "world": 2
+        },
+        "name": "lucilleeding",
+        "tokenId": "1301908930670400731573708290697857599220221559806"
+      },
+      {
+        "assetKey": "CHARd1am3mfgmqgc73f4n4r0",
+        "categoryNo": 1020103010,
+        "data": {
+          "classCode": 2,
+          "combatPower": "60836",
+          "expr": "60.596",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGExMmEyMzMwMGEwYTEzNzIyMDVhMzY3ODRhMTAwNDIyMGEwYTBhMGExMDUyNzkwYTEwNjAwMjZhMTA3Mjk1OGExMDgyNTk5YTExMDIxMzlhMTM1NDE1MGEyMzJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "jobCode": 232,
+          "level": 190,
+          "world": 2
+        },
+        "name": "BrChooper",
+        "tokenId": "1095769611847502941171226652338039815356132007767"
+      },
+      {
+        "assetKey": "CHARd1o91mvgmqgc73c92ejg",
+        "categoryNo": 1020103008,
+        "data": {
+          "classCode": 2,
+          "combatPower": "22943",
+          "expr": "45.776",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEyYTIxMjAxYTBhMTM3MjIwNWEzMTAwM2ExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MTAzOWExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 212,
+          "level": 174,
+          "world": 2
+        },
+        "name": "PajaCorta",
+        "tokenId": "1005782523666611584510813981666311881368211990086"
+      },
+      {
+        "assetKey": "CHARd26ot70n9pms73dicjk0",
+        "categoryNo": 1020103008,
+        "data": {
+          "classCode": 2,
+          "combatPower": "9828",
+          "expr": "88.094",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIzMzAxYTBhMTM3MjIwNWEzMDAzMGExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MDAyNmExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 212,
+          "level": 178,
+          "world": 2
+        },
+        "name": "CassiGBDyA",
+        "tokenId": "1361773467898546954247172903859576268137125048147"
+      },
+      {
+        "assetKey": "CHARd2a0ktlpjpgs73chqteg",
+        "categoryNo": 1020203001,
+        "data": {
+          "classCode": 4,
+          "combatPower": "52402",
+          "expr": "33.633",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEzYTIxNTU1YTBhMTUyMjEyMmEzNDQyM2EwYTBhMGEwYTEwNTI3OTFhMTA2MTAzOWExMDcyOTU5YTEwODI2MDBhMGExMzUyMDAwYTIzMTJhMWEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "jobCode": 2312,
+          "level": 153,
+          "world": 2
+        },
+        "name": "EXP15Per",
+        "tokenId": "207425881371035257572243053343519546419302769282"
+      },
+      {
+        "assetKey": "CHARd2a5c3038phs73a3jsp0",
+        "categoryNo": 1020203001,
+        "data": {
+          "classCode": 4,
+          "combatPower": "182832",
+          "expr": "46.496",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWExMmEyMTU0N2EwYTE1MjIxNjZhMzQ0MjNhMTAwMzg4MmEwYTEwMjIyMzFhMTAzMjMzOWExMDU0MTczYTEwNjEwMzlhMTA3MzkyMWExMDgyODA3YTExMDM2OTFhMTM1MjAwMGEyMzEyYTFhMGEwYTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "jobCode": 2312,
+          "level": 190,
+          "world": 2
+        },
+        "name": "Elas",
+        "tokenId": "519807238579839693450748720958252347697203048459"
+      },
+      {
+        "assetKey": "CHARd2a7d905cq4s73flfni0",
+        "categoryNo": 1020201001,
+        "data": {
+          "classCode": 1,
+          "combatPower": "44906",
+          "expr": "31.395",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWExMWE1NjE4OGEwYTE0NDIyNTJhNjc0MTZhMTAwNDIxOWEwYTBhMGExMDUyNzg5YTEwNjEwMzlhMTA3Mjk1N2ExMDgyNTk4YTBhMTM1MjkzOWEyMTEyYTBhMGEwYTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "jobCode": 2112,
+          "level": 146,
+          "world": 2
+        },
+        "name": "catmm",
+        "tokenId": "701917224175542630698294634498542387333141859462"
+      },
+      {
+        "assetKey": "CHARd2a8tk05cq4s73fluh0g",
+        "categoryNo": 1020204001,
+        "data": {
+          "classCode": 8,
+          "combatPower": "1774285",
+          "expr": "75.371",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxNjU2YTE3MDI0MjNhMTM2MjA5MGE2NzM0MWExMDAzMTMxYTEwMTI0NzhhMTAyMjIzMWExMDMyMzM5YTEwNDIzNDlhMTA2MjI0N2ExMDc0MDA3YTEwODI2MzlhMTEwMzI4M2ExMzUyMTEyYTI0MTJhMGExYTk5YTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "jobCode": 2413,
+          "level": 210,
+          "world": 2
+        },
+        "name": "PANTHOM",
+        "tokenId": "327677147366004755320227469752229155274168149959"
+      },
+      {
+        "assetKey": "CHARd2aufa038phs73ab6dig",
+        "categoryNo": 1020103008,
+        "data": {
+          "classCode": 2,
+          "combatPower": "9449",
+          "expr": "19.769",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIzMzAxYTBhMTM3MjIwNWEzNjc4N2ExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MDAyNmExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 212,
+          "level": 175,
+          "world": 2
+        },
+        "name": "ADEinA",
+        "tokenId": "854097631474608066102100954524826237252770471373"
+      },
+      {
+        "assetKey": "CHARd2djgloltiic73duuhi0",
+        "categoryNo": 1020103008,
+        "data": {
+          "classCode": 2,
+          "combatPower": "0",
+          "expr": "1.414",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMjAxYTBhMGEzMTAwMmEwYTBhMGEwYTEwNDEwNDZhMTA2MTAzOWExMDcyOTU4YTBhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 212,
+          "level": 200,
+          "world": 2
+        },
+        "name": "CassiDBRFyF",
+        "tokenId": "795874156365127906854350394827838509209413577612"
+      },
+      {
+        "assetKey": "CHARd2j8quvdcess73fmard0",
+        "categoryNo": 1020202002,
+        "data": {
+          "classCode": 2,
+          "combatPower": "21471",
+          "expr": "26.169",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMTcwYTBhMTIxMjA5OWEzNzA3MmExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MTAzOWExMDcyOTU4YTEwODI1OTlhMTEwMjQ0M2ExMzUyNDAwYTI3MTJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "jobCode": 2712,
+          "level": 140,
+          "world": 2
+        },
+        "name": "MOQINGYUE",
+        "tokenId": "800304117557327392628428745588637938292674394007"
+      },
+      {
+        "assetKey": "CHARd2j8rjfdcess73fmb450",
+        "categoryNo": 1020205001,
+        "data": {
+          "classCode": 16,
+          "combatPower": "2997387",
+          "expr": "90.387",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEzYTU1NjY1YTE3MDI5OTZhMTQ4MjE2OGE2Mzc3MGExMDA2Mjg3YTEwMTI0NzhhMTAyMjIzMWExMDMyMzM5YTEwNTM5OTlhMTA2MjE2OWExMDczMDM1YTEwODI3ODVhMTEwMjk2MWExMzUzMTA4YTI1MTJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "jobCode": 2513,
+          "level": 221,
+          "world": 2
+        },
+        "name": "financ1er",
+        "tokenId": "564030444728333596572165005622278590978320015539"
+      },
+      {
+        "assetKey": "CHARd2jf6jrakhgc73c50u5g",
+        "categoryNo": 1020202001,
+        "data": {
+          "classCode": 2,
+          "combatPower": "0",
+          "expr": "0.169",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTI0MDgzYTBhMGE0MTIyN2EwYTBhMGEwYTEwNDEwNDZhMTA2MTAzOWEwYTBhMGExMzUyOTQ5YTIyMTdhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "jobCode": 2219,
+          "level": 200,
+          "world": 2
+        },
+        "name": "yanik",
+        "tokenId": "612664246001204340767274575838136277624374829405"
+      },
+      {
+        "assetKey": "CHARd3ubou5pjpgs73eg3st0",
+        "categoryNo": 1020103008,
+        "data": {
+          "classCode": 2,
+          "combatPower": "6537",
+          "expr": "72.388",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwNDAxYTBhMTM3MjIwNWEzMDAzMGExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MDAyNmExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 212,
+          "level": 173,
+          "world": 2
+        },
+        "name": "LyyffV",
+        "tokenId": "606812516377256411051441260884272753906090405770"
+      },
+      {
+        "assetKey": "CHARd3umpjv1lcus73d7clug",
+        "categoryNo": 1020103008,
+        "data": {
+          "classCode": 2,
+          "combatPower": "7230",
+          "expr": "77.574",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwMTAwYTBhMTM3MjIwNWEzNjc4N2ExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MDAyNmExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 212,
+          "level": 173,
+          "world": 2
+        },
+        "name": "NoChX",
+        "tokenId": "97645103006584498962825887287571419875628617163"
+      },
+      {
+        "assetKey": "CHARd5folg4vrkps73ff8m40",
+        "categoryNo": 1020304001,
+        "data": {
+          "classCode": 4,
+          "combatPower": "3518635",
+          "expr": "91.329",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEzYTI1MTQ5MTk5YTE3MDI5MzlhMTQ1MjIwNWE2MTMyMGExMDA0OTU3YTEwMTI0NzhhMTAyMjIzMWExMDMyMzM4YTEwNTA1MzNhMTA2MjE2N2ExMDczMjY1YTEwODI2MzhhMTEwMzgzMWExMzUyOTcyYTEzMTJhMGEwYTk5YTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "jobCode": 1313,
+          "level": 225,
+          "world": 2
+        },
+        "name": "LIZTHX",
+        "tokenId": "402971463704368685184662037200174935874379728966"
+      },
+      {
+        "assetKey": "CHARd5j7g9j1o0ic739pqbeg",
+        "categoryNo": 1020302001,
+        "data": {
+          "classCode": 1,
+          "combatPower": "459849",
+          "expr": "74.120",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEzYTIwNTg5YTE3MDIzNzVhMTMwMjI3NWEzNjU3NmExMDA3MDM3YTEwMTI4MjVhMTAyMjI3N2ExMDMyMjQxYTEwNTQ2NjFhMTA2MDAyNmExMDcyMzc1YTEwODI4MDVhMTEwMjM5MGExMzU0MjIwYTExMTJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "jobCode": 1113,
+          "level": 205,
+          "world": 2
+        },
+        "name": "madele1ne",
+        "tokenId": "1086763723076914169673114371859276428841554627387"
+      },
+      {
+        "assetKey": "CHARd5og0fm27k9s738h082g",
+        "categoryNo": 1020305001,
+        "data": {
+          "classCode": 8,
+          "combatPower": "306634",
+          "expr": "25.408",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGExMGEyNjQ2NzQ5OWExNzAyNDY2YTE0NzIyMTRhMzAxNzRhMTAwNTYzNGEwYTBhMGExMDUzNjE0YTEwNjAwMjZhMTA3Mjk3NWExMDgyNjE2YTExMDIzMzhhMTM1Mjk3OWExNDEyYTBhNGE5OWEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 1413,
+          "level": 200,
+          "world": 2
+        },
+        "name": "chanmaaaji",
+        "tokenId": "1081935204445475020026549398228694087760453490861"
+      },
+      {
+        "assetKey": "CHARd7gcgbgq0ckc73fsvfv0",
+        "categoryNo": 1020104010,
+        "data": {
+          "classCode": 4,
+          "combatPower": "0",
+          "expr": "24.296",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTI4MTQxYTBhMGE0NzUyN2ExMDA2NjQ2YTBhMGEwYTEwNDEwNDZhMTA2MTAzOWEwYTBhMGEwYTMzMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 333,
+          "level": 200,
+          "world": 2
+        },
+        "name": "P4thF1nd3r",
+        "tokenId": "1421423518755729810576386596310193253509576504574"
+      },
+      {
+        "assetKey": "CHARd7ktk8mo4vdc73do61hg",
+        "categoryNo": 1020105012,
+        "data": {
+          "classCode": 8,
+          "combatPower": "0",
+          "expr": "0.145",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMjYxYTBhMGEzNDgyMGEwYTBhMGEwYTEwNDEwNDZhMTA2MTAzOWEwYTBhMGEwYTQzNGEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 435,
+          "level": 200,
+          "world": 2
+        },
+        "name": "Dua1Blade",
+        "tokenId": "734300788244502813711989827203880425859247275071"
+      },
+      {
+        "assetKey": "CHARd7pl1kj36rfc73eokotg",
+        "categoryNo": 1020106010,
+        "data": {
+          "classCode": 16,
+          "combatPower": "4635383",
+          "expr": "91.883",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMjAxYTBhMTUzMjA5OGEzNzc3MmExMDA2MzAxYTEwMTI2NjlhMTAyMjIzMWExMDMyMzM5YTEwNTQwMzJhMTA2MjE2OWExMDczMzE5YTEwODI3ODlhMTEwMjMzOGExMzUyOTIzYTUzMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "jobCode": 533,
+          "level": 221,
+          "world": 2
+        },
+        "name": "kawakaze",
+        "tokenId": "112985839725001900755217750554344816977439635197"
+      },
+      {
+        "assetKey": "CHARd87l1098cj7s73au9i20",
+        "categoryNo": 1020306001,
+        "data": {
+          "classCode": 16,
+          "combatPower": "245",
+          "expr": "0.020",
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEzYTIwNTg5YTBhMGEzNjU3NWEwYTBhMGEwYTEwNDAwMzZhMTA2MDAyNmEwYTBhMGEwYTE1MTJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "jobCode": 1512,
+          "level": 200,
+          "world": 2
+        },
+        "name": "ChazPrincetn",
+        "tokenId": "986448619451545825706796376261583190120281641191"
+      }
+    ],
+    "hasMore": true,
+    "nextCursor": "CHARd8bkirb1j16c73c6ju7g"
+  },
+  "traceId": "6a664f290000000032afd4a0e82d03a6"
+}

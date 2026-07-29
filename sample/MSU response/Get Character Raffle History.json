@@ -1,0 +1,2107 @@
+{
+  "success": true,
+  "data": {
+    "characterAssetKey": "CHARd0j2orbfpavs73dqduu0",
+    "histories": [
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T07:47:35.210Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 3,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205033,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "10.000000"
+            },
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "10.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T11:27:27.060Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 4,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 12,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 13,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205039,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "10.000000"
+            },
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "10.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 12,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 13,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T07:47:17.720Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 10,
+                "itemId": 1372073,
+                "rotationId": 0
+              },
+              {
+                "idx": 20,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 21,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205027,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 20,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 21,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 10,
+              "itemId": 1372073,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T07:47:39.706666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 3,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 11,
+                "itemId": 1052316,
+                "rotationId": 0
+              },
+              {
+                "idx": 37,
+                "itemId": 1332130,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205026,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 37,
+              "itemId": 1332130,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "20.000000"
+            },
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "20.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 11,
+              "itemId": 1052316,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T09:35:39.416666666Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 5002189,
+                "rotationId": 52
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": true,
+        "layerId": 308065,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 5002189,
+              "rotationId": 52
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_LOSE"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T07:47:22.813333333Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 4,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 22,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205030,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "10.000000"
+            },
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "10.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 22,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T07:47:25.030Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 3,
+                "itemId": 4310396,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205028,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310396,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-22T17:02:44.156666666Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-22T15:59:16.593333333Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-22T14:56:18.946666666Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-22T13:55:11.466666666Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-22T12:58:21.990Z",
+            "rewardKeys": []
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 305024,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "10.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 4310402,
+              "rotationId": 0
+            },
+            "tokenCount": 2,
+            "winCount": {
+              "value": "10.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 6,
+            "clearedAt": "2026-07-16T11:27:16.666666666Z",
+            "rewardKeys": [
+              {
+                "idx": 8,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 9,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 10,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 3,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 4,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 5,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 6,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 7,
+                "itemId": 1,
+                "rotationId": 58
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 308055,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "200000.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "200000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "100000.000000"
+            },
+            "rewardKey": {
+              "idx": 7,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "100000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "400000.000000"
+            },
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "400000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "100000.000000"
+            },
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "100000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "100000.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "100000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "300000.000000"
+            },
+            "rewardKey": {
+              "idx": 10,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "300000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "200000.000000"
+            },
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "200000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "100000.000000"
+            },
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "100000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "200000.000000"
+            },
+            "rewardKey": {
+              "idx": 9,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "200000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "200000.000000"
+            },
+            "rewardKey": {
+              "idx": 8,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "200000.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-22T03:05:04.920Z",
+            "rewardKeys": [
+              {
+                "idx": 5,
+                "itemId": 1162043,
+                "rotationId": 0
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": true,
+        "layerId": 304003,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 1162043,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_LOSE"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-20T07:55:44.036666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 3,
+                "itemId": 4310199,
+                "rotationId": 0
+              },
+              {
+                "idx": 4,
+                "itemId": 4310199,
+                "rotationId": 0
+              },
+              {
+                "idx": 5,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 6,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 31,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205035,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 4310199,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "10.000000"
+            },
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "10.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310199,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 31,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "5.000000"
+            },
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "5.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T07:47:32.986666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 3,
+                "itemId": 4310396,
+                "rotationId": 0
+              },
+              {
+                "idx": 35,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205032,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 35,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310396,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T09:35:38.133333333Z",
+            "rewardKeys": []
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 308066,
+        "prizes": [],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_PARTICIPATE_FAIL"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T07:47:27.796666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 21,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 22,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205029,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "478590.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "478590.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 22,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 21,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 6,
+            "clearedAt": "2026-07-16T11:27:27.080Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 3,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 4,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 5,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 6,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 7,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 8,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 9,
+                "itemId": 1,
+                "rotationId": 58
+              },
+              {
+                "idx": 10,
+                "itemId": 1,
+                "rotationId": 58
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 308056,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "266000.000000"
+            },
+            "rewardKey": {
+              "idx": 8,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "266000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "665000.000000"
+            },
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "665000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "665000.000000"
+            },
+            "rewardKey": {
+              "idx": 9,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "665000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "532000.000000"
+            },
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "532000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "399000.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "399000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "266000.000000"
+            },
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "266000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "665000.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "665000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "532000.000000"
+            },
+            "rewardKey": {
+              "idx": 10,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "532000.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "399000.000000"
+            },
+            "rewardKey": {
+              "idx": 7,
+              "itemId": 1,
+              "rotationId": 58
+            },
+            "tokenCount": 6,
+            "winCount": {
+              "value": "399000.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T07:47:41.836666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 5,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205031,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "3.000000"
+            },
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "3.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-20T07:55:51.263333333Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 3,
+                "itemId": 4310156,
+                "rotationId": 0
+              },
+              {
+                "idx": 4,
+                "itemId": 4310156,
+                "rotationId": 0
+              },
+              {
+                "idx": 5,
+                "itemId": 4310403,
+                "rotationId": 0
+              },
+              {
+                "idx": 6,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 31,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205034,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "5.000000"
+            },
+            "rewardKey": {
+              "idx": 6,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "5.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "10.000000"
+            },
+            "rewardKey": {
+              "idx": 5,
+              "itemId": 4310403,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "10.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 3,
+              "itemId": 4310156,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 31,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 4310156,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-16T11:27:16.646666666Z",
+            "partyCount": 1,
+            "rewardKeys": [
+              {
+                "idx": 2,
+                "itemId": 1,
+                "rotationId": 0
+              },
+              {
+                "idx": 4,
+                "itemId": 4310404,
+                "rotationId": 0
+              },
+              {
+                "idx": 11,
+                "itemId": 2358005,
+                "rotationId": 0
+              },
+              {
+                "idx": 1,
+                "itemId": 1,
+                "rotationId": 57
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 205038,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 1,
+              "rotationId": 57
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 2,
+              "itemId": 1,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "10.000000"
+            },
+            "rewardKey": {
+              "idx": 4,
+              "itemId": 4310404,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "10.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "1.000000"
+            },
+            "rewardKey": {
+              "idx": 11,
+              "itemId": 2358005,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "1.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-26T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-22T15:18:49.076666666Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-22T14:33:21.026666666Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-22T13:47:14.110Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-22T13:02:16.313333333Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-22T12:15:34.110Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-02T00:00:00Z",
+        "isHidden": false,
+        "layerId": 305001,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "20.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 4310402,
+              "rotationId": 0
+            },
+            "tokenCount": 2,
+            "winCount": {
+              "value": "20.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-23T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-27T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T06:23:56.456666666Z",
+            "rewardKeys": []
+          }
+        ],
+        "expireAt": "2026-08-03T00:00:00Z",
+        "isHidden": false,
+        "layerId": 304003,
+        "prizes": [],
+        "raffledAt": "2026-07-24T00:00:00Z",
+        "state": "RAFFLE_STATE_PARTICIPATE_FAIL"
+      },
+      {
+        "claimStartAt": "2026-07-27T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 7,
+            "clearedAt": "2026-07-23T04:03:03.243333333Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-23T03:18:24.953333333Z",
+            "rewardKeys": []
+          }
+        ],
+        "expireAt": "2026-08-03T00:00:00Z",
+        "isHidden": false,
+        "layerId": 305014,
+        "prizes": [],
+        "raffledAt": "2026-07-24T00:00:00Z",
+        "state": "RAFFLE_STATE_PARTICIPATE_FAIL"
+      },
+      {
+        "claimStartAt": "2026-07-27T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T21:15:36.473333333Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T21:14:13.693333333Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T21:12:31.423333333Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T21:12:31.423333333Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T21:11:03.500Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T21:11:03.490Z",
+            "rewardKeys": []
+          }
+        ],
+        "expireAt": "2026-08-03T00:00:00Z",
+        "isHidden": false,
+        "layerId": 304001,
+        "prizes": [],
+        "raffledAt": "2026-07-24T00:00:00Z",
+        "state": "RAFFLE_STATE_PARTICIPATE_FAIL"
+      },
+      {
+        "claimStartAt": "2026-07-27T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T09:58:37.826666666Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T08:49:51.500Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T08:11:00.323333333Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              },
+              {
+                "idx": 32,
+                "itemId": 1354220,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T05:22:10.360Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 1,
+            "clearedAt": "2026-07-23T04:36:58.506666666Z",
+            "rewardKeys": []
+          }
+        ],
+        "expireAt": "2026-08-03T00:00:00Z",
+        "isHidden": false,
+        "layerId": 305001,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "30.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 4310402,
+              "rotationId": 0
+            },
+            "tokenCount": 3,
+            "winCount": {
+              "value": "30.000000"
+            }
+          },
+          {
+            "receivedCount": {
+              "value": "0.000000"
+            },
+            "rewardKey": {
+              "idx": 32,
+              "itemId": 1354220,
+              "rotationId": 0
+            },
+            "tokenCount": 1,
+            "winCount": {
+              "value": "0.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-24T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      },
+      {
+        "claimStartAt": "2026-07-27T00:00:00Z",
+        "clearInformations": [
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-23T07:15:01.550Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-23T06:13:21.476666666Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-23T05:11:48.596666666Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-23T04:11:38.806666666Z",
+            "rewardKeys": []
+          },
+          {
+            "clearTokenCount": 2,
+            "clearedAt": "2026-07-23T03:10:52.350Z",
+            "rewardKeys": [
+              {
+                "idx": 1,
+                "itemId": 4310402,
+                "rotationId": 0
+              }
+            ]
+          }
+        ],
+        "expireAt": "2026-08-03T00:00:00Z",
+        "isHidden": false,
+        "layerId": 305024,
+        "prizes": [
+          {
+            "receivedCount": {
+              "value": "10.000000"
+            },
+            "rewardKey": {
+              "idx": 1,
+              "itemId": 4310402,
+              "rotationId": 0
+            },
+            "tokenCount": 2,
+            "winCount": {
+              "value": "10.000000"
+            }
+          }
+        ],
+        "raffledAt": "2026-07-24T00:00:00Z",
+        "state": "RAFFLE_STATE_CLAIMED"
+      }
+    ],
+    "updatedAt": "2026-07-29T15:45:55.886604266Z",
+    "walletAddress": "0x24eb476d0E7B9d2099323E633FF0f16f5A64c067"
+  },
+  "traceId": "6a6a20330000000010221a488c99d9f7"
+}
