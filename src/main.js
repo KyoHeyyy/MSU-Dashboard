@@ -269,7 +269,7 @@ async function renderWeeklyRewards() {
   const walletAddress = getWalletAddressFromUrl();
   try {
     const characterRows = await loadCharacterRows();
-    const selectedCharacters = characterRows;
+    const selectedCharacters = characterRows.slice(0, 5); // 上位5キャラクターを選択
     const weeklyEntries = selectedCharacters.map((entry) => ({
       ...entry,
       loading: true,
@@ -316,11 +316,22 @@ async function renderWeeklyRewards() {
       }
 
       renderWeeklyTable(weeklyEntries);
+      renderBossProgress(bossCount);
     }
   } finally {
     hideLoadingIndicator();
   }
 }
+
+async function renderBossProgress(bossCount) {
+    const container = document.querySelector('#boss-progress');
+  if (!container) return;
+
+  container.innerHTML = `<strong>${bossCount} / 90</strong>`;
+
+
+}
+
 
 function setupTabs() {
   const tabs = document.querySelectorAll('.tab-button');
