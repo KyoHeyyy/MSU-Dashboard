@@ -4,7 +4,7 @@ const RETRY_COUNT = 3;
 const RETRY_DELAY_MS = 1000;
 const REQUEST_INTERVAL_MS = 500;
 const RATE_LIMIT_RPS = 2;
-const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const CACHE_TTL_MS = 1 * 60 * 60 * 1000; // キャッシュ保持ミリ秒 1Hour
 
 let requestQueue = Promise.resolve();
 let lastRequestAt = 0;
@@ -150,12 +150,14 @@ async function fetchCharacterRaffleInformation(characterAssetKey, walletAddress 
 async function loadCharacterRaffleInformation(characterAssetKey, walletAddress = getWalletAddressFromUrl()) {
   const cacheKey = getRaffleInfoCacheKey(characterAssetKey, walletAddress);
   const cached = getValidCacheEntry(raffleInfoCache, cacheKey);
+  console.log(`Loading raffle info for ${characterAssetKey} and wallet ${walletAddress}. Cache hit: ${cached !== null}`);
   if (cached !== null) {
     return cached;
   }
 
   const payload = await fetchCharacterRaffleInformation(characterAssetKey, walletAddress);
   raffleInfoCache.set(cacheKey, { value: payload, timestamp: Date.now() });
+  console.log(`Loading raffle info for ${characterAssetKey} and wallet ${walletAddress}. Cache hit: ${getValidCacheEntry(raffleInfoCache, cacheKey) !== null}`);
   return payload;
 }
 
