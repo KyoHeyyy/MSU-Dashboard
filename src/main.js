@@ -373,12 +373,9 @@ function formatNeso(amount) {
 function getRewardsForWeek(rafflePayload, characterIndex = 0, weeksAgo = selectedRewardWeek) {
   return {
     neso: getNesoFromHistory(rafflePayload, weeksAgo),
-    powerCrystal: 850000 + (characterIndex + weeksAgo - 1) * 125000,
-    nfts: [{ name: (characterIndex + weeksAgo) % 2 === 0 ? 'Mystic Box' : 'Star Fragment' }],
-    fts: [
-      { icon: (characterIndex + weeksAgo) % 2 === 0 ? '✦' : '◆', quantity: 3 + characterIndex + weeksAgo - 1 },
-      { icon: '◈', quantity: (characterIndex + weeksAgo) % 2 === 0 ? 1 : 0 }
-    ]
+    powerCrystal: 'TBD',
+    nfts: [{ name: 'TBD' }],
+    fts: [{ icon: 'TBD', quantity: 1 }]
   };
 }
 
@@ -399,9 +396,9 @@ function renderRewardTable(entries = []) {
       : `<span class="char-icon">🧙</span>`;
     const loadingMarkup = '<span class="reward-muted">取得中</span>';
     const nesoMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value neso-value">${formatNeso(rewards.neso)}</span>`;
-    const powerCrystalMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value power-crystal-value">${formatNeso(rewards.powerCrystal)}</span>`;
-    const nftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : `<span class="reward-chips">${rewards.nfts.map((item) => `<span class="name-chip">${item.name}</span>`).join('') || '-'}</span>`;
-    const ftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : `<span class="ft-items">${rewards.fts.filter((item) => item.quantity > 0).map((item) => `<span class="ft-item"><span class="ft-icon">${item.icon}</span> x${item.quantity}</span>`).join('') || '-'}</span>`;
+    const powerCrystalMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : '<span class="reward-muted">TBD</span>';
+    const nftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : '<span class="reward-muted">TBD</span>';
+    const ftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : '<span class="reward-muted">TBD</span>';
     return `<tr><td><div class="char-cell">${iconMarkup}<div><div class="char-name">${entry.character}</div><div class="char-meta">Lv. ${entry.level}${entry.job ? ` · ${entry.job}` : ''}</div></div></div></td><td>${nesoMarkup}</td><td>${powerCrystalMarkup}</td><td>${nftMarkup}</td><td>${ftMarkup}</td></tr>`;
   }).join('');
 
