@@ -44,6 +44,9 @@
         <button class="tab-button" id="tab-weekly" type="button" data-view="weekly" aria-selected="false">
           WEEKLY
         </button>
+        <button class="tab-button" id="tab-reward" type="button" data-view="reward" aria-selected="false">
+          REWARD
+        </button>
       </nav>
 
       <!-- <section class="debug-panel" aria-label="Debug response">
@@ -69,11 +72,34 @@
           <section class="board-panel panel-weekly">
             <div class="panel-header">
               <h2>Weekly Boss</h2>
-              <button id="weekly-config-button" class="icon-button" type="button" aria-label="Weekly Boss設定を開く" title="Weekly Boss設定を開く">
-                &#9881;
-              </button>
+              <div class="panel-actions">
+                <button id="weekly-reward-button" class="icon-button" type="button" aria-label="Rewardを表示" title="Rewardを表示">&#127873;</button>
+                <button id="weekly-config-button" class="icon-button" type="button" aria-label="Weekly Boss設定を開く" title="Weekly Boss設定を開く">&#9881;</button>
+              </div>
             </div>
             <div id="weekly-board" class="card-list"></div>
+          </section>
+        </section>
+
+        <section id="reward-view" class="dashboard-grid view-panel" data-view="reward">
+          <section class="board-panel panel-reward">
+            <div class="panel-header">
+              <div>
+                <h2>Rewards</h2>
+                <p class="reward-total">NESO total <strong id="neso-total">0</strong></p>
+              </div>
+              <button id="reward-weekly-button" class="icon-button" type="button" aria-label="Weekly Bossを表示" title="Weekly Bossを表示">&#9745;</button>
+            </div>
+            <div id="reward-board" class="card-list"></div>
+          </section>
+          <section class="debug-panel reward-debug-panel" aria-label="Reward API response debug">
+            <div class="debug-panel-header">
+              <h2>Reward API response</h2>
+              <span class="panel-tag">DEBUG</span>
+            </div>
+            <div id="reward-debug-board" class="card-list">
+              <p class="debug-empty">取得中</p>
+            </div>
           </section>
         </section>
       </main>

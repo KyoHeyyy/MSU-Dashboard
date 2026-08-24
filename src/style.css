@@ -179,6 +179,48 @@ h1 {
   padding: 12px;
 }
 
+.debug-table-wrap {
+  overflow-x: auto;
+}
+
+.debug-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.debug-table th,
+.debug-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.debug-table th {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.debug-table-meta,
+.debug-empty {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.debug-table-meta {
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+.reward-prize-summary {
+  margin: 0;
+  color: #d7e5f8;
+  white-space: pre-wrap;
+}
+
 .dashboard-view {
   position: relative;
 }
@@ -204,6 +246,10 @@ h1 {
   grid-template-columns: 1fr;
 }
 
+#reward-view {
+  grid-template-columns: 1fr;
+}
+
 .board-panel {
   background: rgba(16, 25, 45, 0.94);
   border-radius: 18px;
@@ -218,6 +264,11 @@ h1 {
   margin-bottom: 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.panel-actions {
+  display: flex;
+  gap: 8px;
 }
 
 .icon-button {
@@ -338,6 +389,83 @@ h1 {
   width: 100%;
   border-collapse: collapse;
   min-width: 520px;
+}
+
+.reward-table {
+  min-width: 860px;
+}
+
+.reward-table th:not(:first-child),
+.reward-table td:not(:first-child) {
+  text-align: center;
+}
+
+.reward-total {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.reward-total strong {
+  margin-left: 6px;
+  color: #f7d774;
+  font-size: 1.15rem;
+}
+
+.reward-value {
+  color: #f7d774;
+  font-weight: 800;
+}
+
+.power-crystal-value {
+  color: #c4b5fd;
+}
+
+.reward-chips,
+.ft-items {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.name-chip {
+  display: inline-flex;
+  padding: 6px 10px;
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  border-radius: 999px;
+  background: rgba(125, 211, 252, 0.12);
+  color: #d8f3ff;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.ft-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #dff7eb;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ft-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 7px;
+  background: rgba(72, 199, 142, 0.2);
+  color: #8ee8b8;
+}
+
+.reward-muted {
+  color: var(--muted);
+}
+
+.reward-failed {
+  color: #fda4af;
 }
 
 .weekly-character-table th,

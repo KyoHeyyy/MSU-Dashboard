@@ -198,6 +198,10 @@ function getRaffleInfoCacheKey(characterAssetKey, walletAddress) {
   return `raffle:${walletAddress}:${characterAssetKey}`;
 }
 
+function getRaffleHistoryCacheKey(characterAssetKey, walletAddress, raffledAt) {
+  return `raffle-history:${walletAddress}:${characterAssetKey}:${raffledAt}`;
+}
+
 async function loadCharacters(walletAddress) {
   const cacheKey = getCharacterListCacheKey(walletAddress);
   const cached = getCache(cacheKey);
@@ -238,6 +242,40 @@ async function loadCharacterRaffleInformation(characterAssetKey, walletAddress =
   return payload;
 }
 
+async function fetchCharacterRaffleHistory(
+  characterAssetKey,
+  walletAddress = getWalletAddressFromUrl(),
+  raffledAt
+) {
+  const params = new URLSearchParams({
+    wallet_address: walletAddress,
+    ...(raffledAt ? { raffled_at: raffledAt } : {})
+  });
+  const url = `${MSU_API_BASE_URL}/msn/characters/${encodeURIComponent(characterAssetKey)}/raffles/history?${params}`;
+  const headers = {
+    'Content-Type': 'application/json',
+    'x-nxopen-api-key': MSU_API_KEY
+  };
+
+  return fetchWithRetry(url, { headers });
+}
+
+async function loadCharacterRaffleHistory(
+  characterAssetKey,
+  walletAddress = getWalletAddressFromUrl(),
+  raffledAt
+) {
+  const cacheKey = getRaffleHistoryCacheKey(characterAssetKey, walletAddress, raffledAt ?? 'all');
+  const cached = getCache(cacheKey);
+  if (cached !== null) {
+    return cached;
+  }
+
+  const payload = await fetchCharacterRaffleHistory(characterAssetKey, walletAddress, raffledAt);
+  setCache(cacheKey, payload);
+  return payload;
+}
+
 export {
   DEFAULT_WALLET_ADDRESS,
   getCache,
@@ -249,5 +287,7 @@ export {
   fetchCharacterListFromApi,
   loadCharacters,
   loadCharacterRaffleInformation,
-  fetchCharacterRaffleInformation
+  fetchCharacterRaffleInformation,
+  fetchCharacterRaffleHistory,
+  loadCharacterRaffleHistory
 };

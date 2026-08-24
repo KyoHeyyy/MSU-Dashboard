@@ -1,4 +1,9 @@
-import { fetchCharacterList, getWalletAddressFromUrl, loadCharacterRaffleInformation } from './msuApi.js';
+import {
+  fetchCharacterList,
+  getWalletAddressFromUrl,
+  loadCharacterRaffleHistory,
+  loadCharacterRaffleInformation
+} from './msuApi.js';
 import { NON_BOSS_LAYER_IDS } from '../config/nonBossLayerIds.js';
 import { LAYER_ID_TO_BOSS_NAME } from '../config/layerIdToBossName.js';
 
@@ -64,9 +69,12 @@ const bossData = [
 const dummyBossNames = ['Abyss Boss', 'Weekly Boss', 'Elite Boss', 'Raid Boss', 'Dungeon Boss'];
 const WEEKLY_BOSS_SETTINGS_KEY = 'weekly-boss-settings';
 const ALL_BOSS_NAMES = [...new Set(Object.values(LAYER_ID_TO_BOSS_NAME))];
+const DEBUG_CHARACTER_ASSET_KEY = 'CHARd0j2orbfpavs73dqduu0';
+const DEBUG_RAFFLED_AT = '2026-08-20T00:00:00Z';
 let weeklyConfigMode = false;
 let weeklyEntries = [];
 let weeklyBossSettings = null;
+let rewardEntries = [];
 
 function getWeeklyBossSettings() {
   try {
@@ -248,6 +256,154 @@ function getRaffleInformations(rafflePayload) {
   return Array.isArray(informations) ? informations : [];
 }
 
+function getRaffleHistories(rafflePayload) {
+  const histories = rafflePayload?.data?.histories ?? rafflePayload?.histories ?? [];
+  return Array.isArray(histories) ? histories : [];
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function getPrizeSummary(history) {
+  return (history.prizes ?? [])
+    .map((prize) => {
+      const key = prize.rewardKey ?? {};
+      const winCount = prize.winCount?.value ?? '-';
+      const receivedCount = prize.receivedCount?.value ?? '-';
+      return `idx=${key.idx ?? '-'}, itemId=${key.itemId ?? '-'}, rotationId=${key.rotationId ?? '-'} (win: ${winCount}, received: ${receivedCount})`;
+    })
+    .join('\n');
+}
+
+function renderRewardDebugTable(histories = [], errorMessage = '') {
+  const container = document.querySelector('#reward-debug-board');
+  if (!container) return;
+
+  if (errorMessage) {
+    container.innerHTML = `<p class="debug-empty reward-failed">${escapeHtml(errorMessage)}</p>`;
+    return;
+  }
+
+  const rows = histories.length > 0
+    ? histories.map((history) => `
+        <tr>
+          <td>${escapeHtml(history.raffledAt)}</td>
+          <td>${escapeHtml(history.layerId)}</td>
+          <td>${escapeHtml(history.state)}</td>
+          <td>${escapeHtml(history.claimStartAt)}</td>
+          <td>${escapeHtml(history.expireAt)}</td>
+          <td>${escapeHtml(history.clearInformations?.length ?? 0)}</td>
+          <td><pre class="reward-prize-summary">${escapeHtml(getPrizeSummary(history))}</pre></td>
+        </tr>
+      `).join('')
+    : '<tr><td colspan="7" class="debug-empty">該当する履歴はありません</td></tr>';
+
+  container.innerHTML = `
+    <div class="debug-table-meta">${escapeHtml(DEBUG_CHARACTER_ASSET_KEY)} / ${escapeHtml(DEBUG_RAFFLED_AT)}</div>
+    <div class="debug-table-wrap">
+      <table class="debug-table">
+        <thead><tr><th>raffledAt</th><th>layerId</th><th>state</th><th>claimStartAt</th><th>expireAt</th><th>clearInformations</th><th>prizes</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+async function renderRewardDebug() {
+  renderRewardDebugTable();
+  try {
+    const walletAddress = getWalletAddressFromUrl();
+    const payload = await loadCharacterRaffleHistory(
+      DEBUG_CHARACTER_ASSET_KEY,
+      walletAddress,
+      DEBUG_RAFFLED_AT
+    );
+    const histories = getRaffleHistories(payload).filter(
+      (history) => history?.raffledAt === DEBUG_RAFFLED_AT
+    );
+    renderRewardDebugTable(histories);
+  } catch (error) {
+    console.error('Reward debug fetch failed:', error);
+    renderRewardDebugTable([], error instanceof Error ? error.message : String(error));
+  }
+}
+
+function formatNeso(amount) {
+  if (amount >= 1000000000) return `${(amount / 1000000000).toFixed(1).replace('.0', '')}g`;
+  if (amount >= 1000000) return `${(amount / 1000000).toFixed(1).replace('.0', '')}m`;
+  if (amount >= 1000) return `${(amount / 1000).toFixed(1).replace('.0', '')}k`;
+  return String(amount);
+}
+
+// Replace this mock mapping with the reward API response mapping when item metadata is available.
+function getPreviousWeekRewards(rafflePayload, characterIndex = 0) {
+  const informationCount = getRaffleHistories(rafflePayload).length;
+  return {
+    neso: 1250000 + characterIndex * 275000 + informationCount * 1000,
+    powerCrystal: 850000 + characterIndex * 125000 + informationCount * 500,
+    nfts: [{ name: characterIndex % 2 === 0 ? 'Mystic Box' : 'Star Fragment' }],
+    fts: [
+      { icon: characterIndex % 2 === 0 ? '✦' : '◆', quantity: 3 + characterIndex },
+      { icon: '◈', quantity: characterIndex % 2 === 0 ? 1 : 0 }
+    ]
+  };
+}
+
+function renderRewardTable(entries = []) {
+  const container = document.querySelector('#reward-board');
+  const totalElement = document.querySelector('#neso-total');
+  if (!container || !totalElement) return;
+
+  const totalNeso = entries.reduce((sum, entry) => sum + (entry.rewards?.neso ?? 0), 0);
+  totalElement.textContent = formatNeso(totalNeso);
+  const rowsMarkup = entries.map((entry) => {
+    const iconMarkup = entry.icon
+      ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
+      : `<span class="char-icon">🧙</span>`;
+    const loadingMarkup = '<span class="reward-muted">取得中</span>';
+    const nesoMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value neso-value">${formatNeso(entry.rewards.neso)}</span>`;
+    const powerCrystalMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value power-crystal-value">${formatNeso(entry.rewards.powerCrystal)}</span>`;
+    const nftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : `<span class="reward-chips">${entry.rewards.nfts.map((item) => `<span class="name-chip">${item.name}</span>`).join('') || '-'}</span>`;
+    const ftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : `<span class="ft-items">${entry.rewards.fts.filter((item) => item.quantity > 0).map((item) => `<span class="ft-item"><span class="ft-icon">${item.icon}</span> x${item.quantity}</span>`).join('') || '-'}</span>`;
+    return `<tr><td><div class="char-cell">${iconMarkup}<div><div class="char-name">${entry.character}</div><div class="char-meta">Lv. ${entry.level}${entry.job ? ` · ${entry.job}` : ''}</div></div></div></td><td>${nesoMarkup}</td><td>${powerCrystalMarkup}</td><td>${nftMarkup}</td><td>${ftMarkup}</td></tr>`;
+  }).join('');
+
+  container.innerHTML = `<div class="weekly-character-table-wrap"><table class="weekly-character-table reward-table"><thead><tr><th>Character</th><th>NESO</th><th>Power Crystal</th><th>NFT</th><th>FT</th></tr></thead><tbody>${rowsMarkup}</tbody></table></div>`;
+}
+
+async function renderRewards() {
+  const container = document.querySelector('#reward-board');
+  if (!container) return;
+  showLoadingIndicator();
+  renderRewardDebug();
+  try {
+    const characterRows = (await loadCharacterRows()).slice(0, 11);
+    rewardEntries = characterRows.map((entry) => ({ ...entry, loading: true }));
+    renderRewardTable(rewardEntries);
+    const walletAddress = getWalletAddressFromUrl();
+    for (const [index, entry] of characterRows.entries()) {
+      try {
+        const payload = entry.assetKey
+          ? await loadCharacterRaffleHistory(entry.assetKey, walletAddress, DEBUG_RAFFLED_AT)
+          : null;
+        rewardEntries[index] = { ...entry, rewards: getPreviousWeekRewards(payload, index), loading: false };
+      } catch (error) {
+        console.error('Reward fetch failed:', error);
+        rewardEntries[index] = { ...entry, loading: false, failed: true };
+      }
+      renderRewardTable(rewardEntries);
+    }
+  } finally {
+    hideLoadingIndicator();
+  }
+}
+
 function renderWeeklyTable(entries = []) {
   const container = document.querySelector('#weekly-board');
   if (!container) return;
@@ -329,7 +485,7 @@ async function renderWeeklyRewards() {
   const walletAddress = getWalletAddressFromUrl();
   try {
     const characterRows = await loadCharacterRows();
-    const selectedCharacters = characterRows.slice(0, 15); // 上位15キャラクターを選択
+    const selectedCharacters = characterRows.slice(0, 11); // 上位キャラクターを選択
     weeklyEntries = selectedCharacters.map((entry) => ({
       ...entry,
       loading: true,
@@ -431,24 +587,23 @@ async function renderBossProgress(bossCount) {
 
 
 function setupTabs() {
-  const tabs = document.querySelectorAll('.tab-button');
-  const views = document.querySelectorAll('.view-panel');
-
-  tabs.forEach((tab) => {
+  document.querySelectorAll('.tab-button').forEach((tab) => {
     tab.addEventListener('click', () => {
-      const target = tab.dataset.view;
-
-      tabs.forEach((item) => {
-        const isActive = item === tab;
-        item.classList.toggle('active', isActive);
-        item.setAttribute('aria-selected', String(isActive));
-      });
-
-      views.forEach((view) => {
-        view.classList.toggle('active', view.dataset.view === target);
-      });
+      switchView(tab.dataset.view);
     });
   });
+}
+
+function switchView(viewName) {
+  document.querySelectorAll('.tab-button').forEach((tab) => {
+    const isActive = tab.dataset.view === viewName;
+    tab.classList.toggle('active', isActive);
+    tab.setAttribute('aria-selected', String(isActive));
+  });
+  document.querySelectorAll('.view-panel').forEach((view) => {
+    view.classList.toggle('active', view.dataset.view === viewName);
+  });
+  if (viewName === 'reward' && rewardEntries.length === 0) renderRewards();
 }
 
 renderDaily();
@@ -456,3 +611,5 @@ renderBoss();
 renderWeeklyRewards();
 setupTabs();
 setupWeeklyBossControls();
+document.querySelector('#weekly-reward-button')?.addEventListener('click', () => switchView('reward'));
+document.querySelector('#reward-weekly-button')?.addEventListener('click', () => switchView('weekly'));
