@@ -4,6 +4,7 @@ compatibility_date = "2025-08-25"
 
 [vars]
 MSU_API_BASE_URL = "https://openapi.msu.io/v1rc1"
+ALLOWED_ORIGINS = "https://kyoheyyy.github.io"
 
 # For a single-origin deployment, leave ALLOWED_ORIGINS unset.
 # For a separate frontend, set it to a comma-separated list of exact origins.
