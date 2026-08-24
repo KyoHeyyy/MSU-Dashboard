@@ -70,11 +70,24 @@ const dummyBossNames = ['Abyss Boss', 'Weekly Boss', 'Elite Boss', 'Raid Boss', 
 const WEEKLY_BOSS_SETTINGS_KEY = 'weekly-boss-settings';
 const ALL_BOSS_NAMES = [...new Set(Object.values(LAYER_ID_TO_BOSS_NAME))];
 const DEBUG_CHARACTER_ASSET_KEY = 'CHARd0j2orbfpavs73dqduu0';
-const DEBUG_RAFFLED_AT = '2026-08-20T00:00:00Z';
+const THURSDAY_UTC = 4;
 let weeklyConfigMode = false;
 let weeklyEntries = [];
 let weeklyBossSettings = null;
 let rewardEntries = [];
+
+function getLatestThursdayAtUtc(date = new Date()) {
+  const latestThursday = new Date(Date.UTC(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate()
+  ));
+  const daysSinceThursday = (latestThursday.getUTCDay() + 7 - THURSDAY_UTC) % 7;
+  latestThursday.setUTCDate(latestThursday.getUTCDate() - daysSinceThursday);
+  return latestThursday.toISOString().replace('.000Z', 'Z');
+}
+
+const DEBUG_RAFFLED_AT = getLatestThursdayAtUtc();
 
 function getWeeklyBossSettings() {
   try {
@@ -261,6 +274,14 @@ function getRaffleHistories(rafflePayload) {
   return Array.isArray(histories) ? histories : [];
 }
 
+function getNesoFromHistory(rafflePayload) {
+  return getRaffleHistories(rafflePayload)
+    .filter((history) => history?.raffledAt === DEBUG_RAFFLED_AT)
+    .flatMap((history) => history.prizes ?? [])
+    .filter((prize) => Number(prize?.rewardKey?.itemId) === 1)
+    .reduce((total, prize) => total + (Number(prize.winCount?.value) || 0), 0);
+}
+
 function escapeHtml(value) {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -341,12 +362,10 @@ function formatNeso(amount) {
   return String(amount);
 }
 
-// Replace this mock mapping with the reward API response mapping when item metadata is available.
 function getPreviousWeekRewards(rafflePayload, characterIndex = 0) {
-  const informationCount = getRaffleHistories(rafflePayload).length;
   return {
-    neso: 1250000 + characterIndex * 275000 + informationCount * 1000,
-    powerCrystal: 850000 + characterIndex * 125000 + informationCount * 500,
+    neso: getNesoFromHistory(rafflePayload),
+    powerCrystal: 850000 + characterIndex * 125000,
     nfts: [{ name: characterIndex % 2 === 0 ? 'Mystic Box' : 'Star Fragment' }],
     fts: [
       { icon: characterIndex % 2 === 0 ? '✦' : '◆', quantity: 3 + characterIndex },

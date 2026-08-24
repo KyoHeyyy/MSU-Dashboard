@@ -3,6 +3,7 @@
         "/^node --test tests/msuApi\\.test\\.mjs$/": {
             "approve": true,
             "matchCommandLine": true
-        }
+        },
+        "npm.cmd": true
     }
 }
