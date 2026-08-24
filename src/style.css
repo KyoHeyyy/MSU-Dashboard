@@ -287,6 +287,32 @@ h1 {
   background: rgba(125, 211, 252, 0.22);
 }
 
+.reward-week-buttons {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(12, 20, 37, 0.8);
+}
+
+.reward-week-button {
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reward-week-button:hover,
+.reward-week-button.active {
+  background: rgba(125, 211, 252, 0.18);
+  color: var(--text);
+}
+
 .card-list {
   display: grid;
   gap: 14px;

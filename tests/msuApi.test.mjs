@@ -5,6 +5,7 @@ import {
   clearExpiredCache,
   getCache,
   getWalletAddressFromUrl,
+  getNextThursdayAtUtc,
   normalizeCharacterEntries,
   setCache
 } from '../src/msuApi.js';
@@ -37,6 +38,17 @@ test('getWalletAddressFromUrl returns URL param or fallback value', () => {
   assert.equal(getWalletAddressFromUrl('?walletAddress=0xabc123'), '0xabc123');
   assert.equal(getWalletAddressFromUrl('?address=0xdef456'), '0xdef456');
   assert.equal(getWalletAddressFromUrl(''), '0x24eb476d0E7B9d2099323E633FF0f16f5A64c067');
+});
+
+test('getNextThursdayAtUtc returns the following Thursday at 00:00 UTC', () => {
+  assert.equal(
+    new Date(getNextThursdayAtUtc(Date.parse('2026-08-24T12:00:00Z'))).toISOString(),
+    '2026-08-27T00:00:00.000Z'
+  );
+  assert.equal(
+    new Date(getNextThursdayAtUtc(Date.parse('2026-08-27T00:00:00Z'))).toISOString(),
+    '2026-09-03T00:00:00.000Z'
+  );
 });
 
 test('normalizeCharacterEntries handles raw and nested character payloads', () => {

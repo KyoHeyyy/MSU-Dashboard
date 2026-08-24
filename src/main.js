@@ -75,6 +75,7 @@ let weeklyConfigMode = false;
 let weeklyEntries = [];
 let weeklyBossSettings = null;
 let rewardEntries = [];
+let selectedRewardWeek = 1;
 
 function getLatestThursdayAtUtc(date = new Date()) {
   const latestThursday = new Date(Date.UTC(
@@ -274,9 +275,16 @@ function getRaffleHistories(rafflePayload) {
   return Array.isArray(histories) ? histories : [];
 }
 
-function getNesoFromHistory(rafflePayload) {
+function getRewardRaffledAt(weeksAgo) {
+  const raffledAt = new Date(DEBUG_RAFFLED_AT);
+  raffledAt.setUTCDate(raffledAt.getUTCDate() - (weeksAgo - 1) * 7);
+  return raffledAt.toISOString().replace('.000Z', 'Z');
+}
+
+function getNesoFromHistory(rafflePayload, weeksAgo = selectedRewardWeek) {
+  const targetRaffledAt = getRewardRaffledAt(weeksAgo);
   return getRaffleHistories(rafflePayload)
-    .filter((history) => history?.raffledAt === DEBUG_RAFFLED_AT)
+    .filter((history) => history?.raffledAt === targetRaffledAt)
     .flatMap((history) => history.prizes ?? [])
     .filter((prize) => Number(prize?.rewardKey?.itemId) === 1)
     .reduce((total, prize) => total + (Number(prize.winCount?.value) || 0), 0);
@@ -362,14 +370,14 @@ function formatNeso(amount) {
   return String(amount);
 }
 
-function getPreviousWeekRewards(rafflePayload, characterIndex = 0) {
+function getRewardsForWeek(rafflePayload, characterIndex = 0, weeksAgo = selectedRewardWeek) {
   return {
-    neso: getNesoFromHistory(rafflePayload),
-    powerCrystal: 850000 + characterIndex * 125000,
-    nfts: [{ name: characterIndex % 2 === 0 ? 'Mystic Box' : 'Star Fragment' }],
+    neso: getNesoFromHistory(rafflePayload, weeksAgo),
+    powerCrystal: 850000 + (characterIndex + weeksAgo - 1) * 125000,
+    nfts: [{ name: (characterIndex + weeksAgo) % 2 === 0 ? 'Mystic Box' : 'Star Fragment' }],
     fts: [
-      { icon: characterIndex % 2 === 0 ? '✦' : '◆', quantity: 3 + characterIndex },
-      { icon: '◈', quantity: characterIndex % 2 === 0 ? 1 : 0 }
+      { icon: (characterIndex + weeksAgo) % 2 === 0 ? '✦' : '◆', quantity: 3 + characterIndex + weeksAgo - 1 },
+      { icon: '◈', quantity: (characterIndex + weeksAgo) % 2 === 0 ? 1 : 0 }
     ]
   };
 }
@@ -379,17 +387,21 @@ function renderRewardTable(entries = []) {
   const totalElement = document.querySelector('#neso-total');
   if (!container || !totalElement) return;
 
-  const totalNeso = entries.reduce((sum, entry) => sum + (entry.rewards?.neso ?? 0), 0);
+  const totalNeso = entries.reduce((sum, entry, index) => {
+    const rewards = entry.rewardsByWeek?.[selectedRewardWeek] ?? getRewardsForWeek(entry.rafflePayload, index);
+    return sum + (rewards?.neso ?? 0);
+  }, 0);
   totalElement.textContent = formatNeso(totalNeso);
-  const rowsMarkup = entries.map((entry) => {
+  const rowsMarkup = entries.map((entry, index) => {
+    const rewards = entry.rewardsByWeek?.[selectedRewardWeek] ?? getRewardsForWeek(entry.rafflePayload, index);
     const iconMarkup = entry.icon
       ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
       : `<span class="char-icon">🧙</span>`;
     const loadingMarkup = '<span class="reward-muted">取得中</span>';
-    const nesoMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value neso-value">${formatNeso(entry.rewards.neso)}</span>`;
-    const powerCrystalMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value power-crystal-value">${formatNeso(entry.rewards.powerCrystal)}</span>`;
-    const nftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : `<span class="reward-chips">${entry.rewards.nfts.map((item) => `<span class="name-chip">${item.name}</span>`).join('') || '-'}</span>`;
-    const ftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : `<span class="ft-items">${entry.rewards.fts.filter((item) => item.quantity > 0).map((item) => `<span class="ft-item"><span class="ft-icon">${item.icon}</span> x${item.quantity}</span>`).join('') || '-'}</span>`;
+    const nesoMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value neso-value">${formatNeso(rewards.neso)}</span>`;
+    const powerCrystalMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value power-crystal-value">${formatNeso(rewards.powerCrystal)}</span>`;
+    const nftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : `<span class="reward-chips">${rewards.nfts.map((item) => `<span class="name-chip">${item.name}</span>`).join('') || '-'}</span>`;
+    const ftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : `<span class="ft-items">${rewards.fts.filter((item) => item.quantity > 0).map((item) => `<span class="ft-item"><span class="ft-icon">${item.icon}</span> x${item.quantity}</span>`).join('') || '-'}</span>`;
     return `<tr><td><div class="char-cell">${iconMarkup}<div><div class="char-name">${entry.character}</div><div class="char-meta">Lv. ${entry.level}${entry.job ? ` · ${entry.job}` : ''}</div></div></div></td><td>${nesoMarkup}</td><td>${powerCrystalMarkup}</td><td>${nftMarkup}</td><td>${ftMarkup}</td></tr>`;
   }).join('');
 
@@ -408,10 +420,32 @@ async function renderRewards() {
     const walletAddress = getWalletAddressFromUrl();
     for (const [index, entry] of characterRows.entries()) {
       try {
-        const payload = entry.assetKey
-          ? await loadCharacterRaffleHistory(entry.assetKey, walletAddress, DEBUG_RAFFLED_AT)
-          : null;
-        rewardEntries[index] = { ...entry, rewards: getPreviousWeekRewards(payload, index), loading: false };
+        const payloadsByWeek = Object.fromEntries(
+          await Promise.all(
+            [1, 2, 3].map(async (weeksAgo) => [
+              weeksAgo,
+              entry.assetKey
+                ? await loadCharacterRaffleHistory(
+                    entry.assetKey,
+                    walletAddress,
+                    getRewardRaffledAt(weeksAgo)
+                  )
+                : null
+            ])
+          )
+        );
+        const rewardsByWeek = Object.fromEntries(
+          [1, 2, 3].map((weeksAgo) => [
+            weeksAgo,
+            getRewardsForWeek(payloadsByWeek[weeksAgo], index, weeksAgo)
+          ])
+        );
+        rewardEntries[index] = {
+          ...entry,
+          rafflePayload: payloadsByWeek[1],
+          rewardsByWeek,
+          loading: false
+        };
       } catch (error) {
         console.error('Reward fetch failed:', error);
         rewardEntries[index] = { ...entry, loading: false, failed: true };
@@ -631,4 +665,14 @@ renderWeeklyRewards();
 setupTabs();
 setupWeeklyBossControls();
 document.querySelector('#weekly-reward-button')?.addEventListener('click', () => switchView('reward'));
-document.querySelector('#reward-weekly-button')?.addEventListener('click', () => switchView('weekly'));
+document.querySelectorAll('.reward-week-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    selectedRewardWeek = Number(button.dataset.rewardWeek);
+    document.querySelectorAll('.reward-week-button').forEach((weekButton) => {
+      const isSelected = Number(weekButton.dataset.rewardWeek) === selectedRewardWeek;
+      weekButton.classList.toggle('active', isSelected);
+      weekButton.setAttribute('aria-pressed', String(isSelected));
+    });
+    renderRewardTable(rewardEntries);
+  });
+});

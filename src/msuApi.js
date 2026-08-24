@@ -6,6 +6,7 @@ const REQUEST_INTERVAL_MS = 500;
 const RATE_LIMIT_RPS = 2;
 const CACHE_PREFIX = 'cache:';
 const CACHE_DURATION_MS = 5 * 60 * 1000;
+const THURSDAY_UTC = 4;
 
 let requestQueue = Promise.resolve();
 let lastRequestAt = 0;
@@ -39,7 +40,7 @@ function getCache(key) {
 
   try {
     const entry = JSON.parse(raw);
-    if (!entry || !Number.isFinite(entry.expiresAt) || Date.now() > entry.expiresAt) {
+    if (!entry || !Number.isFinite(entry.expiresAt) || Date.now() >= entry.expiresAt) {
       storage.removeItem(storageKey);
       return null;
     }
@@ -55,7 +56,7 @@ function getCache(key) {
   }
 }
 
-function setCache(key, value) {
+function setCache(key, value, durationMs = CACHE_DURATION_MS) {
   const storage = getSessionStorage();
   if (!storage) {
     return;
@@ -65,7 +66,7 @@ function setCache(key, value) {
   const entry = {
     value,
     createdAt: now,
-    expiresAt: now + CACHE_DURATION_MS
+    expiresAt: now + durationMs
   };
 
   try {
@@ -90,7 +91,7 @@ function clearExpiredCache() {
 
     try {
       const entry = JSON.parse(storage.getItem(storageKey));
-      if (!entry || !Number.isFinite(entry.expiresAt) || now > entry.expiresAt) {
+      if (!entry || !Number.isFinite(entry.expiresAt) || now >= entry.expiresAt) {
         storage.removeItem(storageKey);
       }
     } catch {
@@ -202,6 +203,15 @@ function getRaffleHistoryCacheKey(characterAssetKey, walletAddress, raffledAt) {
   return `raffle-history:${walletAddress}:${characterAssetKey}:${raffledAt}`;
 }
 
+function getNextThursdayAtUtc(now = Date.now()) {
+  const currentDate = new Date(now);
+  const daysUntilThursday = (THURSDAY_UTC - currentDate.getUTCDay() + 7) % 7 || 7;
+  const nextThursday = new Date(currentDate);
+  nextThursday.setUTCDate(currentDate.getUTCDate() + daysUntilThursday);
+  nextThursday.setUTCHours(0, 0, 0, 0);
+  return nextThursday.getTime();
+}
+
 async function loadCharacters(walletAddress) {
   const cacheKey = getCharacterListCacheKey(walletAddress);
   const cached = getCache(cacheKey);
@@ -272,7 +282,7 @@ async function loadCharacterRaffleHistory(
   }
 
   const payload = await fetchCharacterRaffleHistory(characterAssetKey, walletAddress, raffledAt);
-  setCache(cacheKey, payload);
+  setCache(cacheKey, payload, getNextThursdayAtUtc() - Date.now());
   return payload;
 }
 
@@ -280,6 +290,7 @@ export {
   DEFAULT_WALLET_ADDRESS,
   getCache,
   setCache,
+  getNextThursdayAtUtc,
   clearExpiredCache,
   getWalletAddressFromUrl,
   fetchCharacterList,

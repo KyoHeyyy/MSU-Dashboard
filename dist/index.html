@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MSU Dashboard</title>
-    <script type="module" crossorigin src="/assets/index-CdeNAbiT.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C9C0oPtG.css">
+    <script type="module" crossorigin src="/assets/index-DrCIT-_0.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-jQUePPwj.css">
   </head>
   <body>
     <div class="app-shell">
@@ -89,7 +89,11 @@
                 <h2>Rewards</h2>
                 <p class="reward-total">NESO total <strong id="neso-total">0</strong></p>
               </div>
-              <button id="reward-weekly-button" class="icon-button" type="button" aria-label="Weekly Bossを表示" title="Weekly Bossを表示">&#9745;</button>
+              <div class="reward-week-buttons" role="group" aria-label="報酬の週を選択">
+                <button class="reward-week-button active" type="button" data-reward-week="1" aria-pressed="true">1週前</button>
+                <button class="reward-week-button" type="button" data-reward-week="2" aria-pressed="false">2週前</button>
+                <button class="reward-week-button" type="button" data-reward-week="3" aria-pressed="false">3週前</button>
+              </div>
             </div>
             <div id="reward-board" class="card-list"></div>
           </section>
