@@ -3,10 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MSU Dashboard</title>
-
-    <script type="module" crossorigin src="/assets/index-CoTFrouN.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BpNLBsX3.css">
+    <title>MSU Dashboard</title>
+    <script type="module" crossorigin src="/assets/index-DQPqyfIG.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-YLzo3l3l.css">
   </head>
   <body>
     <div class="app-shell">
@@ -14,12 +13,12 @@
         <div>
           <p class="eyebrow">MapleStory Universe</p>
           <h1>Game Dashboard</h1>
-          <p class="subcopy">個人用ダッシュボード。</p>
+          <!-- <p class="subcopy">個人用ダッシュボード。</p> -->
         </div>
-        <div class="topbar-meta">
+        <!-- <div class="topbar-meta">
           <span class="pill">Local Only</span>
           <span class="pill">Mock Data</span>
-        </div>
+        </div> -->
       </header>
 
       <section class="summary-grid" aria-label="Summary">
@@ -29,12 +28,14 @@
         </article>
         <article class="summary-card">
           <span class="summary-label">Boss Progress</span>
-          <strong>3 / 6</strong>
+          <div id="boss-progress" class="card-list">
+            <strong>取得中</strong>
+          </div>
         </article>
-        <article class="summary-card">
-          <span class="summary-label">Weekly Rewards</span>
+        <!-- <article class="summary-card">
+          <span class="summary-label">Weekly Boss</span>
           <strong>3 Characters</strong>
-        </article>
+        </article> -->
       </section>
 
       <nav class="view-tabs" aria-label="Timeframe tabs">
@@ -46,20 +47,20 @@
         </button>
       </nav>
 
-      <section class="debug-panel" aria-label="Debug response">
+      <!-- <section class="debug-panel" aria-label="Debug response">
         <div class="debug-panel-header">
           <h2>Debug JSON</h2>
           <span class="panel-tag">Temporary</span>
         </div>
         <pre id="debug-json">Waiting for API response...</pre>
-      </section>
+      </section> -->
 
       <main class="dashboard-view">
         <section id="daily-view" class="dashboard-grid view-panel active" data-view="daily">
           <section class="board-panel panel-daily">
             <div class="panel-header">
               <h2>Daily</h2>
-              <span class="panel-tag">デイリー管理</span>
+              <!-- <span class="panel-tag">デイリー管理</span> -->
             </div>
             <div id="daily-board" class="card-list"></div>
           </section>
@@ -68,16 +69,14 @@
         <section id="weekly-view" class="dashboard-grid view-panel" data-view="weekly">
           <section class="board-panel panel-weekly">
             <div class="panel-header">
-              <h2>Weekly Rewards</h2>
-              <span class="panel-tag">アカウント集計</span>
+              <h2>Weekly Boss</h2>
+              <!-- <span class="panel-tag">アカウント集計</span> -->
             </div>
             <div id="weekly-board" class="card-list"></div>
           </section>
-          
         </section>
       </main>
     </div>
-
-
+
   </body>
 </html>

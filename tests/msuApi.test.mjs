@@ -1,7 +1,37 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { getWalletAddressFromUrl, normalizeCharacterEntries } from '../src/msuApi.js';
+import {
+  clearExpiredCache,
+  getCache,
+  getWalletAddressFromUrl,
+  normalizeCharacterEntries,
+  setCache
+} from '../src/msuApi.js';
+
+class SessionStorageMock {
+  #items = new Map();
+
+  get length() {
+    return this.#items.size;
+  }
+
+  key(index) {
+    return [...this.#items.keys()][index] ?? null;
+  }
+
+  getItem(key) {
+    return this.#items.get(key) ?? null;
+  }
+
+  setItem(key, value) {
+    this.#items.set(key, String(value));
+  }
+
+  removeItem(key) {
+    this.#items.delete(key);
+  }
+}
 
 test('getWalletAddressFromUrl returns URL param or fallback value', () => {
   assert.equal(getWalletAddressFromUrl('?walletAddress=0xabc123'), '0xabc123');
@@ -28,4 +58,28 @@ test('normalizeCharacterEntries handles raw and nested character payloads', () =
   assert.equal(entries[0].character, 'TestChar');
   assert.equal(entries[0].level, 200);
   assert.equal(entries[0].job, 'Warrior');
+});
+
+test('cache uses sessionStorage and removes expired or invalid entries', () => {
+  const storage = new SessionStorageMock();
+  globalThis.sessionStorage = storage;
+
+  setCache('characters:test', { id: 1 });
+  const stored = JSON.parse(storage.getItem('cache:characters:test'));
+
+  assert.deepEqual(getCache('characters:test'), { id: 1 });
+  assert.equal(stored.createdAt <= stored.expiresAt, true);
+
+  storage.setItem(
+    'cache:expired',
+    JSON.stringify({ value: 'old', expiresAt: Date.now() - 1 })
+  );
+  storage.setItem('cache:invalid', '{invalid');
+  storage.setItem('other-data', 'keep');
+
+  clearExpiredCache();
+
+  assert.equal(storage.getItem('cache:expired'), null);
+  assert.equal(storage.getItem('cache:invalid'), null);
+  assert.equal(storage.getItem('other-data'), 'keep');
 });
