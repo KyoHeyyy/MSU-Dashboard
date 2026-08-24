@@ -1,9 +1,9 @@
-import { DEFAULT_WALLET_ADDRESS, MSU_API_BASE_URL, MSU_API_KEY } from '../config/msuConfig.js';
+import { DEFAULT_WALLET_ADDRESS } from '../config/msuConfig.js';
 
 const RETRY_COUNT = 3;
 const RETRY_DELAY_MS = 1000;
 const REQUEST_INTERVAL_MS = 500;
-const RATE_LIMIT_RPS = 2;
+const MSU_WORKER_BASE_URL = (import.meta.env?.VITE_MSU_WORKER_URL || '/api/msu').replace(/\/$/, '');
 const CACHE_PREFIX = 'cache:';
 const CACHE_DURATION_MS = 5 * 60 * 1000;
 const THURSDAY_UTC = 4;
@@ -181,13 +181,8 @@ async function fetchWithRetry(url, options = {}, { retryCount = RETRY_COUNT, ret
 }
 
 async function fetchCharacterListFromApi(walletAddress) {
-  const url = `${MSU_API_BASE_URL}/accounts/${encodeURIComponent(walletAddress)}/characters?size=100`;
-  const headers = {
-    'Content-Type': 'application/json',
-    'x-nxopen-api-key': MSU_API_KEY
-  };
-
-  const payload = await fetchWithRetry(url, { headers });
+  const url = `${MSU_WORKER_BASE_URL}/accounts/${encodeURIComponent(walletAddress)}/characters?size=100`;
+  const payload = await fetchWithRetry(url);
   return payload;
 }
 
@@ -230,13 +225,8 @@ async function fetchCharacterList(walletAddress = getWalletAddressFromUrl()) {
 }
 
 async function fetchCharacterRaffleInformation(characterAssetKey, walletAddress = getWalletAddressFromUrl()) {
-  const url = `${MSU_API_BASE_URL}/msn/characters/${encodeURIComponent(characterAssetKey)}/raffles?walletAddress=${encodeURIComponent(walletAddress)}`;
-  const headers = {
-    'Content-Type': 'application/json',
-    'x-nxopen-api-key': MSU_API_KEY
-  };
-
-  return fetchWithRetry(url, { headers });
+  const url = `${MSU_WORKER_BASE_URL}/msn/characters/${encodeURIComponent(characterAssetKey)}/raffles?walletAddress=${encodeURIComponent(walletAddress)}`;
+  return fetchWithRetry(url);
 }
 
 async function loadCharacterRaffleInformation(characterAssetKey, walletAddress = getWalletAddressFromUrl()) {
@@ -261,13 +251,8 @@ async function fetchCharacterRaffleHistory(
     wallet_address: walletAddress,
     ...(raffledAt ? { raffled_at: raffledAt } : {})
   });
-  const url = `${MSU_API_BASE_URL}/msn/characters/${encodeURIComponent(characterAssetKey)}/raffles/history?${params}`;
-  const headers = {
-    'Content-Type': 'application/json',
-    'x-nxopen-api-key': MSU_API_KEY
-  };
-
-  return fetchWithRetry(url, { headers });
+  const url = `${MSU_WORKER_BASE_URL}/msn/characters/${encodeURIComponent(characterAssetKey)}/raffles/history?${params}`;
+  return fetchWithRetry(url);
 }
 
 async function loadCharacterRaffleHistory(

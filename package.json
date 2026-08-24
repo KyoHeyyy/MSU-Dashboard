@@ -6,9 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "wrangler": "^4.30.0"
   }
 }

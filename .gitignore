@@ -1,2 +1,5 @@
 *.md
 /dist
+.dev.vars
+/.wrangler
+/node_modules

@@ -8,6 +8,11 @@ export default defineConfig({
         target: 'https://msu.io',
         changeOrigin: true,
         secure: true
+      },
+      '/api/msu': {
+        target: 'http://127.0.0.1:8787',
+        changeOrigin: true,
+        secure: false
       }
     }
   }

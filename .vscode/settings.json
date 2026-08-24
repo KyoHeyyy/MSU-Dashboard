@@ -4,6 +4,14 @@
             "approve": true,
             "matchCommandLine": true
         },
-        "npm.cmd": true
+        "npm.cmd": true,
+        "/^cmd /c npm test$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^cmd /c npm run build$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
     }
 }
