@@ -1,12 +1,4 @@
 export const LAYER_ID_TO_BOSS_NAME = {
-  // '305014': 'Boss001',
-  // '305001': 'Boss002',
-  // '304003': 'Boss003',
-  // '306322': 'Boss004',
-  // '308071': 'Boss005',
-  // '308070': 'Boss006',
-  // '305024': 'Boss007'
-
   '205035': 'N.Damien',
   '205038': 'N.Slime',
   '205030': 'C.Queen',
@@ -24,7 +16,7 @@ export const LAYER_ID_TO_BOSS_NAME = {
   '500001': '500001',
   '305023': '305023',
   '205027': 'C.Zakum',
-  '205026': 'C.Cygnus',
+  '205026': 'N.Cygnus',
   '205023': 'E.Cygnus',
   '205024': 'H.Hilla',
 

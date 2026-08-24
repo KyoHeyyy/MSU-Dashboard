@@ -220,6 +220,22 @@ h1 {
   border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
+.icon-button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(125, 211, 252, 0.1);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background: rgba(125, 211, 252, 0.22);
+}
+
 .card-list {
   display: grid;
   gap: 14px;
@@ -287,6 +303,28 @@ h1 {
   font-size: 0.78rem;
 }
 
+.weekly-bulk-controls {
+  display: flex;
+  margin-top: 8px;
+}
+
+.weekly-bulk-button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  border-radius: 6px;
+  background: rgba(125, 211, 252, 0.08);
+  color: var(--accent-3);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.weekly-bulk-button:hover {
+  background: rgba(125, 211, 252, 0.18);
+}
+
 .loading-text {
   padding: 18px;
   color: var(--muted);
@@ -345,6 +383,29 @@ h1 {
   font-size: 0.82rem;
   line-height: 1.2;
   white-space: nowrap;
+  cursor: pointer;
+}
+
+.boss-name-chip:disabled {
+  cursor: default;
+}
+
+.boss-name-chip.is-defeated {
+  color: #aab5c5;
+  background: rgba(148, 163, 184, 0.16);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+.boss-name-chip.is-hidden {
+  color: var(--muted);
+  background: rgba(148, 163, 184, 0.08);
+  border-style: dashed;
+  opacity: 0.58;
+}
+
+.boss-name-chip:not(:disabled):hover {
+  border-color: var(--accent-3);
+  transform: translateY(-1px);
 }
 
 .switch {

@@ -62,6 +62,43 @@ const bossData = [
 ];
 
 const dummyBossNames = ['Abyss Boss', 'Weekly Boss', 'Elite Boss', 'Raid Boss', 'Dungeon Boss'];
+const WEEKLY_BOSS_SETTINGS_KEY = 'weekly-boss-settings';
+const ALL_BOSS_NAMES = [...new Set(Object.values(LAYER_ID_TO_BOSS_NAME))];
+let weeklyConfigMode = false;
+let weeklyEntries = [];
+let weeklyBossSettings = null;
+
+function getWeeklyBossSettings() {
+  try {
+    const rawSettings = sessionStorage.getItem(WEEKLY_BOSS_SETTINGS_KEY);
+    const settings = rawSettings ? JSON.parse(rawSettings) : {};
+    return settings && typeof settings === 'object' ? settings : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveWeeklyBossSettings(settings) {
+  try {
+    sessionStorage.setItem(WEEKLY_BOSS_SETTINGS_KEY, JSON.stringify(settings));
+  } catch (error) {
+    console.warn('Failed to save Weekly Boss settings:', error);
+  }
+}
+
+function getHiddenBossNames(character) {
+  const hiddenBossNames = (weeklyBossSettings ?? getWeeklyBossSettings())[character];
+  return Array.isArray(hiddenBossNames) ? hiddenBossNames : [];
+}
+
+function renderWeeklyConfigButton() {
+  const button = document.querySelector('#weekly-config-button');
+  if (!button) return;
+
+  button.innerHTML = weeklyConfigMode ? '&#128190;' : '&#9881;';
+  button.setAttribute('aria-label', weeklyConfigMode ? 'Weekly Boss設定を保存' : 'Weekly Boss設定を開く');
+  button.title = weeklyConfigMode ? 'Weekly Boss設定を保存' : 'Weekly Boss設定を開く';
+}
 
 function setDebugJson(message) {
   if (!debugJsonElement) return;
@@ -221,13 +258,27 @@ function renderWeeklyTable(entries = []) {
         ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
         : `<span class="char-icon">🧙</span>`;
 
-      const bossMarkup = entry.loading
-        ? '<span class="boss-name-pill loading-boss-pill">取得中</span>'
-        : entry.failed
-          ? '<span class="boss-name-pill failed-boss-pill">取得失敗</span>'
-          : entry.bossName
-            ? `<span class="boss-name-pill">${entry.bossName}</span>`
-            : '<span class="boss-name-pill">-</span>';
+      const hiddenBossNames = getHiddenBossNames(entry.character);
+      const bossNames = weeklyConfigMode
+        ? ALL_BOSS_NAMES
+        : ALL_BOSS_NAMES.filter((bossName) => !hiddenBossNames.includes(bossName));
+      const bossMarkup = weeklyConfigMode
+        ? `<span class="boss-name-pill">${bossNames.map((bossName) => {
+              const isHidden = hiddenBossNames.includes(bossName);
+            const isDefeated = entry.bossNames?.includes(bossName);
+            const stateClass = `${isHidden ? ' is-hidden' : ''}${isDefeated ? ' is-defeated' : ''}`;
+            return `<button class="boss-name-chip${stateClass}" type="button" data-character="${entry.character}" data-boss-name="${bossName}">${bossName}</button>`;
+            }).join('')}</span>`
+        : entry.loading
+          ? '<span class="boss-name-pill loading-boss-pill">取得中</span>'
+          : entry.failed
+            ? '<span class="boss-name-pill failed-boss-pill">取得失敗</span>'
+            : bossNames.length > 0
+              ? `<span class="boss-name-pill">${bossNames.map((bossName) => {
+                  const stateClass = entry.bossNames?.includes(bossName) ? ' is-defeated' : '';
+                  return `<button class="boss-name-chip${stateClass}" type="button" disabled>${bossName}</button>`;
+                }).join('')}</span>`
+              : '<span class="boss-name-pill">-</span>';
 
       return `
         <tr>
@@ -237,6 +288,13 @@ function renderWeeklyTable(entries = []) {
               <div>
                 <div class="char-name">${entry.character}</div>
                 <div class="char-meta">Lv. ${entry.level}${entry.job ? ` · ${entry.job}` : ''}</div>
+                ${weeklyConfigMode ? `
+                  <div class="weekly-bulk-controls">
+                    <button class="weekly-bulk-button" type="button" data-character="${entry.character}" data-bulk-action="toggle-all" aria-label="${hiddenBossNames.length === 0 ? '全てチェック解除' : '全てチェック'}" aria-pressed="${hiddenBossNames.length === 0}" title="${hiddenBossNames.length === 0 ? '全てチェック解除' : '全てチェック'}">
+                      ${hiddenBossNames.length === 0 ? '&#9745;' : '&#9744;'}
+                    </button>
+                  </div>
+                ` : ''}
               </div>
             </div>
           </td>
@@ -259,6 +317,7 @@ function renderWeeklyTable(entries = []) {
       </table>
     </div>
   `;
+  renderWeeklyConfigButton();
 }
 
 async function renderWeeklyRewards() {
@@ -266,14 +325,15 @@ async function renderWeeklyRewards() {
   if (!container) return;
 
   showLoadingIndicator();
+  bossCount = 0;
   const walletAddress = getWalletAddressFromUrl();
   try {
     const characterRows = await loadCharacterRows();
-    const selectedCharacters = characterRows.slice(0, 5); // 上位5キャラクターを選択
-    const weeklyEntries = selectedCharacters.map((entry) => ({
+    const selectedCharacters = characterRows.slice(0, 15); // 上位15キャラクターを選択
+    weeklyEntries = selectedCharacters.map((entry) => ({
       ...entry,
       loading: true,
-      bossName: ''
+      bossNames: []
     }));
 
     renderWeeklyTable(weeklyEntries);
@@ -295,15 +355,11 @@ async function renderWeeklyRewards() {
         bossCount += bossNames.length;
         console.log(`Character: ${entry.character}, Bosses: ${bossNames.join(', ')}, Total Boss Count: ${bossCount}`);
 
-        const bossNameMarkup = bossNames.length > 0
-          ? bossNames.map((layerId) => `<span class="boss-name-chip">${layerId}</span>`).join('')
-          : '';
-
         weeklyEntries[index] = {
           ...entry,
           loading: false,
           failed: false,
-          bossName: bossNameMarkup
+          bossNames
         };
       } catch (error) {
         console.error('Weekly reward fetch failed:', error);
@@ -311,7 +367,7 @@ async function renderWeeklyRewards() {
           ...entry,
           loading: false,
           failed: true,
-          bossName: ''
+          bossNames: []
         };
       }
 
@@ -321,6 +377,47 @@ async function renderWeeklyRewards() {
   } finally {
     hideLoadingIndicator();
   }
+}
+
+function toggleWeeklyBossConfig() {
+  if (!weeklyConfigMode) {
+    weeklyBossSettings = getWeeklyBossSettings();
+    weeklyConfigMode = true;
+    renderWeeklyTable(weeklyEntries);
+    return;
+  }
+
+  saveWeeklyBossSettings(weeklyBossSettings);
+  weeklyConfigMode = false;
+  renderWeeklyTable(weeklyEntries);
+}
+
+function setupWeeklyBossControls() {
+  document.querySelector('#weekly-config-button')?.addEventListener('click', toggleWeeklyBossConfig);
+  document.querySelector('#weekly-board')?.addEventListener('click', (event) => {
+    const bulkButton = event.target.closest('.weekly-bulk-button');
+    if (bulkButton && weeklyConfigMode) {
+      const character = bulkButton.dataset.character;
+      const allBossesChecked = getHiddenBossNames(character).length === 0;
+      weeklyBossSettings[character] = allBossesChecked ? [...ALL_BOSS_NAMES] : [];
+      renderWeeklyTable(weeklyEntries);
+      return;
+    }
+
+    const chip = event.target.closest('.boss-name-chip');
+    if (!chip || !weeklyConfigMode) return;
+
+    const character = chip.dataset.character;
+    const bossName = chip.dataset.bossName;
+    const hiddenBossNames = new Set(getHiddenBossNames(character));
+    if (hiddenBossNames.has(bossName)) {
+      hiddenBossNames.delete(bossName);
+    } else {
+      hiddenBossNames.add(bossName);
+    }
+    weeklyBossSettings[character] = [...hiddenBossNames];
+    renderWeeklyTable(weeklyEntries);
+  });
 }
 
 async function renderBossProgress(bossCount) {
@@ -358,3 +455,4 @@ renderDaily();
 renderBoss();
 renderWeeklyRewards();
 setupTabs();
+setupWeeklyBossControls();
