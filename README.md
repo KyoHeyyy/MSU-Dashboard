@@ -1,6 +1,6 @@
 # MSU Dashboard
 
-これは引継ぎ内容.md の方針に基づいて作成したローカル前提のモックダッシュボードです。
+GitHub Pagesで配信する静的ダッシュボードです。ブラウザからMSU APIへ直接アクセスせず、Cloudflare WorkerをAPIプロキシとして利用します。
 
 ## 機能
 
@@ -39,20 +39,47 @@ npm run worker:dev
 npm run dev
 ```
 
-デプロイは、フロントエンドをビルドしてWorkerを公開します。
+Workerのデプロイは、フロントエンドとは独立して行います。
 
 ```bash
 npm run worker:deploy
 ```
 
-フロントエンドとWorkerを別ドメインに配置する場合は、フロントエンドのビルド時にWorker URLを指定します。
+### GitHub Pagesへの公開
+
+1. Cloudflare Workerをデプロイし、Worker URLを確認します。
+2. GitHubリポジトリの **Settings > Secrets and variables > Actions > Variables** で、`MSU_WORKER_URL` に次のような完全なURLを登録します。
+
+	```text
+	https://msu-dashboard-api.example.workers.dev/api/msu
+	```
+
+3. Cloudflare Workerの `ALLOWED_ORIGINS` に、GitHub PagesのOriginを完全一致で登録します。通常は次の形式です。
+
+	```text
+	https://<ユーザー名>.github.io
+	```
+
+	`wrangler.toml` の `[vars]` に `ALLOWED_ORIGINS = "https://<ユーザー名>.github.io"` を追加してから、次のコマンドを実行します。
+
+	```bash
+	npx wrangler secret put MSU_API_KEY
+	npm run worker:deploy
+	```
+
+4. GitHubリポジトリの **Settings > Pages** で、Sourceを **GitHub Actions** に設定します。
+5. `main` ブランチへpushすると、`.github/workflows/deploy-pages.yml` がビルドしてGitHub Pagesへ公開します。
+
+Pagesのサブパスでも動作するよう、Viteは相対URLで静的ファイルを生成します。Worker URLはビルド時に `MSU_WORKER_URL` から `VITE_MSU_WORKER_URL` として注入されます。
+
+手元でPages用ビルドを確認する場合は、次のように実行します。
 
 ```powershell
 $env:VITE_MSU_WORKER_URL = 'https://msu-dashboard-api.example.workers.dev/api/msu'
 npm run build
 ```
 
-その場合は、Workerの環境変数 `ALLOWED_ORIGINS` にフロントエンドの完全一致Originをカンマ区切りで設定してください。同一Originのリバースプロキシ配下で `/api/msu` をWorkerへ転送する場合は、`VITE_MSU_WORKER_URL` と `ALLOWED_ORIGINS` は不要です。
+`ALLOWED_ORIGINS` は複数のOriginをカンマ区切りで指定できます。同一Originのリバースプロキシ配下で `/api/msu` をWorkerへ転送する場合は、`VITE_MSU_WORKER_URL` と `ALLOWED_ORIGINS` は不要です。
 
 ## ビルド
 
