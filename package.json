@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "node --test",
     "worker:dev": "wrangler dev",
-    "worker:deploy": "npm run build && wrangler deploy"
+    "worker:deploy": "npm run build && wrangler deploy",
+    "convert:events": "node scripts/convert-events-to-js.js"
   },
   "devDependencies": {
     "vite": "^5.4.10",

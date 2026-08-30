@@ -10,10 +10,21 @@ GitHub Pagesで配信する静的ダッシュボードです。ブラウザか�
 
 ## 実行
 
+まず依存関係を入れてから、固定ポートで起動します。
+
 ```bash
 npm install
-npm run dev
+npm run dev -- --host 0.0.0.0 --port 4173
 ```
+
+ブラウザで次のURLを開いて確認します。
+
+```text
+http://localhost:4173/
+http://192.168.1.8:4173/
+```
+
+> 5173 は他のプロセスで使用されていることがあり、Vite が自動で別ポートへ切り替わるため、固定ポートの `4173` を使うと確認が安定します。
 
 ## MSU API Worker
 
@@ -36,7 +47,7 @@ MSU_API_KEY="ここにMSU APIキー"
 
 ```bash
 npm run worker:dev
-npm run dev
+npm run dev -- --host 0.0.0.0 --port 4173
 ```
 
 Workerのデプロイは、フロントエンドとは独立して行います。
@@ -87,10 +98,17 @@ npm run build
 npm run build
 ```
 
-
-
+## ローカル確認（固定ポート）
 
 ```powershell
-Set-Location 'd:\dev\MSU Dashboard'; cmd /c npm run dev -- --host 0.0.0.0
+Set-Location 'd:\dev\MSU Dashboard'; cmd /c npm run dev -- --host 0.0.0.0 --port 4173
 ```
-http://localhost:5173/
+
+ブラウザで次のURLを開いて確認します。
+
+```text
+http://localhost:4173/
+http://192.168.1.8:4173/
+```
+
+> 5173 は他のプロセスで使用されている場合があるため、固定ポート `4173` を使うとURLが安定します。
