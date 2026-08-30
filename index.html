@@ -34,7 +34,10 @@
       </section>
 
       <nav class="view-tabs" aria-label="Timeframe tabs">
-        <button class="tab-button active" id="tab-weekly" type="button" data-view="weekly" aria-selected="true">
+        <button class="tab-button active" id="tab-daily" type="button" data-view="daily" aria-selected="true">
+          DAILY
+        </button>
+        <button class="tab-button" id="tab-weekly" type="button" data-view="weekly" aria-selected="false">
           WEEKLY
         </button>
         <button class="tab-button" id="tab-event" type="button" data-view="event" aria-selected="false">
@@ -54,16 +57,19 @@
       </section> -->
 
       <main class="dashboard-view">
-        <!-- <section id="daily-view" class="dashboard-grid view-panel active" data-view="daily">
+        <section id="daily-view" class="dashboard-grid view-panel active" data-view="daily">
           <section class="board-panel panel-daily">
             <div class="panel-header">
               <h2>Daily</h2>
+              <div class="panel-actions">
+                <button id="daily-config-button" class="icon-button" type="button" aria-label="Daily設定を開く" title="Daily設定を開く">&#9881;</button>
+              </div>
             </div>
             <div id="daily-board" class="card-list"></div>
           </section>
-        </section> -->
+        </section>
 
-        <section id="weekly-view" class="dashboard-grid view-panel active" data-view="weekly">
+        <section id="weekly-view" class="dashboard-grid view-panel" data-view="weekly">
           <section class="board-panel panel-weekly">
             <div class="panel-header">
               <h2>Weekly Boss</h2>

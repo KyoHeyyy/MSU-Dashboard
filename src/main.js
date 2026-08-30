@@ -7,8 +7,17 @@ import {
 import { getTotalWinCountByItemId } from './rewardUtils.js';
 import { NON_BOSS_LAYER_IDS } from '../config/nonBossLayerIds.js';
 import { LAYER_ID_TO_BOSS_NAME } from '../config/layerIdToBossName.js';
+import {
+  getDailyResetDateKey,
+  getDailyTaskVisibility,
+  getDailyViewModel,
+  getNormalizedDailyTaskConfig,
+  loadDailyProgressByDate,
+  toggleDailyTaskCompletion,
+  toggleDailyTaskVisibility
+} from './dailyTasks.js';
 
-const DAILY_TASK_LABELS = ['Daily Quest', 'Dungeon Clear', 'Guild Donation', 'Pet Feed', 'Ride Check'];
+const DAILY_TASK_CONFIG = getNormalizedDailyTaskConfig();
 const debugJsonElement = document.querySelector('#debug-json');
 const loadingIndicator = document.createElement('div');
 loadingIndicator.id = 'loading-indicator';
@@ -37,27 +46,13 @@ const fallbackDailyData = [
     icon: '🧙',
     character: 'キャラA',
     level: 175,
-    linkBuff: true,
-    tasks: [
-      { label: 'Daily Quest', done: true, type: 'checkbox' },
-      { label: 'Dungeon Clear', done: false, type: 'toggle' },
-      { label: 'Guild Donation', done: true, type: 'checkbox' },
-      { label: 'Pet Feed', done: false, type: 'toggle' },
-      { label: 'Ride Check', done: true, type: 'checkbox' }
-    ]
+    assetKey: 'fallback-a'
   },
   {
     icon: '🏹',
     character: 'キャラB',
     level: 172,
-    linkBuff: false,
-    tasks: [
-      { label: 'Daily Quest', done: false, type: 'checkbox' },
-      { label: 'Dungeon Clear', done: true, type: 'toggle' },
-      { label: 'Guild Donation', done: false, type: 'checkbox' },
-      { label: 'Pet Feed', done: true, type: 'toggle' },
-      { label: 'Ride Check', done: false, type: 'checkbox' }
-    ]
+    assetKey: 'fallback-b'
   }
 ];
 
@@ -151,12 +146,7 @@ async function loadCharacterRows() {
           level,
           job: jobName,
           assetKey: entry.assetKey ?? entry.data?.assetKey ?? '',
-          linkBuff: true,
-          tasks: DAILY_TASK_LABELS.map((label, index) => ({
-            label,
-            done: index % 2 === 0,
-            type: index % 2 === 0 ? 'checkbox' : 'toggle'
-          }))
+          linkBuff: true
         };
       })
       .sort((a, b) => b.level - a.level);
@@ -170,29 +160,68 @@ async function loadCharacterRows() {
   }
 }
 
+let dailyConfigMode = false;
+
 function renderDailyTable(entries) {
   const container = document.querySelector('#daily-board');
   if (!container) return;
 
-  const taskHeaders = DAILY_TASK_LABELS.map((label) => `<th>${label}</th>`).join('');
-  const rows = entries.length > 0
-    ? entries
+  const progressMap = loadDailyProgressByDate(getDailyResetDateKey());
+  const viewModel = getDailyViewModel(entries, DAILY_TASK_CONFIG, progressMap, { includeHidden: dailyConfigMode });
+  const groupHeaders = viewModel.groups
+    .map((group) => `<th>${group.name}</th>`)
+    .join('');
+
+  const rows = viewModel.entries.length > 0
+    ? viewModel.entries
         .map((entry) => {
-          const cells = entry.tasks
-            .map((task) => {
-              const checked = task.done ? 'checked' : '';
-              const control =
-                task.type === 'toggle'
-                  ? `<label class="switch"><input type="checkbox" ${checked} /><span class="slider"></span></label>`
-                  : `<input class="task-check" type="checkbox" ${checked} />`;
-
-              return `<td>${control}</td>`;
-            })
-            .join('');
-
           const iconMarkup = entry.icon
             ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
-            : `<span class="char-icon">${entry.icon || '🧙'}</span>`;
+            : `<span class="char-icon">🧙</span>`;
+
+          const cells = viewModel.groups
+            .map((group) => {
+              const tasks = entry.tasks.filter((task) => task.groupId === group.id);
+              if (tasks.length === 0) {
+                return '<td class="daily-cell empty-cell"></td>';
+              }
+
+              const taskMarkup = dailyConfigMode
+                ? tasks.map((task) => `
+                  <button
+                    type="button"
+                    class="daily-task-toggle ${task.visible ? 'is-visible' : 'is-hidden'}"
+                    data-character-id="${entry.characterId}"
+                    data-task-id="${task.taskId}"
+                    data-visibility-toggle="true"
+                    aria-label="${task.name} を${task.visible ? '非表示' : '表示'}にする"
+                    title="${task.name}"
+                  >
+                    <span class="daily-task-icon">${task.icon || '•'}</span>
+                  </button>
+                `).join('')
+                : tasks.map((task) => `
+                  <button
+                    type="button"
+                    class="daily-task-toggle ${task.completed ? 'is-done' : ''}"
+                    data-character-id="${entry.characterId}"
+                    data-task-id="${task.taskId}"
+                    aria-label="${task.name} ${task.completed ? '完了' : '未完了'}"
+                    title="${task.name}"
+                  >
+                    <span class="daily-task-icon">${task.icon || '•'}</span>
+                  </button>
+                `).join('');
+
+              return `
+                <td class="daily-cell">
+                  <div class="daily-task-list">
+                    ${taskMarkup}
+                  </div>
+                </td>
+              `;
+            })
+            .join('');
 
           return `
             <tr>
@@ -205,13 +234,12 @@ function renderDailyTable(entries) {
                   </div>
                 </div>
               </td>
-              <td><label class="switch"><input type="checkbox" ${entry.linkBuff ? 'checked' : ''} /><span class="slider"></span></label></td>
               ${cells}
             </tr>
           `;
         })
         .join('')
-    : '<tr><td colspan="7"></td></tr>';
+    : '<tr><td colspan="4">表示対象のキャラクターがありません</td></tr>';
 
   container.innerHTML = `
     <div class="daily-table-wrap">
@@ -219,8 +247,7 @@ function renderDailyTable(entries) {
         <thead>
           <tr>
             <th>Character</th>
-            <th>LinkBuff</th>
-            ${taskHeaders}
+            ${groupHeaders}
           </tr>
         </thead>
         <tbody>
@@ -643,11 +670,51 @@ async function renderBossProgress(bossCount) {
   container.innerHTML = `<strong>${bossCount} / 90</strong>`;
 }
 
+function toggleDailyConfigMode() {
+  dailyConfigMode = !dailyConfigMode;
+  const button = document.querySelector('#daily-config-button');
+  if (button) {
+    button.innerHTML = dailyConfigMode ? '✓' : '&#9881;';
+    button.setAttribute('aria-label', dailyConfigMode ? 'Daily設定を保存' : 'Daily設定を開く');
+    button.title = dailyConfigMode ? 'Daily設定を保存' : 'Daily設定を開く';
+  }
+  renderDaily();
+}
+
 function setupTabs() {
   document.querySelectorAll('.tab-button').forEach((tab) => {
     tab.addEventListener('click', () => {
       switchView(tab.dataset.view);
     });
+  });
+
+  document.querySelector('#daily-config-button')?.addEventListener('click', toggleDailyConfigMode);
+
+  document.querySelector('#daily-board')?.addEventListener('click', (event) => {
+    const toggle = event.target.closest('.daily-task-toggle');
+    if (!toggle) return;
+
+    if (toggle.dataset.visibilityToggle === 'true') {
+      const characterId = toggle.dataset.characterId;
+      const taskId = toggle.dataset.taskId;
+      const visible = !getDailyTaskVisibility(characterId, taskId);
+      toggleDailyTaskVisibility({ characterId, taskId, visible });
+      renderDaily();
+      return;
+    }
+
+    const characterId = toggle.dataset.characterId;
+    const taskId = toggle.dataset.taskId;
+    const nextState = !toggle.classList.contains('is-done');
+
+    toggleDailyTaskCompletion({
+      characterId,
+      taskId,
+      completed: nextState,
+      dateKey: getDailyResetDateKey()
+    });
+
+    renderDaily();
   });
 }
 
