@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MSU Dashboard</title>
-    <script type="module" crossorigin src="./assets/index-DRSL9kP9.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BNbnsufD.css">
+    <script type="module" crossorigin src="./assets/index-Bl5Bn5ZH.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CV-XvYFo.css">
   </head>
   <body>
     <div class="app-shell">
@@ -35,8 +35,14 @@
       </section>
 
       <nav class="view-tabs" aria-label="Timeframe tabs">
-        <button class="tab-button active" id="tab-weekly" type="button" data-view="weekly" aria-selected="true">
+        <button class="tab-button active" id="tab-daily" type="button" data-view="daily" aria-selected="true">
+          DAILY
+        </button>
+        <button class="tab-button" id="tab-weekly" type="button" data-view="weekly" aria-selected="false">
           WEEKLY
+        </button>
+        <button class="tab-button" id="tab-event" type="button" data-view="event" aria-selected="false">
+          EVENT
         </button>
         <button class="tab-button" id="tab-reward" type="button" data-view="reward" aria-selected="false">
           REWARD
@@ -52,16 +58,33 @@
       </section> -->
 
       <main class="dashboard-view">
-        <!-- <section id="daily-view" class="dashboard-grid view-panel active" data-view="daily">
+        <section id="daily-view" class="dashboard-grid view-panel active" data-view="daily">
           <section class="board-panel panel-daily">
             <div class="panel-header">
-              <h2>Daily</h2>
+              <h2>Daily Task</h2>
+              <div class="panel-actions">
+                <button id="daily-reset-button" class="icon-button" type="button" aria-label="Dailyをリセット" title="Dailyをリセット" hidden>↺</button>
+                <button id="daily-reset-mode-button" class="secondary-button" type="button" aria-label="リセットモードを切り替え" title="リセットモードを切り替え" hidden>Auto</button>
+                <button id="daily-config-button" class="icon-button" type="button" aria-label="Daily設定を開く" title="Daily設定を開く">&#9881;</button>
+              </div>
             </div>
             <div id="daily-board" class="card-list"></div>
           </section>
-        </section> -->
+        </section>
 
-        <section id="weekly-view" class="dashboard-grid view-panel active" data-view="weekly">
+        <section id="weekly-view" class="dashboard-grid view-panel" data-view="weekly">
+          <section class="board-panel panel-weekly-task">
+            <div class="panel-header">
+              <h2>Weekly Task</h2>
+              <div class="panel-actions">
+                <button id="weekly-reset-button" class="icon-button" type="button" aria-label="Weekly Taskをリセット" title="Weekly Taskをリセット" hidden>↺</button>
+                <button id="weekly-reset-mode-button" class="secondary-button" type="button" aria-label="Weekly Taskリセットモードを切り替え" title="Weekly Taskリセットモードを切り替え" hidden>Auto</button>
+                <button id="weekly-task-config-button" class="icon-button" type="button" aria-label="Weekly Task設定を開く" title="Weekly Task設定を開く">&#9881;</button>
+              </div>
+            </div>
+            <div id="weekly-task-board" class="card-list"></div>
+          </section>
+
           <section class="board-panel panel-weekly">
             <div class="panel-header">
               <h2>Weekly Boss</h2>
@@ -73,12 +96,26 @@
           </section>
         </section>
 
+        <section id="event-view" class="dashboard-grid view-panel" data-view="event">
+          <section class="board-panel panel-event">
+            <div class="panel-header">
+              <div>
+                <h2>Schedule</h2>
+              </div>
+            </div>
+            <div id="event-board" class="card-list"></div>
+          </section>
+        </section>
+
         <section id="reward-view" class="dashboard-grid view-panel" data-view="reward">
           <section class="board-panel panel-reward">
             <div class="panel-header">
               <div>
-                <h2>Rewards</h2>
-                <p class="reward-total">NESO total <strong id="neso-total">0</strong></p>
+                <h2>Weekly Rewards</h2>
+                <div class="reward-totals">
+                  <p class="reward-total">NESO total <strong id="neso-total">0</strong></p>
+                  <p class="reward-total">PowerCrystal total <strong id="powercrystal-total">0</strong></p>
+                </div>
               </div>
               <div class="reward-week-buttons" role="group" aria-label="報酬の週を選択">
                 <button class="reward-week-button active" type="button" data-reward-week="1" aria-pressed="true">1週前</button>
@@ -100,6 +137,7 @@
         </section>
       </main>
     </div>
-
+
+    <script src="./data/events.js"></script>
   </body>
 </html>
