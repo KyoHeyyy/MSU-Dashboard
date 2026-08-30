@@ -3,3 +3,5 @@
 .dev.vars
 /.wrangler
 /node_modules
+memo.md
+引継ぎ内容.md
