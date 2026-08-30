@@ -34,7 +34,8 @@ http://localhost:5173/?walletAddress=0x24eb476d0E7B9d2099323E633FF0f16f5A64c067
 
 
 
-
+> data\api-response\events.jsonをjsファイルに変換し、public\data\events.jsとして保存するスクリプトを作成して
+npm run convert:events
 
 
 

@@ -66,7 +66,8 @@ const bossData = [
   { name: 'Elite Boss', defeated: 0, total: 2, status: '未着手' }
 ];
 
-const dummyBossNames = ['Abyss Boss', 'Weekly Boss', 'Elite Boss', 'Raid Boss', 'Dungeon Boss'];
+// const EVENT_API_URL = 'https://msu.io/maplestoryn/api/community/board/5289/threadsV2?blockStartKey=253402300799%2C9223372036854775807&blockStartNo=1&blockSize=15&pageNo=1&pageSize=15&paginationType=PAGING&searchKeywordType=THREAD_TITLE_AND_CONTENT&headlineId=3296';
+// const EVENT_API_KEY = '8484d734-fc72-5bb4-96a4-5622025f2840';
 const WEEKLY_BOSS_SETTINGS_KEY = 'weekly-boss-settings';
 const ALL_BOSS_NAMES = [...new Set(Object.values(LAYER_ID_TO_BOSS_NAME))];
 const DEBUG_CHARACTER_ASSET_KEY = 'CHARd0j2orbfpavs73dqduu0';
@@ -631,10 +632,7 @@ async function renderBossProgress(bossCount) {
   if (!container) return;
 
   container.innerHTML = `<strong>${bossCount} / 90</strong>`;
-
-
 }
-
 
 function setupTabs() {
   document.querySelectorAll('.tab-button').forEach((tab) => {

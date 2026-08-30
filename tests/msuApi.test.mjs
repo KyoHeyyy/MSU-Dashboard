@@ -9,6 +9,7 @@ import {
   normalizeCharacterEntries,
   setCache
 } from '../src/msuApi.js';
+import { buildEventTimeline, parseEventDateRange } from '../src/eventUtils.js';
 
 class SessionStorageMock {
   #items = new Map();
@@ -94,4 +95,28 @@ test('cache uses sessionStorage and removes expired or invalid entries', () => {
   assert.equal(storage.getItem('cache:expired'), null);
   assert.equal(storage.getItem('cache:invalid'), null);
   assert.equal(storage.getItem('other-data'), 'keep');
+});
+
+test('parseEventDateRange converts tag dates into start/end Date objects', () => {
+  const dates = parseEventDateRange(['2026-08-20', '2026-09-16T23:59:59Z']);
+
+  assert.equal(dates.start.toISOString(), '2026-08-20T00:00:00.000Z');
+  assert.equal(dates.end.toISOString(), '2026-09-16T23:59:59.000Z');
+});
+
+test('buildEventTimeline sorts events by start time and keeps overall date bounds', () => {
+  const timeline = buildEventTimeline([
+    {
+      title: 'Late Event',
+      tags: ['2026-09-10', '2026-09-20T23:59:59Z']
+    },
+    {
+      title: 'Early Event',
+      tags: ['2026-08-20', '2026-09-16T23:59:59Z']
+    }
+  ]);
+
+  assert.equal(timeline.events[0].title, 'Early Event');
+  assert.equal(timeline.minStart.toISOString(), '2026-08-20T00:00:00.000Z');
+  assert.equal(timeline.maxEnd.toISOString(), '2026-09-20T23:59:59.000Z');
 });
