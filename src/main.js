@@ -40,6 +40,7 @@ loadingIndicator.innerHTML = '<span class="loading-spinner"></span><span>読み�
 loadingIndicator.style.display = 'none';
 document.body.appendChild(loadingIndicator);
 var bossCount = 0;
+// var bossCountDenominator = 0;
 
 
 function showLoadingIndicator() {
@@ -532,6 +533,8 @@ function renderWeeklyTable(entries = []) {
       const bossNames = weeklyConfigMode
         ? ALL_BOSS_NAMES
         : ALL_BOSS_NAMES.filter((bossName) => !hiddenBossNames.includes(bossName));
+      // bossCountDenominator += bossNames.length;
+      // console.log(`Total Boss Count Denominator: ${bossCountDenominator}`);
       const bossMarkup = weeklyConfigMode
         ? `<span class="boss-name-pill">${bossNames.map((bossName) => {
               const isHidden = hiddenBossNames.includes(bossName);
