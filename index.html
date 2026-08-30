@@ -37,6 +37,9 @@
         <button class="tab-button active" id="tab-weekly" type="button" data-view="weekly" aria-selected="true">
           WEEKLY
         </button>
+        <button class="tab-button" id="tab-event" type="button" data-view="event" aria-selected="false">
+          EVENT
+        </button>
         <button class="tab-button" id="tab-reward" type="button" data-view="reward" aria-selected="false">
           REWARD
         </button>
@@ -72,6 +75,17 @@
           </section>
         </section>
 
+        <section id="event-view" class="dashboard-grid view-panel" data-view="event">
+          <section class="board-panel panel-event">
+            <div class="panel-header">
+              <div>
+                <h2>Events</h2>
+              </div>
+            </div>
+            <div id="event-board" class="card-list"></div>
+          </section>
+        </section>
+
         <section id="reward-view" class="dashboard-grid view-panel" data-view="reward">
           <section class="board-panel panel-reward">
             <div class="panel-header">
@@ -100,6 +114,8 @@
       </main>
     </div>
 
+    <script src="/data/events.js"></script>
     <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/eventPage.js"></script>
   </body>
 </html>
