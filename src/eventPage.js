@@ -36,7 +36,7 @@ function renderSampleGantt() {
         start,
         end,
         thumbnail: event.thumbnailImageUrl,
-        url: `https://example.com/community/${event.communityId}/board/${event.boardId}/thread/${event.threadId}`
+        url: `https://msu.io/maplestoryn/news/events/${event.threadId}`
       };
     })
     .filter(Boolean);
