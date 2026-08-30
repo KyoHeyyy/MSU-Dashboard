@@ -203,8 +203,11 @@ function renderDailyTable(entries) {
 
               const renderTaskIcon = (task) => {
                 const iconValue = task.icon || '•';
-                const isImageIcon = typeof iconValue === 'string' && /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(iconValue);
-
+                const isImageIcon = typeof iconValue === 'string' &&
+                                                          (
+                                                            /^data:image\//i.test(iconValue) ||
+                                                            /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(iconValue)
+                                                          );
                 return isImageIcon
                   ? `<img class="daily-task-icon-img" src="${iconValue}" alt="${task.name}" />`
                   : `<span class="daily-task-icon">${iconValue}</span>`;
