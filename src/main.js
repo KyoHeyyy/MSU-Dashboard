@@ -191,7 +191,7 @@ function renderDailyTable(entries) {
     ? viewModel.entries
         .map((entry) => {
           const iconMarkup = entry.icon
-            ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
+            ? `<div class="char-icon"><div class="char-icon"><img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" /></div></div>`
             : `<span class="char-icon">🧙</span>`;
 
           const cells = viewModel.groups
@@ -456,7 +456,7 @@ function renderRewardTable(entries = []) {
   const rowsMarkup = entries.map((entry, index) => {
     const rewards = entry.rewardsByWeek?.[selectedRewardWeek] ?? getRewardsForWeek(entry.rafflePayload, index);
     const iconMarkup = entry.icon
-      ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
+      ? `<div class="char-icon"><img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" /></div>`
       : `<span class="char-icon">🧙</span>`;
     const loadingMarkup = '<span class="reward-muted">取得中</span>';
     const nesoMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value neso-value">${formatNeso(rewards.neso)}</span>`;
@@ -525,7 +525,7 @@ function renderWeeklyTable(entries = []) {
   const rowsMarkup = entries
     .map((entry) => {
       const iconMarkup = entry.icon
-        ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />`
+        ? `<div class="char-icon"><img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" /></div>`
         : `<span class="char-icon">🧙</span>`;
 
       const hiddenBossNames = getHiddenBossNames(entry.character);
@@ -741,7 +741,7 @@ function renderWeeklyTaskTable(entries) {
 
   const rows = viewModel.entries.length > 0
     ? viewModel.entries.map((entry) => {
-      const iconMarkup = entry.icon ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />` : `<span class="char-icon">🧙</span>`;
+      const iconMarkup = entry.icon ? `<div class="char-icon"><img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" /></div>` : `<span class="char-icon">🧙</span>`;
       const taskMarkup = weeklyTaskConfigMode
         ? entry.tasks.map((task) => `
             <button

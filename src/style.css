@@ -436,21 +436,33 @@ h1 {
   text-align: left;
 }
 
-.char-icon,
-.char-icon-img {
+.char-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   width: 40px;
   height: 40px;
+
   border-radius: 50%;
   background: rgba(125, 211, 252, 0.14);
   border: 1px solid rgba(125, 211, 252, 0.35);
+
   flex-shrink: 0;
+
+  /* はみ出した部分を切る */
+  overflow: hidden;
 }
 
 .char-icon-img {
-  object-fit: cover;
+  width: 85px;
+  height: 85px;
+
+  /* 画像を拡大 */
+  object-fit: contain;
+
+  /* 位置調整 */
+  object-position: center;
 }
 
 .char-name {
