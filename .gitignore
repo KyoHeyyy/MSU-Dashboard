@@ -8,3 +8,5 @@ memo.md
 data/api-response/events.json
 .tmp-main.js
 /dist
+doc/sample.html
+dist/index.html
