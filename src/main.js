@@ -4,6 +4,7 @@ import {
   loadCharacterRaffleHistory,
   loadCharacterRaffleInformation
 } from './msuApi.js';
+import { getTotalWinCountByItemId } from './rewardUtils.js';
 import { NON_BOSS_LAYER_IDS } from '../config/nonBossLayerIds.js';
 import { LAYER_ID_TO_BOSS_NAME } from '../config/layerIdToBossName.js';
 
@@ -284,11 +285,12 @@ function getRewardRaffledAt(weeksAgo) {
 
 function getNesoFromHistory(rafflePayload, weeksAgo = selectedRewardWeek) {
   const targetRaffledAt = getRewardRaffledAt(weeksAgo);
-  return getRaffleHistories(rafflePayload)
-    .filter((history) => history?.raffledAt === targetRaffledAt)
-    .flatMap((history) => history.prizes ?? [])
-    .filter((prize) => Number(prize?.rewardKey?.itemId) === 1)
-    .reduce((total, prize) => total + (Number(prize.winCount?.value) || 0), 0);
+  return getTotalWinCountByItemId(rafflePayload, 1, targetRaffledAt);
+}
+
+function getPowerCrystalFromHistory(rafflePayload, weeksAgo = selectedRewardWeek) {
+  const targetRaffledAt = getRewardRaffledAt(weeksAgo);
+  return getTotalWinCountByItemId(rafflePayload, 1000, targetRaffledAt);
 }
 
 function escapeHtml(value) {
@@ -374,7 +376,7 @@ function formatNeso(amount) {
 function getRewardsForWeek(rafflePayload, characterIndex = 0, weeksAgo = selectedRewardWeek) {
   return {
     neso: getNesoFromHistory(rafflePayload, weeksAgo),
-    powerCrystal: 'TBD',
+    powerCrystal: getPowerCrystalFromHistory(rafflePayload, weeksAgo),
     nfts: [{ name: 'TBD' }],
     fts: [{ icon: 'TBD', quantity: 1 }]
   };
@@ -397,7 +399,7 @@ function renderRewardTable(entries = []) {
       : `<span class="char-icon">🧙</span>`;
     const loadingMarkup = '<span class="reward-muted">取得中</span>';
     const nesoMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value neso-value">${formatNeso(rewards.neso)}</span>`;
-    const powerCrystalMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : '<span class="reward-muted">TBD</span>';
+    const powerCrystalMarkup = entry.loading ? loadingMarkup : entry.failed ? '<span class="reward-muted reward-failed">取得失敗</span>' : `<span class="reward-value power-crystal-value">${formatNeso(rewards.powerCrystal)}</span>`;
     const nftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : '<span class="reward-muted">TBD</span>';
     const ftMarkup = entry.loading ? loadingMarkup : entry.failed ? '-' : '<span class="reward-muted">TBD</span>';
     return `<tr><td><div class="char-cell">${iconMarkup}<div><div class="char-name">${entry.character}</div><div class="char-meta">Lv. ${entry.level}${entry.job ? ` · ${entry.job}` : ''}</div></div></div></td><td>${nesoMarkup}</td><td>${powerCrystalMarkup}</td><td>${nftMarkup}</td><td>${ftMarkup}</td></tr>`;
