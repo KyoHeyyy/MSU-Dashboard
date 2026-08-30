@@ -5,8 +5,5 @@
 /node_modules
 memo.md
 引継ぎ内容.md
-data/api-response/events.json
 .tmp-main.js
-/dist
 doc/sample.html
-dist/index.html
