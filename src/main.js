@@ -385,13 +385,20 @@ function getRewardsForWeek(rafflePayload, characterIndex = 0, weeksAgo = selecte
 function renderRewardTable(entries = []) {
   const container = document.querySelector('#reward-board');
   const totalElement = document.querySelector('#neso-total');
+  const powerCrystalTotalElement = document.querySelector('#powercrystal-total');
   if (!container || !totalElement) return;
 
   const totalNeso = entries.reduce((sum, entry, index) => {
     const rewards = entry.rewardsByWeek?.[selectedRewardWeek] ?? getRewardsForWeek(entry.rafflePayload, index);
     return sum + (rewards?.neso ?? 0);
   }, 0);
+
+  const totalPowerCrystals = entries.reduce((sum, entry, index) => {
+    const rewards = entry.rewardsByWeek?.[selectedRewardWeek] ?? getRewardsForWeek(entry.rafflePayload, index);
+    return sum + (rewards?.powerCrystal ?? 0);
+  }, 0);
   totalElement.textContent = formatNeso(totalNeso);
+  powerCrystalTotalElement.textContent = formatNeso(totalPowerCrystals);
   const rowsMarkup = entries.map((entry, index) => {
     const rewards = entry.rewardsByWeek?.[selectedRewardWeek] ?? getRewardsForWeek(entry.rafflePayload, index);
     const iconMarkup = entry.icon

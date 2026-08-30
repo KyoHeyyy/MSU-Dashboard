@@ -245,7 +245,6 @@ h1 {
 #weekly-view {
   grid-template-columns: 1fr;
 }
-
 #reward-view {
   grid-template-columns: 1fr;
 }
@@ -264,11 +263,6 @@ h1 {
   margin-bottom: 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-}
-
-.panel-event .panel-header,
-.panel-reward .panel-header {
-  margin-bottom: 14px;
 }
 
 .panel-actions {
@@ -431,16 +425,37 @@ h1 {
   text-align: center;
 }
 
+
+.reward-totals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 8px;
+}
+
 .reward-total {
-  margin: 4px 0 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
   color: var(--muted);
   font-size: 0.82rem;
 }
 
 .reward-total strong {
-  margin-left: 6px;
-  color: #f7d774;
   font-size: 1.15rem;
+}
+
+#neso-total{
+  color: #f7d774;
+}
+
+#powercrystal-total{
+  color: #c4b5fd;
+}
+
+.power-crystal-total strong {
+  color: #c4b5fd;
 }
 
 .reward-value {
@@ -712,22 +727,32 @@ h1 {
   animation: spin 0.8s linear infinite;
 }
 
+.sample-gantt-wrap {
+  background: rgba(16, 25, 45, 0.94);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.sample-gantt-header {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(16, 25, 45, 0.96));
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  padding: 14px 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .sample-gantt {
-  height: clamp(360px, 52vh, 560px);
-  min-height: 320px;
-  max-height: 560px;
+  height: calc(100vh - 200px);
+  min-height: 420px;
   overflow: auto;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  margin: 0;
+  background: rgba(9, 17, 31, 0.7);
 }
 
 .sample-gantt table {
   border-collapse: collapse;
-  width: 100%;
-  min-width: 0;
 }
 
 .sample-gantt th,
