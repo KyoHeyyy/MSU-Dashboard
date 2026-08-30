@@ -8,11 +8,14 @@ import { getTotalWinCountByItemId } from './rewardUtils.js';
 import { NON_BOSS_LAYER_IDS } from '../config/nonBossLayerIds.js';
 import { LAYER_ID_TO_BOSS_NAME } from '../config/layerIdToBossName.js';
 import {
+  clearDailyProgressForDate,
   getDailyResetDateKey,
+  getDailyResetMode,
   getDailyTaskVisibility,
   getDailyViewModel,
   getNormalizedDailyTaskConfig,
   loadDailyProgressByDate,
+  setDailyResetMode,
   toggleDailyTaskCompletion,
   toggleDailyTaskVisibility
 } from './dailyTasks.js';
@@ -186,6 +189,15 @@ function renderDailyTable(entries) {
                 return '<td class="daily-cell empty-cell"></td>';
               }
 
+              const renderTaskIcon = (task) => {
+                const iconValue = task.icon || '•';
+                const isImageIcon = typeof iconValue === 'string' && /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(iconValue);
+
+                return isImageIcon
+                  ? `<img class="daily-task-icon-img" src="${iconValue}" alt="${task.name}" />`
+                  : `<span class="daily-task-icon">${iconValue}</span>`;
+              };
+
               const taskMarkup = dailyConfigMode
                 ? tasks.map((task) => `
                   <button
@@ -197,7 +209,7 @@ function renderDailyTable(entries) {
                     aria-label="${task.name} を${task.visible ? '非表示' : '表示'}にする"
                     title="${task.name}"
                   >
-                    <span class="daily-task-icon">${task.icon || '•'}</span>
+                    ${renderTaskIcon(task)}
                   </button>
                 `).join('')
                 : tasks.map((task) => `
@@ -209,7 +221,7 @@ function renderDailyTable(entries) {
                     aria-label="${task.name} ${task.completed ? '完了' : '未完了'}"
                     title="${task.name}"
                   >
-                    <span class="daily-task-icon">${task.icon || '•'}</span>
+                    ${renderTaskIcon(task)}
                   </button>
                 `).join('');
 
@@ -670,6 +682,21 @@ async function renderBossProgress(bossCount) {
   container.innerHTML = `<strong>${bossCount} / 90</strong>`;
 }
 
+function renderDailyResetControls() {
+  const modeButton = document.querySelector('#daily-reset-mode-button');
+  const resetButton = document.querySelector('#daily-reset-button');
+  const mode = getDailyResetMode();
+
+  if (modeButton) {
+    modeButton.textContent = mode === 'manual' ? 'Manual' : 'Auto';
+    modeButton.hidden = !dailyConfigMode;
+  }
+
+  if (resetButton) {
+    resetButton.hidden = mode !== 'manual';
+  }
+}
+
 function toggleDailyConfigMode() {
   dailyConfigMode = !dailyConfigMode;
   const button = document.querySelector('#daily-config-button');
@@ -678,6 +705,14 @@ function toggleDailyConfigMode() {
     button.setAttribute('aria-label', dailyConfigMode ? 'Daily設定を保存' : 'Daily設定を開く');
     button.title = dailyConfigMode ? 'Daily設定を保存' : 'Daily設定を開く';
   }
+  renderDailyResetControls();
+  renderDaily();
+}
+
+function handleDailyReset() {
+  if (getDailyResetMode() !== 'manual') return;
+  const dateKey = getDailyResetDateKey();
+  clearDailyProgressForDate(dateKey);
   renderDaily();
 }
 
@@ -689,6 +724,13 @@ function setupTabs() {
   });
 
   document.querySelector('#daily-config-button')?.addEventListener('click', toggleDailyConfigMode);
+  document.querySelector('#daily-reset-button')?.addEventListener('click', handleDailyReset);
+  document.querySelector('#daily-reset-mode-button')?.addEventListener('click', () => {
+    const nextMode = getDailyResetMode() === 'manual' ? 'auto' : 'manual';
+    setDailyResetMode(nextMode);
+    renderDailyResetControls();
+    renderDaily();
+  });
 
   document.querySelector('#daily-board')?.addEventListener('click', (event) => {
     const toggle = event.target.closest('.daily-task-toggle');

@@ -6,6 +6,9 @@ import {
   getNormalizedDailyTaskConfig,
   getDailyViewModel,
   getDailyTaskVisibility,
+  getDailyResetMode,
+  setDailyResetMode,
+  clearDailyProgressForDate,
   toggleDailyTaskVisibility
 } from '../src/dailyTasks.js';
 
@@ -59,4 +62,26 @@ test('daily task visibility can hide a task for a specific character', () => {
 
   toggleDailyTaskVisibility({ characterId: 'a', taskId: 'monster-park', visible: false });
   assert.equal(getDailyTaskVisibility('a', 'monster-park'), false);
+});
+
+test('daily reset mode supports manual clear and auto reset mode', () => {
+  setDailyResetMode('manual');
+  assert.equal(getDailyResetMode(), 'manual');
+
+  const dateKey = getDailyResetDateKey();
+  const progressMap = {
+    'a:symbol-daily': true,
+    'a:monster-park': true,
+    'b:daily-quest': true
+  };
+
+  clearDailyProgressForDate(dateKey, progressMap);
+  assert.deepEqual(clearDailyProgressForDate(dateKey, progressMap), {
+    'a:symbol-daily': false,
+    'a:monster-park': false,
+    'b:daily-quest': false
+  });
+
+  setDailyResetMode('auto');
+  assert.equal(getDailyResetMode(), 'auto');
 });

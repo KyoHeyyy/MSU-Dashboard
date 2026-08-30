@@ -286,6 +286,31 @@ h1 {
   background: rgba(125, 211, 252, 0.22);
 }
 
+.secondary-button {
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(148, 163, 184, 0.08);
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  background: rgba(125, 211, 252, 0.12);
+}
+
+#daily-reset-button {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+#daily-reset-button:hover {
+  background: rgba(239, 68, 68, 0.22);
+}
+
 .reward-week-buttons {
   display: inline-flex;
   gap: 4px;
@@ -395,7 +420,13 @@ h1 {
   font-size: 1.1rem;
 }
 
-
+.daily-task-icon-img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 6px;
+}
 
 .char-cell {
   display: flex;

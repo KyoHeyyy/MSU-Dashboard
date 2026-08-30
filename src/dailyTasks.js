@@ -1,24 +1,57 @@
 const DAILY_TASK_STORAGE_KEY = 'daily-task-progress-v1';
 const DAILY_TASK_VISIBILITY_KEY = 'daily-task-visibility-v1';
+const DAILY_RESET_MODE_KEY = 'daily-reset-mode-v1';
+let dailyProgressMemory = {};
 let dailyVisibilityMemory = {};
+let dailyResetModeMemory = 'auto';
 const DAILY_TASK_GROUPS = [
   { id: 'symbol', name: 'Symbol', order: 1 },
   { id: 'monster-park', name: 'Monster Park', order: 2 },
   { id: 'event', name: 'Event', order: 3 }
 ];
 
+const SYMBOL_DAILY_ICONS = [
+  new URL('./image/Arcane_Symbol_Vanishing_Journey.png', import.meta.url).href,
+  new URL('./image/Arcane_Symbol_Chu_Chu_Island.png', import.meta.url).href,
+  new URL('./image/Arcane_Symbol_Lachelein.png', import.meta.url).href,
+  new URL('./image/Arcane_Symbol_Arcana.png', import.meta.url).href,
+  new URL('./image/Arcane_Symbol_Morass.png', import.meta.url).href,
+  new URL('./image/Arcane_Symbol_Esfera.png', import.meta.url).href
+];
+
 const DEFAULT_DAILY_TASKS = [
-  { id: 'symbol-daily', name: 'Symbol Daily', icon: '✦', groupId: 'symbol', type: 'default', order: 1 },
-  { id: 'monster-park', name: 'Monster Park', icon: '🐾', groupId: 'monster-park', type: 'default', order: 1 },
-  { id: 'daily-quest', name: 'Daily Quest', icon: '🧭', groupId: 'event', type: 'default', order: 2 },
-  { id: 'dungeon-clear', name: 'Dungeon Clear', icon: '⚔️', groupId: 'event', type: 'default', order: 3 }
+  { id: 'vanishing-journey-daily', name: 'Symbol Daily', icon: SYMBOL_DAILY_ICONS[0], groupId: 'symbol', type: 'default', order: 1 },
+  { id: 'chuchu-daily', name: 'Symbol Daily', icon: SYMBOL_DAILY_ICONS[1], groupId: 'symbol', type: 'default', order: 2 },
+  { id: 'lachelein-daily', name: 'Symbol Daily', icon: SYMBOL_DAILY_ICONS[2], groupId: 'symbol', type: 'default', order: 3 },
+  { id: 'arcana-daily', name: 'Symbol Daily', icon: SYMBOL_DAILY_ICONS[3], groupId: 'symbol', type: 'default', order: 4 },
+  { id: 'morass-daily', name: 'Symbol Daily', icon: SYMBOL_DAILY_ICONS[4], groupId: 'symbol', type: 'default', order: 5 },
+  { id: 'esfera-daily', name: 'Symbol Daily', icon: SYMBOL_DAILY_ICONS[5], groupId: 'symbol', type: 'default', order: 6 },
+
+  { id: 'monster-park', name: 'Monster Park', icon: '🚕', groupId: 'monster-park', type: 'default', order: 1 },
+
+  { id: 'check-in', name: 'check in', icon: '🗓️', groupId: 'event', type: 'default', order: 2 },
+  { id: 'subjugation', name: 'subjugation', icon: '⚔️', groupId: 'event', type: 'default', order: 3 },
+  { id: 'coin', name: 'coin', icon: '🪙', groupId: 'event', type: 'default', order: 4 },
+  { id: 'shopping', name: 'shopping', icon: '🛒', groupId: 'event', type: 'default', order: 5 },
+  { id: 'mini-game', name: 'mini game', icon: '🎮', groupId: 'event', type: 'default', order: 6 }
+
 ];
 
 const DEFAULT_ASSIGNMENTS = [
-  { characterId: 'all', taskId: 'symbol-daily' },
+  { characterId: 'all', taskId: 'vanishing-journey-daily' },
+  { characterId: 'all', taskId: 'chuchu-daily' },
+  { characterId: 'all', taskId: 'lachelein-daily' },
+  { characterId: 'all', taskId: 'arcana-daily' },
+  { characterId: 'all', taskId: 'morass-daily' },
+  { characterId: 'all', taskId: 'esfera-daily' },
+    
   { characterId: 'all', taskId: 'monster-park' },
-  { characterId: 'all', taskId: 'daily-quest' },
-  { characterId: 'all', taskId: 'dungeon-clear' }
+
+  { characterId: 'all', taskId: 'check-in' },
+  { characterId: 'all', taskId: 'subjugation' },
+  { characterId: 'all', taskId: 'coin' },
+  { characterId: 'all', taskId: 'shopping' },
+  { characterId: 'all', taskId: 'mini-game' }
 ];
 
 function clone(value) {
@@ -26,20 +59,26 @@ function clone(value) {
 }
 
 function readStorage() {
-  try {
-    if (typeof window === 'undefined' || !window.localStorage) {
-      return {};
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      const raw = window.localStorage.getItem(DAILY_TASK_STORAGE_KEY);
+      if (!raw) {
+        return dailyProgressMemory;
+      }
+      const parsed = JSON.parse(raw);
+      dailyProgressMemory = parsed && typeof parsed === 'object' ? parsed : {};
+      return dailyProgressMemory;
+    } catch {
+      return dailyProgressMemory;
     }
-    const raw = window.localStorage.getItem(DAILY_TASK_STORAGE_KEY);
-    if (!raw) return {};
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === 'object' ? parsed : {};
-  } catch {
-    return {};
   }
+
+  return dailyProgressMemory;
 }
 
 function writeStorage(value) {
+  dailyProgressMemory = value && typeof value === 'object' ? value : {};
+
   try {
     if (typeof window !== 'undefined' && window.localStorage) {
       window.localStorage.setItem(DAILY_TASK_STORAGE_KEY, JSON.stringify(value));
@@ -124,6 +163,48 @@ export function toggleDailyTaskCompletion({ characterId, taskId, completed, date
   }
   saveDailyProgressByDate(progressMap, dateKey);
   return progressMap;
+}
+
+export function getDailyResetMode() {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      const stored = window.localStorage.getItem(DAILY_RESET_MODE_KEY);
+      dailyResetModeMemory = stored === 'manual' ? 'manual' : 'auto';
+      return dailyResetModeMemory;
+    } catch {
+      return dailyResetModeMemory;
+    }
+  }
+
+  return dailyResetModeMemory;
+}
+
+export function setDailyResetMode(mode) {
+  const normalized = mode === 'manual' ? 'manual' : 'auto';
+  dailyResetModeMemory = normalized;
+
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.setItem(DAILY_RESET_MODE_KEY, normalized);
+    }
+  } catch {
+    // no-op
+  }
+
+  return normalized;
+}
+
+export function clearDailyProgressForDate(dateKey = getDailyResetDateKey(), progressMap = loadDailyProgressByDate(dateKey)) {
+  const storage = readStorage();
+  const nextProgress = {};
+
+  for (const [key] of Object.entries(progressMap ?? {})) {
+    nextProgress[key] = false;
+  }
+
+  storage[dateKey] = nextProgress;
+  writeStorage(storage);
+  return nextProgress;
 }
 
 export function getNormalizedDailyTaskConfig() {
