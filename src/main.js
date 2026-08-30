@@ -14,10 +14,20 @@ import {
   getDailyTaskVisibility,
   getDailyViewModel,
   getNormalizedDailyTaskConfig,
+  getNormalizedWeeklyTaskConfig,
+  getWeeklyResetDateKey,
+  getWeeklyResetMode,
+  getWeeklyTaskVisibility,
+  getWeeklyViewModel,
   loadDailyProgressByDate,
+  loadWeeklyProgressByDate,
   setDailyResetMode,
+  setWeeklyResetMode,
   toggleDailyTaskCompletion,
-  toggleDailyTaskVisibility
+  toggleDailyTaskVisibility,
+  toggleWeeklyTaskCompletion,
+  toggleWeeklyTaskVisibility,
+  clearWeeklyProgressForDate
 } from './dailyTasks.js';
 
 const DAILY_TASK_CONFIG = getNormalizedDailyTaskConfig();
@@ -164,6 +174,8 @@ async function loadCharacterRows() {
 }
 
 let dailyConfigMode = false;
+let weeklyTaskConfigMode = false;
+const WEEKLY_TASK_CONFIG = getNormalizedWeeklyTaskConfig();
 
 function renderDailyTable(entries) {
   const container = document.querySelector('#daily-board');
@@ -716,6 +728,113 @@ function handleDailyReset() {
   renderDaily();
 }
 
+function renderWeeklyTaskTable(entries) {
+  const container = document.querySelector('#weekly-task-board');
+  if (!container) return;
+
+  const progressMap = loadWeeklyProgressByDate(getWeeklyResetDateKey());
+  const viewModel = getWeeklyViewModel(entries, WEEKLY_TASK_CONFIG, progressMap, { includeHidden: weeklyTaskConfigMode });
+  const groupHeaders = viewModel.groups.map((group) => `<th>${group.name}</th>`).join('');
+
+  const rows = viewModel.entries.length > 0
+    ? viewModel.entries.map((entry) => {
+      const iconMarkup = entry.icon ? `<img class="char-icon-img" src="${entry.icon}" alt="${entry.character}" />` : `<span class="char-icon">🧙</span>`;
+      const taskMarkup = weeklyTaskConfigMode
+        ? entry.tasks.map((task) => `
+            <button
+              type="button"
+              class="daily-task-toggle ${task.visible ? 'is-visible' : 'is-hidden'}"
+              data-character-id="${entry.characterId}"
+              data-task-id="${task.taskId}"
+              data-weekly-visibility-toggle="true"
+              aria-label="${task.name} を${task.visible ? '非表示' : '表示'}にする"
+              title="${task.name}"
+            >
+              <span class="daily-task-icon">${task.icon || '•'}</span>
+            </button>
+          `).join('')
+        : entry.tasks.map((task) => `
+            <button
+              type="button"
+              class="daily-task-toggle ${task.completed ? 'is-done' : ''}"
+              data-character-id="${entry.characterId}"
+              data-task-id="${task.taskId}"
+              data-weekly-task="true"
+              aria-label="${task.name} ${task.completed ? '完了' : '未完了'}"
+              title="${task.name}"
+            >
+              <span class="daily-task-icon">${task.icon || '•'}</span>
+            </button>
+          `).join('');
+
+      return `
+        <tr>
+          <td>
+            <div class="char-cell">
+              ${iconMarkup}
+              <div>
+                <div class="char-name">${entry.character}</div>
+                <div class="char-meta">Lv. ${entry.level}${entry.job ? ` · ${entry.job}` : ''}</div>
+              </div>
+            </div>
+          </td>
+          <td class="daily-cell">
+            <div class="daily-task-list">${taskMarkup}</div>
+          </td>
+        </tr>
+      `;
+    }).join('')
+    : '<tr><td colspan="2">表示対象のキャラクターがありません</td></tr>';
+
+  container.innerHTML = `
+    <div class="daily-table-wrap">
+      <table class="daily-table">
+        <thead>
+          <tr>
+            <th>Character</th>
+            ${groupHeaders}
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderWeeklyResetControls() {
+  const modeButton = document.querySelector('#weekly-reset-mode-button');
+  const resetButton = document.querySelector('#weekly-reset-button');
+  const mode = getWeeklyResetMode();
+
+  if (modeButton) {
+    modeButton.textContent = mode === 'manual' ? 'Manual' : 'Auto';
+    modeButton.hidden = !weeklyTaskConfigMode;
+  }
+
+  if (resetButton) {
+    resetButton.hidden = mode !== 'manual';
+  }
+}
+
+function toggleWeeklyTaskConfigMode() {
+  weeklyTaskConfigMode = !weeklyTaskConfigMode;
+  const button = document.querySelector('#weekly-task-config-button');
+  if (button) {
+    button.innerHTML = weeklyTaskConfigMode ? '✓' : '&#9881;';
+    button.setAttribute('aria-label', weeklyTaskConfigMode ? 'Weekly Task設定を保存' : 'Weekly Task設定を開く');
+    button.title = weeklyTaskConfigMode ? 'Weekly Task設定を保存' : 'Weekly Task設定を開く';
+  }
+  renderWeeklyResetControls();
+  renderWeeklyTaskTable(weeklyEntries);
+}
+
+function handleWeeklyReset() {
+  if (getWeeklyResetMode() !== 'manual') return;
+  const dateKey = getWeeklyResetDateKey();
+  clearWeeklyProgressForDate(dateKey);
+  renderWeeklyTaskTable(weeklyEntries);
+}
+
 function setupTabs() {
   document.querySelectorAll('.tab-button').forEach((tab) => {
     tab.addEventListener('click', () => {
@@ -730,6 +849,15 @@ function setupTabs() {
     setDailyResetMode(nextMode);
     renderDailyResetControls();
     renderDaily();
+  });
+
+  document.querySelector('#weekly-task-config-button')?.addEventListener('click', toggleWeeklyTaskConfigMode);
+  document.querySelector('#weekly-reset-button')?.addEventListener('click', handleWeeklyReset);
+  document.querySelector('#weekly-reset-mode-button')?.addEventListener('click', () => {
+    const nextMode = getWeeklyResetMode() === 'manual' ? 'auto' : 'manual';
+    setWeeklyResetMode(nextMode);
+    renderWeeklyResetControls();
+    renderWeeklyTaskTable(weeklyEntries);
   });
 
   document.querySelector('#daily-board')?.addEventListener('click', (event) => {
@@ -747,16 +875,45 @@ function setupTabs() {
 
     const characterId = toggle.dataset.characterId;
     const taskId = toggle.dataset.taskId;
-    const nextState = !toggle.classList.contains('is-done');
+    const isDone = toggle.classList.contains('is-done');
+    const completed = !isDone;
 
     toggleDailyTaskCompletion({
       characterId,
       taskId,
-      completed: nextState,
+      completed,
       dateKey: getDailyResetDateKey()
     });
 
     renderDaily();
+  });
+
+  document.querySelector('#weekly-task-board')?.addEventListener('click', (event) => {
+    const toggle = event.target.closest('.daily-task-toggle');
+    if (!toggle) return;
+
+    if (toggle.dataset.weeklyVisibilityToggle === 'true') {
+      const characterId = toggle.dataset.characterId;
+      const taskId = toggle.dataset.taskId;
+      const visible = !getWeeklyTaskVisibility(characterId, taskId);
+      toggleWeeklyTaskVisibility({ characterId, taskId, visible });
+      renderWeeklyTaskTable(weeklyEntries);
+      return;
+    }
+
+    const characterId = toggle.dataset.characterId;
+    const taskId = toggle.dataset.taskId;
+    const isDone = toggle.classList.contains('is-done');
+    const completed = !isDone;
+
+    toggleWeeklyTaskCompletion({
+      characterId,
+      taskId,
+      completed,
+      dateKey: getWeeklyResetDateKey()
+    });
+
+    renderWeeklyTaskTable(weeklyEntries);
   });
 }
 
@@ -770,6 +927,20 @@ function switchView(viewName) {
     view.classList.toggle('active', view.dataset.view === viewName);
   });
   if (viewName === 'reward' && rewardEntries.length === 0) renderRewards();
+}
+
+async function renderWeeklyTaskPanel() {
+  const container = document.querySelector('#weekly-task-board');
+  if (!container) return;
+
+  try {
+    const characterRows = await loadCharacterRows();
+    weeklyEntries = characterRows;
+    renderWeeklyTaskTable(characterRows);
+  } catch (error) {
+    console.error('Weekly task render failed:', error);
+    renderWeeklyTaskTable([]);
+  }
 }
 
 renderDaily();
