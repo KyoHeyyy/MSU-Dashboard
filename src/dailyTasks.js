@@ -1,9 +1,15 @@
 const DAILY_TASK_STORAGE_KEY = 'daily-task-progress-v1';
 const DAILY_TASK_VISIBILITY_KEY = 'daily-task-visibility-v1';
 const DAILY_RESET_MODE_KEY = 'daily-reset-mode-v1';
+const WEEKLY_TASK_STORAGE_KEY = 'weekly-task-progress-v1';
+const WEEKLY_TASK_VISIBILITY_KEY = 'weekly-task-visibility-v1';
+const WEEKLY_RESET_MODE_KEY = 'weekly-reset-mode-v1';
 let dailyProgressMemory = {};
 let dailyVisibilityMemory = {};
 let dailyResetModeMemory = 'auto';
+let weeklyProgressMemory = {};
+let weeklyVisibilityMemory = {};
+let weeklyResetModeMemory = 'auto';
 const DAILY_TASK_GROUPS = [
   { id: 'symbol', name: 'Symbol', order: 1 },
   { id: 'monster-park', name: 'Monster Park', order: 2 },
@@ -33,8 +39,8 @@ const DEFAULT_DAILY_TASKS = [
   { id: 'subjugation', name: 'subjugation', icon: '⚔️', groupId: 'event', type: 'default', order: 3 },
   { id: 'coin', name: 'coin', icon: '🪙', groupId: 'event', type: 'default', order: 4 },
   { id: 'shopping', name: 'shopping', icon: '🛒', groupId: 'event', type: 'default', order: 5 },
-  { id: 'mini-game', name: 'mini game', icon: '🎮', groupId: 'event', type: 'default', order: 6 }
-
+  { id: 'mini-game', name: 'mini game', icon: '🎮', groupId: 'event', type: 'default', order: 6 },
+  { id: 'gift', name: 'gift', icon: '🎁', groupId: 'event', type: 'default', order: 7 },
 ];
 
 const DEFAULT_ASSIGNMENTS = [
@@ -51,7 +57,8 @@ const DEFAULT_ASSIGNMENTS = [
   { characterId: 'all', taskId: 'subjugation' },
   { characterId: 'all', taskId: 'coin' },
   { characterId: 'all', taskId: 'shopping' },
-  { characterId: 'all', taskId: 'mini-game' }
+  { characterId: 'all', taskId: 'mini-game' },
+  { characterId: 'all', taskId: 'gift' }
 ];
 
 function clone(value) {
@@ -207,11 +214,40 @@ export function clearDailyProgressForDate(dateKey = getDailyResetDateKey(), prog
   return nextProgress;
 }
 
+const WEEKLY_TASK_GROUPS = [
+  { id: 'weekly', name: 'Weekly', order: 1 }
+];
+
+const DEFAULT_WEEKLY_TASKS = [
+  { id: 'weekly-dojo', name: 'Weekly Dojo', icon: '🏯', groupId: 'weekly', type: 'default', order: 1 },
+  { id: 'weekly-raid', name: 'Weekly Raid', icon: '🐉', groupId: 'weekly', type: 'default', order: 2 },
+  { id: 'weekly-shopping', name: 'Weekly Shopping', icon: '🛒', groupId: 'weekly', type: 'default', order: 2 },
+  { id: 'weekly-gift', name: 'Weekly Gift', icon: '🎁', groupId: 'weekly', type: 'default', order: 2 },
+  { id: 'weekly-event', name: 'Weekly Event', icon: '✨', groupId: 'weekly', type: 'default', order: 3 }
+];
+
+const DEFAULT_WEEKLY_ASSIGNMENTS = [
+  { characterId: 'all', taskId: 'weekly-dojo' },
+  { characterId: 'all', taskId: 'weekly-raid' },
+  { characterId: 'all', taskId: 'weekly-shopping' }, 
+  { characterId: 'all', taskId: 'weekly-gift' },
+  { characterId: 'all', taskId: 'weekly-event' },
+
+];
+
 export function getNormalizedDailyTaskConfig() {
   return {
     groups: clone(DAILY_TASK_GROUPS),
     tasks: clone(DEFAULT_DAILY_TASKS),
     assignments: clone(DEFAULT_ASSIGNMENTS)
+  };
+}
+
+export function getNormalizedWeeklyTaskConfig() {
+  return {
+    groups: clone(WEEKLY_TASK_GROUPS),
+    tasks: clone(DEFAULT_WEEKLY_TASKS),
+    assignments: clone(DEFAULT_WEEKLY_ASSIGNMENTS)
   };
 }
 
@@ -262,6 +298,199 @@ export function getDailyViewModel(
             visible: getDailyTaskVisibility(characterId, task.id),
             completed: Boolean(progressMap[`${characterId}:${task.id}`])
           }));
+
+        return {
+          characterId,
+          character: character.character ?? character.name ?? 'Unknown',
+          icon: character.icon ?? character.imageUrl ?? '',
+          level: character.level ?? 0,
+          job: character.job ?? '',
+          tasks: includeHidden ? mappedTasks : mappedTasks.filter((task) => task.visible)
+        };
+      })
+      .filter((entry) => includeHidden || entry.tasks.length > 0)
+  };
+}
+
+export function getWeeklyResetDateKey(date = new Date()) {
+  const jstTime = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+  const normalized = new Date(jstTime.getTime());
+  const currentDay = normalized.getUTCDay();
+  const daysSinceThursday = (currentDay + 7 - 4) % 7;
+
+  normalized.setUTCDate(normalized.getUTCDate() - daysSinceThursday);
+  if (currentDay === 4 && normalized.getUTCHours() < 9 && jstTime.getUTCHours() < 9) {
+    normalized.setUTCDate(normalized.getUTCDate() - 7);
+  }
+  if (currentDay !== 4 && jstTime.getUTCHours() < 9) {
+    normalized.setUTCDate(normalized.getUTCDate() - 7);
+  }
+
+  normalized.setUTCHours(0, 0, 0, 0);
+  return normalized.toISOString().slice(0, 10);
+}
+
+export function loadWeeklyProgressByDate(dateKey = getWeeklyResetDateKey()) {
+  const storage = readStorageForKey(WEEKLY_TASK_STORAGE_KEY, weeklyProgressMemory);
+  const entries = storage?.[dateKey] ?? {};
+  return entries && typeof entries === 'object' ? entries : {};
+}
+
+export function saveWeeklyProgressByDate(progressMap, dateKey = getWeeklyResetDateKey()) {
+  const storage = readStorageForKey(WEEKLY_TASK_STORAGE_KEY, weeklyProgressMemory);
+  storage[dateKey] = progressMap && typeof progressMap === 'object' ? progressMap : {};
+  writeStorageForKey(WEEKLY_TASK_STORAGE_KEY, storage, () => {
+    weeklyProgressMemory = storage;
+  });
+}
+
+function readStorageForKey(storageKey, memoryRef) {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      const raw = window.localStorage.getItem(storageKey);
+      if (!raw) {
+        return memoryRef;
+      }
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' ? parsed : {};
+    } catch {
+      return memoryRef;
+    }
+  }
+
+  return memoryRef;
+}
+
+function writeStorageForKey(storageKey, value, onSuccess) {
+  if (onSuccess) {
+    onSuccess();
+  }
+
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.setItem(storageKey, JSON.stringify(value));
+    }
+  } catch {
+    // Ignore storage errors in non-persistent environments.
+  }
+}
+
+export function getWeeklyTaskVisibility(characterId, taskId) {
+  const storage = readStorageForKey(WEEKLY_TASK_VISIBILITY_KEY, weeklyVisibilityMemory);
+  const key = `${characterId}:${taskId}`;
+  return storage[key] === true;
+}
+
+export function toggleWeeklyTaskVisibility({ characterId, taskId, visible }) {
+  const storage = readStorageForKey(WEEKLY_TASK_VISIBILITY_KEY, weeklyVisibilityMemory);
+  const key = `${characterId}:${taskId}`;
+  storage[key] = Boolean(visible);
+  writeStorageForKey(WEEKLY_TASK_VISIBILITY_KEY, storage, () => {
+    weeklyVisibilityMemory = storage;
+  });
+  return storage;
+}
+
+export function toggleWeeklyTaskCompletion({ characterId, taskId, completed, dateKey = getWeeklyResetDateKey() }) {
+  const progressMap = loadWeeklyProgressByDate(dateKey);
+  const key = `${characterId}:${taskId}`;
+  if (completed) {
+    progressMap[key] = true;
+  } else {
+    delete progressMap[key];
+  }
+  saveWeeklyProgressByDate(progressMap, dateKey);
+  return progressMap;
+}
+
+export function getWeeklyResetMode() {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      const stored = window.localStorage.getItem(WEEKLY_RESET_MODE_KEY);
+      weeklyResetModeMemory = stored === 'manual' ? 'manual' : 'auto';
+      return weeklyResetModeMemory;
+    } catch {
+      return weeklyResetModeMemory;
+    }
+  }
+
+  return weeklyResetModeMemory;
+}
+
+export function setWeeklyResetMode(mode) {
+  const normalized = mode === 'manual' ? 'manual' : 'auto';
+  weeklyResetModeMemory = normalized;
+
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.setItem(WEEKLY_RESET_MODE_KEY, normalized);
+    }
+  } catch {
+    // no-op
+  }
+
+  return normalized;
+}
+
+export function clearWeeklyProgressForDate(dateKey = getWeeklyResetDateKey(), progressMap = loadWeeklyProgressByDate(dateKey)) {
+  const storage = readStorageForKey(WEEKLY_TASK_STORAGE_KEY, weeklyProgressMemory);
+  const nextProgress = {};
+
+  for (const [key] of Object.entries(progressMap ?? {})) {
+    nextProgress[key] = false;
+  }
+
+  storage[dateKey] = nextProgress;
+  writeStorageForKey(WEEKLY_TASK_STORAGE_KEY, storage, () => {
+    weeklyProgressMemory = storage;
+  });
+  return nextProgress;
+}
+
+export function getWeeklyViewModel(
+  characters = [],
+  config = getNormalizedWeeklyTaskConfig(),
+  progressMap = {},
+  options = {}
+) {
+  const includeHidden = Boolean(options.includeHidden);
+  const taskMap = new Map(config.tasks.map((task) => [task.id, task]));
+  const assignmentsByCharacter = new Map();
+
+  for (const assignment of config.assignments) {
+    const characterIds = assignment.characterId === 'all'
+      ? characters.map((character) => character.assetKey || character.character || character.name || 'all')
+      : [assignment.characterId];
+
+    for (const characterId of characterIds) {
+      if (!assignmentsByCharacter.has(characterId)) {
+        assignmentsByCharacter.set(characterId, []);
+      }
+      const task = taskMap.get(assignment.taskId);
+      if (task) {
+        assignmentsByCharacter.get(characterId).push(task);
+      }
+    }
+  }
+
+  return {
+    groups: config.groups.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+    entries: characters
+      .map((character) => {
+        const characterId = character.assetKey || character.character || character.name || 'all';
+        const tasks = (assignmentsByCharacter.get(characterId) ?? [])
+          .slice()
+          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+        const mappedTasks = tasks.map((task) => ({
+          taskId: task.id,
+          name: task.name,
+          icon: task.icon,
+          groupId: task.groupId,
+          type: task.type,
+          visible: getWeeklyTaskVisibility(characterId, task.id),
+          completed: Boolean(progressMap[`${characterId}:${task.id}`])
+        }));
 
         return {
           characterId,

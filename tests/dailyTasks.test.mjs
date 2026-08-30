@@ -9,7 +9,11 @@ import {
   getDailyResetMode,
   setDailyResetMode,
   clearDailyProgressForDate,
-  toggleDailyTaskVisibility
+  toggleDailyTaskVisibility,
+  getWeeklyResetDateKey,
+  getWeeklyResetMode,
+  setWeeklyResetMode,
+  clearWeeklyProgressForDate
 } from '../src/dailyTasks.js';
 
 test('JST 09:00 reset splits the day correctly', () => {
@@ -84,4 +88,24 @@ test('daily reset mode supports manual clear and auto reset mode', () => {
 
   setDailyResetMode('auto');
   assert.equal(getDailyResetMode(), 'auto');
+});
+
+test('weekly reset key follows Thursday 09:00 JST boundary', () => {
+  assert.equal(getWeeklyResetDateKey(new Date('2026-08-27T08:59:00+09:00')), '2026-08-20');
+  assert.equal(getWeeklyResetDateKey(new Date('2026-08-27T09:00:00+09:00')), '2026-08-27');
+
+  setWeeklyResetMode('manual');
+  assert.equal(getWeeklyResetMode(), 'manual');
+
+  const doneMap = {
+    'a:vanishing-journey-daily': true,
+    'b:chuchu-daily': true
+  };
+  assert.deepEqual(clearWeeklyProgressForDate('2026-08-27', doneMap), {
+    'a:vanishing-journey-daily': false,
+    'b:chuchu-daily': false
+  });
+
+  setWeeklyResetMode('auto');
+  assert.equal(getWeeklyResetMode(), 'auto');
 });

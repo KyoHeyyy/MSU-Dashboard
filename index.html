@@ -60,7 +60,7 @@
         <section id="daily-view" class="dashboard-grid view-panel active" data-view="daily">
           <section class="board-panel panel-daily">
             <div class="panel-header">
-              <h2>Daily</h2>
+              <h2>Daily Task</h2>
               <div class="panel-actions">
                 <button id="daily-reset-button" class="icon-button" type="button" aria-label="Dailyをリセット" title="Dailyをリセット" hidden>↺</button>
                 <button id="daily-reset-mode-button" class="secondary-button" type="button" aria-label="リセットモードを切り替え" title="リセットモードを切り替え" hidden>Auto</button>
@@ -72,6 +72,18 @@
         </section>
 
         <section id="weekly-view" class="dashboard-grid view-panel" data-view="weekly">
+          <section class="board-panel panel-weekly-task">
+            <div class="panel-header">
+              <h2>Weekly Task</h2>
+              <div class="panel-actions">
+                <button id="weekly-reset-button" class="icon-button" type="button" aria-label="Weekly Taskをリセット" title="Weekly Taskをリセット" hidden>↺</button>
+                <button id="weekly-reset-mode-button" class="secondary-button" type="button" aria-label="Weekly Taskリセットモードを切り替え" title="Weekly Taskリセットモードを切り替え" hidden>Auto</button>
+                <button id="weekly-task-config-button" class="icon-button" type="button" aria-label="Weekly Task設定を開く" title="Weekly Task設定を開く">&#9881;</button>
+              </div>
+            </div>
+            <div id="weekly-task-board" class="card-list"></div>
+          </section>
+
           <section class="board-panel panel-weekly">
             <div class="panel-header">
               <h2>Weekly Boss</h2>
@@ -87,7 +99,7 @@
           <section class="board-panel panel-event">
             <div class="panel-header">
               <div>
-                <h2>Events</h2>
+                <h2>Schedule</h2>
               </div>
             </div>
             <div id="event-board" class="card-list"></div>
@@ -98,7 +110,7 @@
           <section class="board-panel panel-reward">
             <div class="panel-header">
               <div>
-                <h2>Rewards</h2>
+                <h2>Weekly Rewards</h2>
                 <div class="reward-totals">
                   <p class="reward-total">NESO total <strong id="neso-total">0</strong></p>
                   <p class="reward-total">PowerCrystal total <strong id="powercrystal-total">0</strong></p>
