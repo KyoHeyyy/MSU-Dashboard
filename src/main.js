@@ -87,6 +87,7 @@ let weeklyEntries = [];
 let weeklyBossSettings = null;
 let rewardEntries = [];
 let selectedRewardWeek = 1;
+const HASH_VIEW_NAMES = new Set(['daily', 'weekly', 'reward']);
 
 function getLatestThursdayAtUtc(date = new Date()) {
   const latestThursday = new Date(Date.UTC(
@@ -847,6 +848,9 @@ function setupTabs() {
       switchView(tab.dataset.view);
     });
   });
+  window.addEventListener('hashchange', () => {
+    switchView(getViewFromHash(), { updateHash: false });
+  });
 
   document.querySelector('#daily-config-button')?.addEventListener('click', toggleDailyConfigMode);
   document.querySelector('#daily-reset-button')?.addEventListener('click', handleDailyReset);
@@ -923,7 +927,12 @@ function setupTabs() {
   });
 }
 
-function switchView(viewName) {
+function getViewFromHash() {
+  const viewName = window.location.hash.slice(1);
+  return HASH_VIEW_NAMES.has(viewName) ? viewName : 'daily';
+}
+
+function switchView(viewName, { updateHash = true } = {}) {
   document.querySelectorAll('.tab-button').forEach((tab) => {
     const isActive = tab.dataset.view === viewName;
     tab.classList.toggle('active', isActive);
@@ -933,6 +942,9 @@ function switchView(viewName) {
     view.classList.toggle('active', view.dataset.view === viewName);
   });
   if (viewName === 'reward' && rewardEntries.length === 0) renderRewards();
+  if (updateHash && HASH_VIEW_NAMES.has(viewName) && window.location.hash !== `#${viewName}`) {
+    window.location.hash = viewName;
+  }
 }
 
 async function renderWeeklyTaskPanel() {
@@ -953,6 +965,7 @@ renderDaily();
 renderBoss();
 renderWeeklyRewards();
 setupTabs();
+switchView(getViewFromHash(), { updateHash: false });
 setupWeeklyBossControls();
 document.querySelector('#weekly-reward-button')?.addEventListener('click', () => switchView('reward'));
 document.querySelectorAll('.reward-week-button').forEach((button) => {
