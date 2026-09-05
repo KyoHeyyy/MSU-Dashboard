@@ -88,6 +88,7 @@
             <div class="panel-header">
               <h2>Weekly Boss</h2>
               <div class="panel-actions">
+                <div id="weekly-boss-markers" class="weekly-boss-markers" aria-label="Weekly Bossマーカー"></div>
                 <button id="weekly-config-button" class="icon-button" type="button" aria-label="Weekly Boss設定を開く" title="Weekly Boss設定を開く">&#9881;</button>
               </div>
             </div>
@@ -136,6 +137,24 @@
         </section>
       </main>
     </div>
+
+    <dialog id="weekly-marker-dialog" class="weekly-marker-dialog" aria-labelledby="weekly-marker-dialog-title">
+      <form id="weekly-marker-form" method="dialog">
+        <div class="weekly-marker-dialog-header">
+          <div>
+            <p class="eyebrow">Weekly Boss</p>
+            <h2 id="weekly-marker-dialog-title">マーカー名を変更</h2>
+          </div>
+          <button id="weekly-marker-dialog-close" class="icon-button" type="button" aria-label="閉じる" title="閉じる">&#10005;</button>
+        </div>
+        <label class="weekly-marker-name-label" for="weekly-marker-name">マーカー名</label>
+        <input id="weekly-marker-name" class="weekly-marker-name-input" type="text" maxlength="30" autocomplete="off" required />
+        <div class="weekly-marker-dialog-actions">
+          <button id="weekly-marker-cancel" class="secondary-button" type="button">キャンセル</button>
+          <button class="primary-button" type="submit">保存</button>
+        </div>
+      </form>
+    </dialog>
 
     <script src="/data/events.js"></script>
     <script type="module" src="/src/main.js"></script>

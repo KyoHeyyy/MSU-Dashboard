@@ -79,12 +79,24 @@ const bossData = [
 // const EVENT_API_URL = 'https://msu.io/maplestoryn/api/community/board/5289/threadsV2?blockStartKey=253402300799%2C9223372036854775807&blockStartNo=1&blockSize=15&pageNo=1&pageSize=15&paginationType=PAGING&searchKeywordType=THREAD_TITLE_AND_CONTENT&headlineId=3296';
 // const EVENT_API_KEY = '8484d734-fc72-5bb4-96a4-5622025f2840';
 const WEEKLY_BOSS_SETTINGS_KEY = 'weekly-boss-settings';
+const WEEKLY_BOSS_MARKER_KEY = 'weekly-boss-markers-v1';
+const DEFAULT_WEEKLY_BOSS_MARKERS = [
+  { id: 'marker-1', name: 'Red', color: '#ef4444' },
+  { id: 'marker-2', name: 'Blue', color: '#3b82f6' },
+  { id: 'marker-3', name: 'Green', color: '#22c55e' },
+  { id: 'marker-4', name: 'Yellow', color: '#eab308' },
+  { id: 'marker-5', name: 'Purple', color: '#a855f7' }
+];
 const ALL_BOSS_NAMES = [...new Set(Object.values(LAYER_ID_TO_BOSS_NAME))];
 const DEBUG_CHARACTER_ASSET_KEY = 'CHARd0j2orbfpavs73dqduu0';
 const THURSDAY_UTC = 4;
 let weeklyConfigMode = false;
 let weeklyEntries = [];
 let weeklyBossSettings = null;
+let weeklyBossMarkerSettings = getWeeklyBossMarkerSettings();
+let selectedWeeklyBossMarkerId = null;
+let weeklyBossMarkerClickTimer = null;
+let editingWeeklyBossMarkerId = null;
 let rewardEntries = [];
 let selectedRewardWeek = 1;
 const HASH_VIEW_NAMES = new Set(['daily', 'weekly', 'reward']);
@@ -118,6 +130,101 @@ function saveWeeklyBossSettings(settings) {
   } catch (error) {
     console.warn('Failed to save Weekly Boss settings:', error);
   }
+}
+
+function getWeeklyBossMarkerSettings() {
+  const fallback = {
+    markers: DEFAULT_WEEKLY_BOSS_MARKERS.map((marker) => ({ ...marker })),
+    assignments: {}
+  };
+
+  try {
+    const rawSettings = localStorage.getItem(WEEKLY_BOSS_MARKER_KEY);
+    const settings = rawSettings ? JSON.parse(rawSettings) : null;
+    if (!settings || typeof settings !== 'object') return fallback;
+
+    const markers = DEFAULT_WEEKLY_BOSS_MARKERS.map((defaultMarker) => {
+      const storedMarker = Array.isArray(settings.markers)
+        ? settings.markers.find((marker) => marker?.id === defaultMarker.id)
+        : null;
+      return {
+        ...defaultMarker,
+        name: typeof storedMarker?.name === 'string' && storedMarker.name.trim()
+          ? storedMarker.name.trim()
+          : defaultMarker.name
+      };
+    });
+    const assignments = settings.assignments && typeof settings.assignments === 'object'
+      ? settings.assignments
+      : {};
+    return { markers, assignments };
+  } catch {
+    return fallback;
+  }
+}
+
+function saveWeeklyBossMarkerSettings() {
+  try {
+    localStorage.setItem(WEEKLY_BOSS_MARKER_KEY, JSON.stringify(weeklyBossMarkerSettings));
+  } catch (error) {
+    console.warn('Failed to save Weekly Boss markers:', error);
+  }
+}
+
+function getBossMarkerId(character, bossName) {
+  const markerId = weeklyBossMarkerSettings.assignments?.[character]?.[bossName];
+  return weeklyBossMarkerSettings.markers.some((marker) => marker.id === markerId) ? markerId : null;
+}
+
+function renderWeeklyMarkers() {
+  const container = document.querySelector('#weekly-boss-markers');
+  if (!container) return;
+
+  container.innerHTML = weeklyBossMarkerSettings.markers.map((marker) => `
+    <button
+      class="weekly-boss-marker${selectedWeeklyBossMarkerId === marker.id ? ' is-selected' : ''}"
+      type="button"
+      data-marker-id="${marker.id}"
+      style="--marker-color: ${marker.color}"
+      aria-label="${marker.name}"
+      aria-pressed="${selectedWeeklyBossMarkerId === marker.id}"
+      title="${marker.name}"
+    ></button>
+  `).join('');
+}
+
+function openWeeklyBossMarkerDialog(markerId) {
+  const marker = weeklyBossMarkerSettings.markers.find((item) => item.id === markerId);
+  if (!marker) return;
+
+  const dialog = document.querySelector('#weekly-marker-dialog');
+  const input = document.querySelector('#weekly-marker-name');
+  if (!dialog || !input) return;
+
+  editingWeeklyBossMarkerId = markerId;
+  input.value = marker.name;
+  dialog.showModal();
+  input.focus();
+  input.select();
+}
+
+function saveWeeklyBossMarkerName() {
+  const input = document.querySelector('#weekly-marker-name');
+  const dialog = document.querySelector('#weekly-marker-dialog');
+  const marker = weeklyBossMarkerSettings.markers.find((item) => item.id === editingWeeklyBossMarkerId);
+  if (!input || !dialog || !marker) return;
+
+  const trimmedName = input.value.trim();
+  if (!trimmedName) {
+    input.focus();
+    return;
+  }
+
+  marker.name = trimmedName;
+  saveWeeklyBossMarkerSettings();
+  editingWeeklyBossMarkerId = null;
+  dialog.close();
+  renderWeeklyMarkers();
 }
 
 function getHiddenBossNames(character) {
@@ -549,8 +656,12 @@ function renderWeeklyTable(entries = []) {
             ? '<span class="boss-name-pill failed-boss-pill">取得失敗</span>'
             : bossNames.length > 0
               ? `<span class="boss-name-pill">${bossNames.map((bossName) => {
-                  const stateClass = entry.bossNames?.includes(bossName) ? ' is-defeated' : '';
-                  return `<button class="boss-name-chip${stateClass}" type="button" disabled>${bossName}</button>`;
+                  const isDefeated = entry.bossNames?.includes(bossName);
+                  const markerId = getBossMarkerId(entry.character, bossName);
+                  const marker = weeklyBossMarkerSettings.markers.find((item) => item.id === markerId);
+                  const stateClass = `${isDefeated ? ' is-defeated' : ''}${marker ? ' is-marked' : ''}`;
+                  const markerStyle = marker ? ` style="--marker-color: ${marker.color}"` : '';
+                  return `<button class="boss-name-chip${stateClass}" type="button" data-character="${entry.character}" data-boss-name="${bossName}"${markerStyle}>${bossName}</button>`;
                 }).join('')}</span>`
               : '<span class="boss-name-pill">-</span>';
 
@@ -591,6 +702,7 @@ function renderWeeklyTable(entries = []) {
       </table>
     </div>
   `;
+  renderWeeklyMarkers();
   renderWeeklyConfigButton();
 }
 
@@ -668,6 +780,35 @@ function toggleWeeklyBossConfig() {
 
 function setupWeeklyBossControls() {
   document.querySelector('#weekly-config-button')?.addEventListener('click', toggleWeeklyBossConfig);
+  document.querySelector('#weekly-marker-form')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    saveWeeklyBossMarkerName();
+  });
+  document.querySelector('#weekly-marker-dialog-close')?.addEventListener('click', () => {
+    editingWeeklyBossMarkerId = null;
+    document.querySelector('#weekly-marker-dialog')?.close();
+  });
+  document.querySelector('#weekly-marker-cancel')?.addEventListener('click', () => {
+    editingWeeklyBossMarkerId = null;
+    document.querySelector('#weekly-marker-dialog')?.close();
+  });
+  document.querySelector('#weekly-boss-markers')?.addEventListener('click', (event) => {
+    const markerButton = event.target.closest('.weekly-boss-marker');
+    if (!markerButton) return;
+
+    const markerId = markerButton.dataset.markerId;
+    if (event.detail === 2) {
+      clearTimeout(weeklyBossMarkerClickTimer);
+      openWeeklyBossMarkerDialog(markerId);
+      return;
+    }
+
+    clearTimeout(weeklyBossMarkerClickTimer);
+    weeklyBossMarkerClickTimer = setTimeout(() => {
+      selectedWeeklyBossMarkerId = selectedWeeklyBossMarkerId === markerId ? null : markerId;
+      renderWeeklyMarkers();
+    }, 250);
+  });
   document.querySelector('#weekly-board')?.addEventListener('click', (event) => {
     const bulkButton = event.target.closest('.weekly-bulk-button');
     if (bulkButton && weeklyConfigMode) {
@@ -679,7 +820,23 @@ function setupWeeklyBossControls() {
     }
 
     const chip = event.target.closest('.boss-name-chip');
-    if (!chip || !weeklyConfigMode) return;
+    if (!chip) return;
+
+    if (!weeklyConfigMode) {
+      if (!selectedWeeklyBossMarkerId) return;
+      const character = chip.dataset.character;
+      const bossName = chip.dataset.bossName;
+      const characterAssignments = weeklyBossMarkerSettings.assignments[character] ?? {};
+      if (characterAssignments[bossName] === selectedWeeklyBossMarkerId) {
+        delete characterAssignments[bossName];
+      } else {
+        characterAssignments[bossName] = selectedWeeklyBossMarkerId;
+      }
+      weeklyBossMarkerSettings.assignments[character] = characterAssignments;
+      saveWeeklyBossMarkerSettings();
+      renderWeeklyTable(weeklyEntries);
+      return;
+    }
 
     const character = chip.dataset.character;
     const bossName = chip.dataset.bossName;
