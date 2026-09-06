@@ -2,7 +2,7 @@ import { DEFAULT_WALLET_ADDRESS } from '../config/msuConfig.js';
 
 const RETRY_COUNT = 3;
 const RETRY_DELAY_MS = 1000;
-const REQUEST_INTERVAL_MS = 500;
+const REQUEST_INTERVAL_MS = 1000;
 const MSU_WORKER_BASE_URL = (import.meta.env?.VITE_MSU_WORKER_URL || '/api/msu').replace(/\/$/, '');
 const CACHE_PREFIX = 'cache:';
 const CACHE_DURATION_MS = 5 * 60 * 1000;
