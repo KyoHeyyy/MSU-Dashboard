@@ -526,11 +526,12 @@ h1 {
   display: flex;
   gap: 10px;
   align-items: center;
+  margin-right: 10px;
 }
 
 .weekly-boss-marker {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   padding: 0;
   border: 2px solid transparent;
   border-radius: 50%;
