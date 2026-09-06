@@ -298,12 +298,31 @@ const WEEKLY_TASK_CONFIG = getNormalizedWeeklyTaskConfig();
 let dailyEntries = null;
 let dailyEntriesPromise = null;
 
+function renderDailyProgress(entries) {
+  const container = document.querySelector('#daily-progress');
+  if (!container) return;
+
+  if (!entries) {
+    container.innerHTML = '<strong>取得中</strong>';
+    return;
+  }
+
+  const progressMap = loadDailyProgressByDate(getDailyResetDateKey());
+  const viewModel = getDailyViewModel(entries, DAILY_TASK_CONFIG, progressMap);
+  const tasks = viewModel.entries.flatMap((entry) => entry.tasks);
+  const completedCount = tasks.filter((task) => task.completed).length;
+  const progressPercent = tasks.length === 0 ? 0 : Math.round((completedCount / tasks.length) * 100);
+
+  container.innerHTML = `<strong>${progressPercent}%</strong>`;
+}
+
 function renderDailyTable(entries) {
   const container = document.querySelector('#daily-board');
   if (!container) return;
 
   const progressMap = loadDailyProgressByDate(getDailyResetDateKey());
   const viewModel = getDailyViewModel(entries, DAILY_TASK_CONFIG, progressMap, { includeHidden: dailyConfigMode });
+  renderDailyProgress(entries);
   const groupHeaders = viewModel.groups
     .map((group) => `<th>${group.name}</th>`)
     .join('');
