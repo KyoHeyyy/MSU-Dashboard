@@ -1186,11 +1186,7 @@ async function renderWeeklyTaskPanel() {
 const normalizedPathname = window.location.pathname.replace(/\/$/, '');
 const isWalletRegistrationPage = normalizedPathname.endsWith('/WalletRegistration');
 const walletAddress = getWalletAddressFromUrl();
-const appBasePath = isWalletRegistrationPage
-  ? `${normalizedPathname.slice(0, -'/WalletRegistration'.length) || ''}/`
-  : window.location.pathname.endsWith('/')
-    ? window.location.pathname
-    : `${window.location.pathname}/`;
+const appBasePath = import.meta.env.BASE_URL;
 
 if (!isWalletRegistrationPage && !walletAddress) {
   window.location.replace(`${appBasePath}WalletRegistration`);

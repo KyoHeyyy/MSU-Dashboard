@@ -3,7 +3,7 @@ import { setRegisteredWalletAddress } from './msuApi.js';
 const normalizedPathname = window.location.pathname.replace(/\/$/, '');
 const isRegistrationPage = normalizedPathname.endsWith('/WalletRegistration');
 if (isRegistrationPage) {
-  const appBasePath = `${normalizedPathname.slice(0, -'/WalletRegistration'.length) || ''}/`;
+  const appBasePath = import.meta.env.BASE_URL;
   const dashboard = document.querySelector('.app-shell');
   const registration = document.querySelector('#wallet-registration');
   const form = document.querySelector('#wallet-registration-form');
