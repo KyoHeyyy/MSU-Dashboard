@@ -92,6 +92,7 @@ const DEBUG_CHARACTER_ASSET_KEY = 'CHARd0j2orbfpavs73dqduu0';
 const THURSDAY_UTC = 4;
 let weeklyConfigMode = false;
 let weeklyEntries = [];
+let weeklyTaskEntries = [];
 let weeklyBossSettings = null;
 let weeklyBossMarkerSettings = getWeeklyBossMarkerSettings();
 let selectedWeeklyBossMarkerId = null;
@@ -998,14 +999,14 @@ function toggleWeeklyTaskConfigMode() {
     button.title = weeklyTaskConfigMode ? 'Weekly Task設定を保存' : 'Weekly Task設定を開く';
   }
   renderWeeklyResetControls();
-  renderWeeklyTaskTable(weeklyEntries);
+  renderWeeklyTaskTable(weeklyTaskEntries);
 }
 
 function handleWeeklyReset() {
   if (getWeeklyResetMode() !== 'manual') return;
   const dateKey = getWeeklyResetDateKey();
   clearWeeklyProgressForDate(dateKey);
-  renderWeeklyTaskTable(weeklyEntries);
+  renderWeeklyTaskTable(weeklyTaskEntries);
 }
 
 function setupTabs() {
@@ -1033,7 +1034,7 @@ function setupTabs() {
     const nextMode = getWeeklyResetMode() === 'manual' ? 'auto' : 'manual';
     setWeeklyResetMode(nextMode);
     renderWeeklyResetControls();
-    renderWeeklyTaskTable(weeklyEntries);
+    renderWeeklyTaskTable(weeklyTaskEntries);
   });
 
   document.querySelector('#daily-board')?.addEventListener('click', (event) => {
@@ -1073,7 +1074,7 @@ function setupTabs() {
       const taskId = toggle.dataset.taskId;
       const visible = !getWeeklyTaskVisibility(characterId, taskId);
       toggleWeeklyTaskVisibility({ characterId, taskId, visible });
-      renderWeeklyTaskTable(weeklyEntries);
+      renderWeeklyTaskTable(weeklyTaskEntries);
       return;
     }
 
@@ -1089,7 +1090,7 @@ function setupTabs() {
       dateKey: getWeeklyResetDateKey()
     });
 
-    renderWeeklyTaskTable(weeklyEntries);
+    renderWeeklyTaskTable(weeklyTaskEntries);
   });
 }
 
@@ -1119,7 +1120,7 @@ async function renderWeeklyTaskPanel() {
 
   try {
     const characterRows = await loadCharacterRows();
-    weeklyEntries = characterRows;
+    weeklyTaskEntries = characterRows;
     renderWeeklyTaskTable(characterRows);
   } catch (error) {
     console.error('Weekly task render failed:', error);
@@ -1129,6 +1130,7 @@ async function renderWeeklyTaskPanel() {
 
 renderDaily();
 renderBoss();
+renderWeeklyTaskPanel();
 renderWeeklyRewards();
 setupTabs();
 switchView(getViewFromHash(), { updateHash: false });
