@@ -4,10 +4,12 @@ import assert from 'node:assert/strict';
 import {
   clearExpiredCache,
   getCache,
+  getRegisteredWalletAddress,
   getWalletAddressFromUrl,
   getNextThursdayAtUtc,
   normalizeCharacterEntries,
-  setCache
+  setCache,
+  setRegisteredWalletAddress
 } from '../src/msuApi.js';
 import { buildEventTimeline, parseEventDateRange } from '../src/eventUtils.js';
 
@@ -35,10 +37,20 @@ class SessionStorageMock {
   }
 }
 
-test('getWalletAddressFromUrl returns URL param or fallback value', () => {
+test('getWalletAddressFromUrl prioritizes URL and falls back to the registered wallet', () => {
   assert.equal(getWalletAddressFromUrl('?walletAddress=0xabc123'), '0xabc123');
   assert.equal(getWalletAddressFromUrl('?address=0xdef456'), '0xdef456');
-  assert.equal(getWalletAddressFromUrl(''), '0x24eb476d0E7B9d2099323E633FF0f16f5A64c067');
+  assert.equal(getWalletAddressFromUrl(''), null);
+});
+
+test('registered wallet address is stored until replaced', () => {
+  const storage = new SessionStorageMock();
+  globalThis.localStorage = storage;
+
+  assert.equal(setRegisteredWalletAddress('  0xabc123  '), true);
+  assert.equal(getRegisteredWalletAddress(), '0xabc123');
+  assert.equal(getWalletAddressFromUrl(''), '0xabc123');
+  assert.equal(getWalletAddressFromUrl('?walletAddress=0xdef456'), '0xdef456');
 });
 
 test('getNextThursdayAtUtc returns the following Thursday at 00:00 UTC', () => {

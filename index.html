@@ -142,6 +142,18 @@
       </main>
     </div>
 
+    <main id="wallet-registration" class="wallet-registration" hidden>
+      <p class="eyebrow">MapleStory Universe</p>
+      <h1>Wallet Registration</h1>
+        <p class="wallet-registration-copy">ダッシュボードで使用するウォレットアドレスを登録してください。</p>
+      <form id="wallet-registration-form" class="wallet-registration-form">
+        <label for="wallet-address">Wallet address</label>
+        <input id="wallet-address" name="walletAddress" type="text" autocomplete="off" required />
+        <p id="wallet-registration-error" class="wallet-registration-error" role="alert" hidden></p>
+        <button class="primary-button" type="submit">登録してダッシュボードへ</button>
+      </form>
+    </main>
+
     <dialog id="weekly-marker-dialog" class="weekly-marker-dialog" aria-labelledby="weekly-marker-dialog-title">
       <form id="weekly-marker-form" method="dialog">
         <div class="weekly-marker-dialog-header">
@@ -162,6 +174,7 @@
 
     <script src="/data/events.js"></script>
     <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/walletRegistration.js"></script>
     <script type="module" src="/src/eventPage.js"></script>
   </body>
 </html>

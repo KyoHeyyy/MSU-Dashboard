@@ -32,6 +32,44 @@ body {
   padding: 28px;
 }
 
+.wallet-registration {
+  width: min(100% - 40px, 560px);
+  margin: 12vh auto 0;
+  padding: 32px;
+  background: linear-gradient(180deg, rgba(21, 34, 61, 0.96), rgba(15, 23, 42, 0.98));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.wallet-registration h1 {
+  margin-bottom: 12px;
+}
+
+.wallet-registration-copy {
+  color: var(--muted);
+}
+
+.wallet-registration-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.wallet-registration-form input {
+  width: 100%;
+  padding: 12px 14px;
+  color: var(--text);
+  background: rgba(9, 17, 31, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.wallet-registration-error {
+  margin: 0;
+  color: #fca5a5;
+}
+
 .topbar {
   display: flex;
   align-items: flex-start;

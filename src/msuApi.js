@@ -1,10 +1,9 @@
-import { DEFAULT_WALLET_ADDRESS } from '../config/msuConfig.js';
-
 const RETRY_COUNT = 3;
 const RETRY_DELAY_MS = 1000;
 const REQUEST_INTERVAL_MS = 1000;
 const MSU_WORKER_BASE_URL = (import.meta.env?.VITE_MSU_WORKER_URL || '/api/msu').replace(/\/$/, '');
 const CACHE_PREFIX = 'cache:';
+const REGISTERED_WALLET_KEY = 'registered-wallet-address';
 const CACHE_DURATION_MS = 5 * 60 * 1000;
 const THURSDAY_UTC = 4;
 
@@ -14,6 +13,14 @@ let lastRequestAt = 0;
 function getSessionStorage() {
   try {
     return typeof sessionStorage === 'undefined' ? null : sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+function getLocalStorage() {
+  try {
+    return typeof localStorage === 'undefined' ? null : localStorage;
   } catch {
     return null;
   }
@@ -105,14 +112,36 @@ function clearExpiredCache() {
 
 clearExpiredCache();
 
-function getWalletAddressFromUrl(url = window.location.search) {
-  if (!url) {
-    return DEFAULT_WALLET_ADDRESS;
-  }
+function getRegisteredWalletAddress() {
+  const storage = getLocalStorage();
+  if (!storage) return null;
 
+  try {
+    const walletAddress = storage.getItem(REGISTERED_WALLET_KEY)?.trim();
+    return walletAddress || null;
+  } catch {
+    return null;
+  }
+}
+
+function setRegisteredWalletAddress(walletAddress) {
+  const storage = getLocalStorage();
+  const normalizedWalletAddress = walletAddress?.trim();
+  if (!storage || !normalizedWalletAddress) return false;
+
+  try {
+    storage.setItem(REGISTERED_WALLET_KEY, normalizedWalletAddress);
+    return true;
+  } catch (error) {
+    console.warn('Failed to save registered wallet address:', error);
+    return false;
+  }
+}
+
+function getWalletAddressFromUrl(url = globalThis.location?.search || '') {
   const params = new URLSearchParams(url.startsWith('?') ? url.slice(1) : url);
   const walletAddress = params.get('walletAddress') || params.get('address');
-  return walletAddress || DEFAULT_WALLET_ADDRESS;
+  return walletAddress?.trim() || getRegisteredWalletAddress();
 }
 
 function normalizeCharacterEntries(payload) {
@@ -272,12 +301,13 @@ async function loadCharacterRaffleHistory(
 }
 
 export {
-  DEFAULT_WALLET_ADDRESS,
   getCache,
   setCache,
   getNextThursdayAtUtc,
   clearExpiredCache,
   getWalletAddressFromUrl,
+  getRegisteredWalletAddress,
+  setRegisteredWalletAddress,
   fetchCharacterList,
   normalizeCharacterEntries,
   fetchCharacterListFromApi,

@@ -1164,22 +1164,29 @@ async function renderWeeklyTaskPanel() {
   }
 }
 
-renderDaily();
-renderBoss();
-renderWeeklyTaskPanel();
-renderWeeklyRewards();
-setupTabs();
-switchView(getViewFromHash(), { updateHash: false });
-setupWeeklyBossControls();
-document.querySelector('#weekly-reward-button')?.addEventListener('click', () => switchView('reward'));
-document.querySelectorAll('.reward-week-button').forEach((button) => {
-  button.addEventListener('click', () => {
-    selectedRewardWeek = Number(button.dataset.rewardWeek);
-    document.querySelectorAll('.reward-week-button').forEach((weekButton) => {
-      const isSelected = Number(weekButton.dataset.rewardWeek) === selectedRewardWeek;
-      weekButton.classList.toggle('active', isSelected);
-      weekButton.setAttribute('aria-pressed', String(isSelected));
+const isWalletRegistrationPage = window.location.pathname.replace(/\/$/, '') === '/WalletRegistration';
+const walletAddress = getWalletAddressFromUrl();
+
+if (!isWalletRegistrationPage && !walletAddress) {
+  window.location.replace('/WalletRegistration');
+} else if (!isWalletRegistrationPage) {
+  renderDaily();
+  renderBoss();
+  renderWeeklyTaskPanel();
+  renderWeeklyRewards();
+  setupTabs();
+  switchView(getViewFromHash(), { updateHash: false });
+  setupWeeklyBossControls();
+  document.querySelector('#weekly-reward-button')?.addEventListener('click', () => switchView('reward'));
+  document.querySelectorAll('.reward-week-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedRewardWeek = Number(button.dataset.rewardWeek);
+      document.querySelectorAll('.reward-week-button').forEach((weekButton) => {
+        const isSelected = Number(weekButton.dataset.rewardWeek) === selectedRewardWeek;
+        weekButton.classList.toggle('active', isSelected);
+        weekButton.setAttribute('aria-pressed', String(isSelected));
+      });
+      renderRewardTable(rewardEntries);
     });
-    renderRewardTable(rewardEntries);
   });
-});
+}
