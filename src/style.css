@@ -402,6 +402,22 @@ h1 {
   gap: 8px;
 }
 
+.daily-symbol-task-list {
+  display: grid;
+  grid-template-columns: repeat(6, 38px);
+  justify-content: center;
+  gap: 8px;
+}
+
+.daily-task-slot {
+  width: 38px;
+  height: 38px;
+}
+
+.daily-task-slot-empty {
+  visibility: hidden;
+}
+
 .daily-task-toggle {
   width: 38px;
   height: 38px;
