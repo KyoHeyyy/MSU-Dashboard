@@ -234,6 +234,14 @@ function getHiddenBossNames(character) {
   return Array.isArray(hiddenBossNames) ? hiddenBossNames : [];
 }
 
+function getDisplayedBossCount(entries = []) {
+  return entries.reduce((total, entry) => {
+    const hiddenBossNames = getHiddenBossNames(entry.character);
+    const displayedBossNames = ALL_BOSS_NAMES.filter((bossName) => !hiddenBossNames.includes(bossName));
+    return total + displayedBossNames.length;
+  }, 0);
+}
+
 function renderWeeklyConfigButton() {
   const button = document.querySelector('#weekly-config-button');
   if (!button) return;
@@ -737,6 +745,7 @@ function renderWeeklyTable(entries = []) {
   `;
   renderWeeklyMarkers();
   renderWeeklyConfigButton();
+  renderBossProgress(bossCount, getDisplayedBossCount(entries));
 }
 
 async function renderWeeklyRewards() {
@@ -791,7 +800,6 @@ async function renderWeeklyRewards() {
       }
 
       renderWeeklyTable(weeklyEntries);
-      renderBossProgress(bossCount);
     }
   } finally {
     hideLoadingIndicator();
@@ -884,11 +892,16 @@ function setupWeeklyBossControls() {
   });
 }
 
-async function renderBossProgress(bossCount) {
-    const container = document.querySelector('#boss-progress');
+async function renderBossProgress(bossCount, bossTotal) {
+  const container = document.querySelector('#boss-progress');
+  const warning = document.querySelector('#boss-progress-warning');
   if (!container) return;
 
-  container.innerHTML = `<strong>${bossCount} / 90</strong>`;
+  container.innerHTML = `<strong>${bossCount} / ${bossTotal}</strong>`;
+  if (warning) {
+    warning.hidden = bossTotal <= 90;
+    // console.log(`Boss Progress: ${bossCount} / ${bossTotal} (Warning: ${warning.hidden ? 'hidden' : 'visible'}) warning.hidden: ${warning.hidden}`);
+  }
 }
 
 function renderDailyResetControls() {

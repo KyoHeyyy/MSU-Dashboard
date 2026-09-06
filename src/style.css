@@ -40,6 +40,35 @@ body {
   margin-bottom: 22px;
 }
 
+.boss-progress-warning {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: -8px 0 18px;
+  padding: 10px 16px;
+  color: #3b2500;
+  background: #f6c453;
+  border: 1px solid #ffdf83;
+  box-shadow: 4px 4px 0 rgba(246, 196, 83, 0.2);
+  clip-path: polygon(0 0, 100% 0, 99% 50%, 100% 100%, 0 100%, 1% 50%);
+}
+
+.boss-progress-warning[hidden] {
+  display: none;
+}
+
+.boss-progress-warning span {
+  display: inline-grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  flex: 0 0 auto;
+  color: #f6c453;
+  background: #3b2500;
+  border-radius: 50%;
+  font-weight: 800;
+}
+
 .eyebrow {
   margin: 0 0 10px;
   color: #bba7ff;
