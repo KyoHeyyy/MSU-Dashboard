@@ -2,7 +2,8 @@ import { DEFAULT_WALLET_ADDRESS } from '../config/msuConfig.js';
 
 const RETRY_COUNT = 3;
 const RETRY_DELAY_MS = 1000;
-const REQUEST_INTERVAL_MS = 500;
+const RATE_LIMIT_RETRY_DELAY_MS = 5000;
+const REQUEST_INTERVAL_MS = 1000;
 const MSU_WORKER_BASE_URL = (import.meta.env?.VITE_MSU_WORKER_URL || '/api/msu').replace(/\/$/, '');
 const CACHE_PREFIX = 'cache:';
 const CACHE_DURATION_MS = 5 * 60 * 1000;
@@ -10,6 +11,7 @@ const THURSDAY_UTC = 4;
 
 let requestQueue = Promise.resolve();
 let lastRequestAt = 0;
+const inFlightRequests = new Map();
 
 function getSessionStorage() {
   try {
@@ -143,7 +145,7 @@ function normalizeCharacterEntries(payload) {
 }
 
 async function wait(ms) {
-  return new Promise((resolve) => window.setTimeout(resolve, ms));
+  return new Promise((resolve) => globalThis.setTimeout(resolve, ms));
 }
 
 async function fetchWithRetry(url, options = {}, { retryCount = RETRY_COUNT, retryDelayMs = RETRY_DELAY_MS } = {}) {
@@ -160,14 +162,18 @@ async function fetchWithRetry(url, options = {}, { retryCount = RETRY_COUNT, ret
         lastRequestAt = Date.now();
         const response = await fetch(url, options);
         if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+          const retryAfter = response.status === 429
+            ? getRetryAfterDelay(response.headers.get('retry-after'))
+            : 0;
+          throw Object.assign(new Error(`HTTP ${response.status}`), { retryAfter });
         }
 
         return await response.json();
       } catch (error) {
         lastError = error;
         if (attempt < retryCount - 1) {
-          await wait(retryDelayMs * (attempt + 1));
+          const delay = error?.retryAfter || retryDelayMs * (attempt + 1);
+          await wait(delay);
         }
       }
     }
@@ -178,6 +184,20 @@ async function fetchWithRetry(url, options = {}, { retryCount = RETRY_COUNT, ret
   const currentRequest = requestQueue.then(runFetch, runFetch);
   requestQueue = currentRequest.catch(() => {});
   return currentRequest;
+}
+
+function getRetryAfterDelay(value) {
+  if (!value) return RATE_LIMIT_RETRY_DELAY_MS;
+
+  const seconds = Number(value);
+  if (Number.isFinite(seconds)) {
+    return Math.max(RATE_LIMIT_RETRY_DELAY_MS, seconds * 1000);
+  }
+
+  const retryAt = Date.parse(value);
+  return Number.isNaN(retryAt)
+    ? RATE_LIMIT_RETRY_DELAY_MS
+    : Math.max(RATE_LIMIT_RETRY_DELAY_MS, retryAt - Date.now());
 }
 
 async function fetchCharacterListFromApi(walletAddress) {
@@ -232,14 +252,21 @@ async function fetchCharacterRaffleInformation(characterAssetKey, walletAddress 
 async function loadCharacterRaffleInformation(characterAssetKey, walletAddress = getWalletAddressFromUrl()) {
   const cacheKey = getRaffleInfoCacheKey(characterAssetKey, walletAddress);
   const cached = getCache(cacheKey);
-  console.log(`Loading raffle info for ${characterAssetKey} and wallet ${walletAddress}. Cache hit: ${cached !== null}`);
   if (cached !== null) {
     return cached;
   }
 
-  const payload = await fetchCharacterRaffleInformation(characterAssetKey, walletAddress);
-  setCache(cacheKey, payload);
-  return payload;
+  if (!inFlightRequests.has(cacheKey)) {
+    const request = fetchCharacterRaffleInformation(characterAssetKey, walletAddress)
+      .then((payload) => {
+        setCache(cacheKey, payload);
+        return payload;
+      })
+      .finally(() => inFlightRequests.delete(cacheKey));
+    inFlightRequests.set(cacheKey, request);
+  }
+
+  return inFlightRequests.get(cacheKey);
 }
 
 async function fetchCharacterRaffleHistory(
@@ -277,6 +304,7 @@ export {
   setCache,
   getNextThursdayAtUtc,
   clearExpiredCache,
+  fetchWithRetry,
   getWalletAddressFromUrl,
   fetchCharacterList,
   normalizeCharacterEntries,
