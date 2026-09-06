@@ -1183,11 +1183,17 @@ async function renderWeeklyTaskPanel() {
   }
 }
 
-const isWalletRegistrationPage = window.location.pathname.replace(/\/$/, '') === '/WalletRegistration';
+const normalizedPathname = window.location.pathname.replace(/\/$/, '');
+const isWalletRegistrationPage = normalizedPathname.endsWith('/WalletRegistration');
 const walletAddress = getWalletAddressFromUrl();
+const appBasePath = isWalletRegistrationPage
+  ? `${normalizedPathname.slice(0, -'/WalletRegistration'.length) || ''}/`
+  : window.location.pathname.endsWith('/')
+    ? window.location.pathname
+    : `${window.location.pathname}/`;
 
 if (!isWalletRegistrationPage && !walletAddress) {
-  window.location.replace('/WalletRegistration');
+  window.location.replace(`${appBasePath}WalletRegistration`);
 } else if (!isWalletRegistrationPage) {
   renderDaily();
   renderBoss();
