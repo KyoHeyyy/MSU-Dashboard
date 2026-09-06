@@ -83,8 +83,8 @@ const WEEKLY_BOSS_MARKER_KEY = 'weekly-boss-markers-v1';
 const DEFAULT_WEEKLY_BOSS_MARKERS = [
   { id: 'marker-1', name: 'Red', color: '#ef4444' },
   { id: 'marker-2', name: 'Blue', color: '#3b82f6' },
-  { id: 'marker-3', name: 'Green', color: '#22c55e' },
-  { id: 'marker-4', name: 'Yellow', color: '#eab308' },
+  { id: 'marker-3', name: 'Orange', color: '#FF9800' },
+  { id: 'marker-4', name: 'Yellow', color: '#d3ea08' },
   { id: 'marker-5', name: 'Purple', color: '#a855f7' }
 ];
 const ALL_BOSS_NAMES = [...new Set(Object.values(LAYER_ID_TO_BOSS_NAME))];
