@@ -285,6 +285,8 @@ async function loadCharacterRows() {
 let dailyConfigMode = false;
 let weeklyTaskConfigMode = false;
 const WEEKLY_TASK_CONFIG = getNormalizedWeeklyTaskConfig();
+let dailyEntries = null;
+let dailyEntriesPromise = null;
 
 function renderDailyTable(entries) {
   const container = document.querySelector('#daily-board');
@@ -399,10 +401,17 @@ async function renderDaily() {
   if (!container) return;
 
   showLoadingIndicator();
-  renderDailyTable([]);
+
+  if (dailyEntries) {
+    renderDailyTable(dailyEntries);
+  }
+
   try {
-    const characterRows = await loadCharacterRows();
-    renderDailyTable(characterRows);
+    if (!dailyEntriesPromise) {
+      dailyEntriesPromise = loadCharacterRows();
+    }
+    dailyEntries = await dailyEntriesPromise;
+    renderDailyTable(dailyEntries);
   } finally {
     hideLoadingIndicator();
   }
