@@ -383,6 +383,10 @@ h1 {
   letter-spacing: 0.08em;
 }
 
+.daily-table thead th:first-child {
+  text-align: left;
+}
+
 .daily-table tbody tr:hover {
   background: rgba(139, 92, 246, 0.08);
 }
