@@ -309,7 +309,14 @@ function renderDailyTable(entries) {
           const cells = viewModel.groups
             .map((group) => {
               const tasks = entry.tasks.filter((task) => task.groupId === group.id);
-              if (tasks.length === 0) {
+              const groupTasks = group.id === 'symbol'
+                ? DAILY_TASK_CONFIG.tasks
+                    .filter((task) => task.groupId === group.id)
+                    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+                    .map((task) => tasks.find((entryTask) => entryTask.taskId === task.id) ?? null)
+                : tasks;
+
+              if (groupTasks.length === 0) {
                 return '<td class="daily-cell empty-cell"></td>';
               }
 
@@ -325,8 +332,13 @@ function renderDailyTable(entries) {
                   : `<span class="daily-task-icon">${iconValue}</span>`;
               };
 
-              const taskMarkup = dailyConfigMode
-                ? tasks.map((task) => `
+              const taskMarkup = groupTasks.map((task) => {
+                if (!task) {
+                  return '<span class="daily-task-slot daily-task-slot-empty" aria-hidden="true"></span>';
+                }
+
+                return dailyConfigMode
+                  ? `
                   <button
                     type="button"
                     class="daily-task-toggle ${task.visible ? 'is-visible' : 'is-hidden'}"
@@ -338,8 +350,8 @@ function renderDailyTable(entries) {
                   >
                     ${renderTaskIcon(task)}
                   </button>
-                `).join('')
-                : tasks.map((task) => `
+                `
+                  : `
                   <button
                     type="button"
                     class="daily-task-toggle ${task.completed ? 'is-done' : ''}"
@@ -350,11 +362,12 @@ function renderDailyTable(entries) {
                   >
                     ${renderTaskIcon(task)}
                   </button>
-                `).join('');
+                `;
+              }).join('');
 
               return `
                 <td class="daily-cell">
-                  <div class="daily-task-list">
+                  <div class="daily-task-list${group.id === 'symbol' ? ' daily-symbol-task-list' : ''}">
                     ${taskMarkup}
                   </div>
                 </td>
