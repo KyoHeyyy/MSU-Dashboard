@@ -31,6 +31,7 @@ import {
 } from './dailyTasks.js';
 
 const DAILY_TASK_CONFIG = getNormalizedDailyTaskConfig();
+const IS_DEVELOPMENT = import.meta.env.DEV;
 const debugJsonElement = document.querySelector('#debug-json');
 const loadingIndicator = document.createElement('div');
 loadingIndicator.id = 'loading-indicator';
@@ -533,7 +534,15 @@ function renderRewardDebugTable(histories = [], errorMessage = '') {
   `;
 }
 
+function enableDevelopmentDebugPanel() {
+  if (!IS_DEVELOPMENT) return;
+  document.querySelectorAll('[data-development-only]').forEach((element) => {
+    element.hidden = false;
+  });
+}
+
 async function renderRewardDebug() {
+  if (!IS_DEVELOPMENT) return;
   renderRewardDebugTable();
   try {
     const walletAddress = getWalletAddressFromUrl();
@@ -605,6 +614,7 @@ async function renderRewards() {
   const container = document.querySelector('#reward-board');
   if (!container) return;
   showLoadingIndicator();
+  enableDevelopmentDebugPanel();
   renderRewardDebug();
   try {
     const characterRows = (await loadCharacterRows()).slice(0, 11);
