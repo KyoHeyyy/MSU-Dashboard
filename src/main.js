@@ -708,7 +708,8 @@ function renderWeeklyTable(entries = []) {
               const isHidden = hiddenBossNames.includes(bossName);
             const isDefeated = entry.bossNames?.includes(bossName);
             const stateClass = `${isHidden ? ' is-hidden' : ''}${isDefeated ? ' is-defeated' : ''}`;
-            return `<button class="boss-name-chip${stateClass}" type="button" data-character="${entry.character}" data-boss-name="${bossName}">${bossName}</button>`;
+              const stateIcon = isDefeated ? '✓ ' : '';
+              return `<button class="boss-name-chip${stateClass}" type="button" data-character="${entry.character}" data-boss-name="${bossName}">><span>${stateIcon}${bossName}</span></button>`;
             }).join('')}</span>`
         : entry.loading
           ? '<span class="boss-name-pill loading-boss-pill">取得中</span>'
@@ -721,7 +722,8 @@ function renderWeeklyTable(entries = []) {
                   const marker = weeklyBossMarkerSettings.markers.find((item) => item.id === markerId);
                   const stateClass = `${isDefeated ? ' is-defeated' : ''}${marker ? ' is-marked' : ''}`;
                   const markerStyle = marker ? ` style="--marker-color: ${marker.color}"` : '';
-                  return `<button class="boss-name-chip${stateClass}" type="button" data-character="${entry.character}" data-boss-name="${bossName}"${markerStyle}>${bossName}</button>`;
+                  const stateIcon = isDefeated ? '✓ ' : '';
+                  return `<button class="boss-name-chip${stateClass}" type="button" data-character="${entry.character}" data-boss-name="${bossName}"${markerStyle}><span>${stateIcon}${bossName}</span></button>`;
                 }).join('')}</span>`
               : '<span class="boss-name-pill">-</span>';
 

@@ -845,6 +845,7 @@ h1 {
 .boss-name-chip {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   padding: 6px 10px;
   border-radius: 999px;
   background: rgba(72, 199, 142, 0.16);
@@ -856,12 +857,28 @@ h1 {
   cursor: pointer;
 }
 
+.boss-state-icon {
+  display: inline-flex;
+  width: 0.9em;
+  justify-content: center;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.boss-name-chip:not(.is-defeated) .boss-state-icon {
+  font-size: 0.72em;
+}
+
+.boss-name-chip.is-defeated .boss-state-icon {
+  color: #cbd5e1;
+}
+
 .boss-name-chip:disabled {
   cursor: default;
 }
 
 .boss-name-chip.is-defeated {
-  color: #aab5c5;
+  color: #454950;
   background: rgba(148, 163, 184, 0.16);
   border-color: rgba(148, 163, 184, 0.28);
 }
