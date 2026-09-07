@@ -101,7 +101,7 @@ let weeklyBossMarkerClickTimer = null;
 let editingWeeklyBossMarkerId = null;
 let rewardEntries = [];
 let selectedRewardWeek = 1;
-const HASH_VIEW_NAMES = new Set(['daily', 'weekly', 'reward']);
+const HASH_VIEW_NAMES = new Set(['daily', 'weekly', 'event', 'reward']);
 
 function getLatestThursdayAtUtc(date = new Date()) {
   const latestThursday = new Date(Date.UTC(
