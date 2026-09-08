@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { getTotalWinCountByItemId } from '../src/rewardUtils.js';
+import { getBossNamesFromRaffleInformations } from '../src/weeklyBossUtils.js';
 
 test('getTotalWinCountByItemId sums matching itemId prizes for the selected raffledAt', () => {
   const rafflePayload = {
@@ -25,4 +26,12 @@ test('getTotalWinCountByItemId sums matching itemId prizes for the selected raff
 
   assert.equal(getTotalWinCountByItemId(rafflePayload, 1000, '2026-08-27T00:00:00Z'), 10);
   assert.equal(getTotalWinCountByItemId(rafflePayload, 1, '2026-08-27T00:00:00Z'), 5);
+});
+
+test('getBossNamesFromRaffleInformations ignores unregistered layer IDs', () => {
+  assert.deepEqual(getBossNamesFromRaffleInformations([
+    { layerId: '205030' },
+    { layerId: '500008' },
+    { layerId: '500001' }
+  ]), ['C.Queen']);
 });

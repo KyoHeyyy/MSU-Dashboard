@@ -5,8 +5,8 @@ import {
   loadCharacterRaffleInformation
 } from './msuApi.js';
 import { getTotalWinCountByItemId } from './rewardUtils.js';
-import { NON_BOSS_LAYER_IDS } from '../config/nonBossLayerIds.js';
 import { LAYER_ID_TO_BOSS_NAME } from '../config/layerIdToBossName.js';
+import { getBossNamesFromRaffleInformations } from './weeklyBossUtils.js';
 import {
   clearDailyProgressForDate,
   getDailyResetDateKey,
@@ -794,12 +794,7 @@ async function renderWeeklyRewards() {
           ? await loadCharacterRaffleInformation(characterAssetKey, walletAddress)
           : null;
 
-        const bossNames = getRaffleInformations(rafflePayload)
-          .map((information) => information?.layerId)
-          .filter(Boolean)
-          .map((layerId) => String(layerId))
-          .filter((layerId) => !NON_BOSS_LAYER_IDS.includes(layerId))
-          .map((layerId) => LAYER_ID_TO_BOSS_NAME[layerId] || layerId);
+        const bossNames = getBossNamesFromRaffleInformations(getRaffleInformations(rafflePayload));
         
         bossCount += bossNames.length;
         console.log(`Character: ${entry.character}, Bosses: ${bossNames.join(', ')}, Total Boss Count: ${bossCount}`);
