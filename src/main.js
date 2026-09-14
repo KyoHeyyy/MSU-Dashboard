@@ -1191,7 +1191,7 @@ if (!isWalletRegistrationPage && !walletAddress) {
   renderDaily();
   renderBoss();
   renderWeeklyTaskPanel();
-  renderWeeklyRewards();
+  // renderWeeklyRewards();
   setupTabs();
   switchView(getViewFromHash(), { updateHash: false });
   setupWeeklyBossControls();
