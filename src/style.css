@@ -134,6 +134,22 @@ h1 {
   letter-spacing: -0.03em;
 }
 
+.dashboard-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.registered-wallet {
+  margin-left: auto;
+  color: rgba(144, 163, 191, 0.72);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
 .topbar-meta {
   display: flex;
   gap: 8px;

@@ -116,6 +116,17 @@ function getLatestThursdayAtUtc(date = new Date()) {
 
 const DEBUG_RAFFLED_AT = getLatestThursdayAtUtc();
 
+function renderRegisteredWallet() {
+  const walletElement = document.querySelector('#registered-wallet');
+  const walletAddress = getWalletAddressFromUrl();
+  if (!walletElement || !walletAddress) return;
+
+  const abbreviatedAddress = walletAddress.length > 13
+    ? `${walletAddress.slice(0, 7)}...${walletAddress.slice(-6)}`
+    : walletAddress;
+  walletElement.textContent = abbreviatedAddress;
+}
+
 function getWeeklyBossSettings() {
   try {
     const rawSettings = sessionStorage.getItem(WEEKLY_BOSS_SETTINGS_KEY);
@@ -1188,6 +1199,7 @@ const appBasePath = import.meta.env.BASE_URL;
 if (!isWalletRegistrationPage && !walletAddress) {
   window.location.replace(`${appBasePath}WalletRegistration`);
 } else if (!isWalletRegistrationPage) {
+  renderRegisteredWallet();
   renderDaily();
   renderBoss();
   renderWeeklyTaskPanel();
