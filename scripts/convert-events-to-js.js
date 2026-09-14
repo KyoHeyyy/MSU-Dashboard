@@ -55,9 +55,10 @@ function sanitizeThread(thread) {
 async function main() {
   const raw = await readFile(sourcePath, 'utf8');
   const data = JSON.parse(raw);
-  const originalThreadCount = Array.isArray(data.threads) ? data.threads.length : 0;
-  const sanitizedThreads = Array.isArray(data.threads)
-    ? data.threads.map(sanitizeThread).filter(Boolean)
+  const sourceThreads = Array.isArray(data.threads) ? data.threads : data.stickyThreads;
+  const originalThreadCount = Array.isArray(sourceThreads) ? sourceThreads.length : 0;
+  const sanitizedThreads = Array.isArray(sourceThreads)
+    ? sourceThreads.map(sanitizeThread).filter(Boolean)
     : [];
 
   const sanitizedData = {
