@@ -28,10 +28,54 @@ test('getTotalWinCountByItemId sums matching itemId prizes for the selected raff
   assert.equal(getTotalWinCountByItemId(rafflePayload, 1, '2026-08-27T00:00:00Z'), 5);
 });
 
-test('getBossNamesFromRaffleInformations ignores unregistered layer IDs', () => {
+test('getBossNamesFromRaffleInformations ignores unregistered layer IDs and old clears', () => {
+  const referenceDate = new Date('2026-07-30T12:00:00Z');
+
   assert.deepEqual(getBossNamesFromRaffleInformations([
-    { layerId: '205030' },
-    { layerId: '500008' },
-    { layerId: '500001' }
-  ]), ['C.Queen']);
+    {
+      layerId: '205030',
+      clearInformations: [
+        { clearedAt: '2026-07-23T13:00:00Z' },
+        { clearedAt: '2026-07-30T01:00:00Z' }
+      ]
+    },
+    {
+      layerId: '500008',
+      clearInformations: [
+        { clearedAt: '2026-07-30T05:00:00Z' }
+      ]
+    },
+    {
+      layerId: '205031',
+      clearInformations: [
+        { clearedAt: '2026-07-28T20:00:00Z' }
+      ]
+    }
+  ], referenceDate), ['C.Queen']);
+});
+
+test('getBossNamesFromRaffleInformations ignores clearedAt older than the latest Thursday', () => {
+  const referenceDate = new Date('2026-07-30T12:00:00Z');
+
+  assert.deepEqual(getBossNamesFromRaffleInformations([
+    {
+      layerId: 205030,
+      clearInformations: [
+        { clearedAt: '2026-07-23T13:00:00Z' },
+        { clearedAt: '2026-07-28T00:00:00Z' }
+      ]
+    },
+    {
+      layerId: 205028,
+      clearInformations: [
+        { clearedAt: '2026-07-16T07:00:00Z' }
+      ]
+    },
+    {
+      layerId: 205031,
+      clearInformations: [
+        { clearedAt: '2026-07-30T01:00:00Z' }
+      ]
+    }
+  ], referenceDate), ['H.Magnus']);
 });
