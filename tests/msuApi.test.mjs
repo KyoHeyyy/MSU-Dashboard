@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import {
   clearExpiredCache,
+  fetchCharacterList,
   getCache,
   getRegisteredWalletAddress,
   getWalletAddressFromUrl,
@@ -83,6 +84,42 @@ test('normalizeCharacterEntries handles raw and nested character payloads', () =
   assert.equal(entries[0].character, 'TestChar');
   assert.equal(entries[0].level, 200);
   assert.equal(entries[0].job, 'Warrior');
+});
+
+test('fetchCharacterList uses the wallet-specific local file only after an API 403', async () => {
+  const originalFetch = globalThis.fetch;
+  const requestedUrls = [];
+  globalThis.fetch = async (url) => {
+    requestedUrls.push(String(url));
+    if (requestedUrls.length === 1) {
+      return new Response(null, { status: 403 });
+    }
+
+    return new Response(JSON.stringify({
+      success: true,
+      data: {
+        characters: [
+          {
+            assetKey: 'CHAR-local',
+            name: 'LocalCharacter',
+            data: { level: 210, imageUrl: '', job: { jobName: 'Mage' } }
+          }
+        ]
+      }
+    }), { status: 200, headers: { 'content-type': 'application/json' } });
+  };
+
+  try {
+    const characters = await fetchCharacterList('0xlocalwallet');
+
+    assert.equal(requestedUrls.length, 2);
+    assert.match(requestedUrls[0], /\/accounts\/0xlocalwallet\/characters\?size=100$/);
+    assert.match(requestedUrls[1], /\/data\/characters\/0xlocalwallet\.json$/);
+    assert.equal(characters[0].character, 'LocalCharacter');
+    assert.equal(characters[0].assetKey, 'CHAR-local');
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
 
 test('cache uses sessionStorage and removes expired or invalid entries', () => {

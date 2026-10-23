@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "data": {
+    "characters": [
+      {
+        "assetKey": "CHARACTER_ASSET_KEY",
+        "name": "キャラクター名",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://example.com/character.png",
+          "job": {
+            "jobName": "職業名"
+          }
+        }
+      }
+    ]
+  }
+}

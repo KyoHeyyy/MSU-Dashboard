@@ -2,6 +2,7 @@ const RETRY_COUNT = 3;
 const RETRY_DELAY_MS = 1000;
 const REQUEST_INTERVAL_MS = 1000;
 const MSU_WORKER_BASE_URL = (import.meta.env?.VITE_MSU_WORKER_URL || '/api/msu').replace(/\/$/, '');
+const APP_BASE_URL = import.meta.env?.BASE_URL || '/';
 const CACHE_PREFIX = 'cache:';
 const REGISTERED_WALLET_KEY = 'registered-wallet-address';
 const CACHE_DURATION_MS = 5 * 60 * 1000;
@@ -9,6 +10,14 @@ const THURSDAY_UTC = 4;
 
 let requestQueue = Promise.resolve();
 let lastRequestAt = 0;
+
+class HttpError extends Error {
+  constructor(status) {
+    super(`HTTP ${status}`);
+    this.name = 'HttpError';
+    this.status = status;
+  }
+}
 
 function getSessionStorage() {
   try {
@@ -175,7 +184,11 @@ async function wait(ms) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 
-async function fetchWithRetry(url, options = {}, { retryCount = RETRY_COUNT, retryDelayMs = RETRY_DELAY_MS } = {}) {
+async function fetchWithRetry(
+  url,
+  options = {},
+  { retryCount = RETRY_COUNT, retryDelayMs = RETRY_DELAY_MS, stopOnForbidden = false } = {}
+) {
   const runFetch = async () => {
     let lastError;
     for (let attempt = 0; attempt < retryCount; attempt += 1) {
@@ -189,12 +202,15 @@ async function fetchWithRetry(url, options = {}, { retryCount = RETRY_COUNT, ret
         lastRequestAt = Date.now();
         const response = await fetch(url, options);
         if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+          throw new HttpError(response.status);
         }
 
         return await response.json();
       } catch (error) {
         lastError = error;
+        if (stopOnForbidden && error instanceof HttpError && error.status === 403) {
+          throw error;
+        }
         if (attempt < retryCount - 1) {
           await wait(retryDelayMs * (attempt + 1));
         }
@@ -211,7 +227,23 @@ async function fetchWithRetry(url, options = {}, { retryCount = RETRY_COUNT, ret
 
 async function fetchCharacterListFromApi(walletAddress) {
   const url = `${MSU_WORKER_BASE_URL}/accounts/${encodeURIComponent(walletAddress)}/characters?size=100`;
-  const payload = await fetchWithRetry(url);
+  const payload = await fetchWithRetry(url, {}, { stopOnForbidden: true });
+  return payload;
+}
+
+async function fetchCharacterListFromLocalFile(walletAddress) {
+  const url = `${APP_BASE_URL}data/characters/${encodeURIComponent(walletAddress)}.json`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Local character list not found for wallet ${walletAddress} (HTTP ${response.status})`);
+  }
+
+  const payload = await response.json();
+  const characters = payload?.data?.characters ?? payload?.characters ?? payload?.data;
+  if (!Array.isArray(characters)) {
+    throw new Error(`Invalid local character list for wallet ${walletAddress}`);
+  }
+
   return payload;
 }
 
@@ -243,7 +275,16 @@ async function loadCharacters(walletAddress) {
     return cached;
   }
 
-  const payload = await fetchCharacterListFromApi(walletAddress);
+  let payload;
+  try {
+    payload = await fetchCharacterListFromApi(walletAddress);
+  } catch (error) {
+    if (!(error instanceof HttpError) || error.status !== 403) {
+      throw error;
+    }
+    payload = await fetchCharacterListFromLocalFile(walletAddress);
+  }
+
   setCache(cacheKey, payload);
   return payload;
 }

@@ -83,6 +83,12 @@ npm run worker:deploy
 
 Pagesのサブパスでも動作するよう、Viteは相対URLで静的ファイルを生成します。Worker URLはビルド時に `MSU_WORKER_URL` から `VITE_MSU_WORKER_URL` として注入されます。
 
+### APIが403を返した場合のキャラクター一覧
+
+キャラクター一覧APIが403を返した場合に限り、ブラウザは `public/data/characters/<walletAddress>.json` を読み込みます。`public/data/characters/_template.json` をコピーし、ファイル名を対象ウォレットIDにしてキャラクター情報を記入してください。JSONの `data.characters` 配列は、APIレスポンスと同じ形式にします。
+
+このローカルファイルはキャラクター一覧の表示にのみ使用します。Weekly Rewardsなどのリワード情報はAPIから取得し、ローカルファイルにはフォールバックしません。
+
 手元でPages用ビルドを確認する場合は、次のように実行します。
 
 ```powershell

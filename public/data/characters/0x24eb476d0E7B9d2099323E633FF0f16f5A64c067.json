@@ -1,0 +1,337 @@
+{
+  "success": true,
+  "data": {
+    "characters": [
+      {
+        "assetKey": "CHARd0is9frfpavs73dp048g",
+        "name": "Vulkaron",
+        "data": {
+          "level": 211,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIzMzAwYTE3MDI4NzJhMTQ5MjIxM2EzNjc4N2ExMDA2Mjg3YTEwMTI0NzhhMTAyMjIzMWExMDMyMzM5YTEwNTM5OTlhMTA2MDAyNmExMDczNzYyYTEwODI3ODVhMTEwMzU4OGExMzUyOTEzYTUyMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd0j2orbfpavs73dqduu0",
+        "name": "chanmaji",
+        "data": {
+          "level": 243,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTUwMTc2MTk5YTE3MDM0OTZhMTQ4MjE2OGE0MzM1M2ExMDA0NjM0YTEwMTI0NzhhMTAyMjIzMWExMDMyMTM2YTEwNTQxNjdhMTA2MjE2OWExMDczMzI4YTEwODI4NDhhMTEwMjU3NGExMzUyOTAzYTUxMmEwYTNhOTlhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd0jhldtgurmc73co9o9g",
+        "name": "WingTulip",
+        "data": {
+          "level": 231,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGExMmEyMDQwMWExNzAyNzY3YTEzMzIyNzRhNjUyNjdhMTAwNjI4N2ExMDEyNDc4YTEwMjIyMzFhMTAzMjMzOWExMDUzOTk5YTEwNjIxNjhhMTA3MjUzMWExMDgyNzg1YTExMDM2ODJhMTM1MjI4MmE0MjJhMGE3YTk5YTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd0ot129blh1s73arsc60",
+        "name": "chanmaaji",
+        "data": {
+          "level": 210,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwNDAxYTE3MDI5NzFhMTQ3MjIxNGEzNjc4MGExMDA2MzAxYTEwMTI4MjVhMTAyMjMzNGExMDMyMzM5YTEwNTQwMzJhMTA2MjE2OGExMDcyMzc2YTEwODI3ODlhMTEwMzAyNGExMzUyMjkyYTQxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd0tb2vspl5ic73emoc2g",
+        "name": "XF777777",
+        "data": {
+          "level": 164,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMjAxYTBhMTM4MjEwNGEzNzc4MGExMDA2NjQ2YTBhMGEwYTEwNTQyNjlhMTA2MTAzOWExMDc0MDA3YTEwODI1OTlhMGExMzU0MTQwYTIyMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd1019fj6t7hs73bf4r90",
+        "name": "cf997",
+        "data": {
+          "level": 215,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTI2MjY3Mjk5YTE3MDM5MTFhMTQyMjE0MGEzNzc5M2ExMDA3MTg5YTEwMTIzNzlhMTAyMjIzMWExMDMyMTM2YTEwNTM5OTlhMTA2MjE2NWExMDczMDMwYTEwODI3ODVhMTEwMjUxMGExMzUyMjEzYTEyMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd12quajau45s73fppu40",
+        "name": "DougDwight",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwNDAxYTBhMTQ2MjIyM2EzMDAwMGEwYTBhMTAyMjIzMmEwYTEwNDAwMzZhMTA2MDAyNmEwYTBhMTEwMjg3MWEwYTMyMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd138acngmqgc739u0sqg",
+        "name": "FTGG",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwNDAxYTBhMTQ1MjIzNmEzMDAwMGEwYTBhMGEwYTEwNDAwMzZhMTA2MDAyNmExMDc0MDA3YTBhMTEwMjg3MWExMzU0MTYwYTMxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd1919l9qahks73a7gng0",
+        "name": "lucilleeding",
+        "data": {
+          "level": 176,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMTk0YTBhMTM3MjIwNWEzMTAwMmExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MTAzOWExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd1am3mfgmqgc73f4n4r0",
+        "name": "BrChooper",
+        "data": {
+          "level": 190,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGExMmEyMzMwMGEwYTEzNzIyMDVhMzY3ODRhMTAwNDIyMGEwYTBhMGExMDUyNzkwYTEwNjAwMjZhMTA3Mjk1OGExMDgyNTk5YTExMDIxMzlhMTM1NDE1MGEyMzJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd1o91mvgmqgc73c92ejg",
+        "name": "PajaCorta",
+        "data": {
+          "level": 174,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEyYTIxMjAxYTBhMTM3MjIwNWEzMTAwM2ExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MTAzOWExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd26ot70n9pms73dicjk0",
+        "name": "CassiGBDyA",
+        "data": {
+          "level": 178,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIzMzAxYTBhMTM3MjIwNWEzMDAzMGExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MDAyNmExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2a0ktlpjpgs73chqteg",
+        "name": "EXP15Per",
+        "data": {
+          "level": 153,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEzYTIxNTU1YTBhMTUyMjEyMmEzNDQyM2EwYTBhMGEwYTEwNTI3OTFhMTA2MTAzOWExMDcyOTU5YTEwODI2MDBhMGExMzUyMDAwYTIzMTJhMWEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2a5c3038phs73a3jsp0",
+        "name": "Elas",
+        "data": {
+          "level": 190,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWExMmEyMTU0N2EwYTE1MjIxNjZhMzQ0MjNhMTAwMzg4MmEwYTEwMjIyMzFhMTAzMjMzOWExMDU0MTczYTEwNjEwMzlhMTA3MzkyMWExMDgyODA3YTExMDM2OTFhMTM1MjAwMGEyMzEyYTFhMGEwYTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2a7d905cq4s73flfni0",
+        "name": "catmm",
+        "data": {
+          "level": 146,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWExMWE1NjE4OGEwYTE0NDIyNTJhNjc0MTZhMTAwNDIxOWEwYTBhMGExMDUyNzg5YTEwNjEwMzlhMTA3Mjk1N2ExMDgyNTk4YTBhMTM1MjkzOWEyMTEyYTBhMGEwYTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2a8tk05cq4s73fluh0g",
+        "name": "PANTHOM",
+        "data": {
+          "level": 210,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxNjU2YTE3MDI0MjNhMTM2MjA5MGE2NzM0MWExMDAzMTMxYTEwMTI0NzhhMTAyMjIzMWExMDMyMzM5YTEwNDIzNDlhMTA2MjI0N2ExMDc0MDA3YTEwODI2MzlhMTEwMzI4M2ExMzUyMTEyYTI0MTJhMGExYTk5YTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2aufa038phs73ab6dig",
+        "name": "ADEinA",
+        "data": {
+          "level": 175,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIzMzAxYTBhMTM3MjIwNWEzNjc4N2ExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MDAyNmExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2djgloltiic73duuhi0",
+        "name": "CassiDBRFyF",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMjAxYTBhMGEzMTAwMmEwYTBhMGEwYTEwNDEwNDZhMTA2MTAzOWExMDcyOTU4YTBhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2j8quvdcess73fmard0",
+        "name": "MOQINGYUE",
+        "data": {
+          "level": 140,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMTcwYTBhMTIxMjA5OWEzNzA3MmExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MTAzOWExMDcyOTU4YTEwODI1OTlhMTEwMjQ0M2ExMzUyNDAwYTI3MTJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2j8rjfdcess73fmb450",
+        "name": "financ1er",
+        "data": {
+          "level": 221,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEzYTU1NjY1YTE3MDI5OTZhMTQ4MjE2OGE2Mzc3MGExMDA2Mjg3YTEwMTI0NzhhMTAyMjIzMWExMDMyMzM5YTEwNTM5OTlhMTA2MjE2OWExMDczMDM1YTEwODI3ODVhMTEwMjk2MWExMzUzMTA4YTI1MTJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd2jf6jrakhgc73c50u5g",
+        "name": "yanik",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTI0MDgzYTBhMGE0MTIyN2EwYTBhMGEwYTEwNDEwNDZhMTA2MTAzOWEwYTBhMGExMzUyOTQ5YTIyMTdhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd3ubou5pjpgs73eg3st0",
+        "name": "LyyffV",
+        "data": {
+          "level": 173,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwNDAxYTBhMTM3MjIwNWEzMDAzMGExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MDAyNmExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd3umpjv1lcus73d7clug",
+        "name": "NoChX",
+        "data": {
+          "level": 173,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEwYTIwMTAwYTBhMTM3MjIwNWEzNjc4N2ExMDA0MjIwYTBhMGEwYTEwNTI3OTBhMTA2MDAyNmExMDcyOTU4YTEwODI1OTlhMGExMzU0MTMwYTIxMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd5folg4vrkps73ff8m40",
+        "name": "LIZTHX",
+        "data": {
+          "level": 225,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEzYTI1MTQ5MTk5YTE3MDI5MzlhMTQ1MjIwNWE2MTMyMGExMDA0OTU3YTEwMTI0NzhhMTAyMjIzMWExMDMyMzM4YTEwNTA1MzNhMTA2MjE2N2ExMDczMjY1YTEwODI2MzhhMTEwMzgzMWExMzUyOTcyYTEzMTJhMGEwYTk5YTBhMmEwYTFhMGEwYTBhMGEwYTBhMA==.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd5j7g9j1o0ic739pqbeg",
+        "name": "madele1ne",
+        "data": {
+          "level": 205,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEzYTIwNTg5YTE3MDIzNzVhMTMwMjI3NWEzNjU3NmExMDA3MDM3YTEwMTI4MjVhMTAyMjI3N2ExMDMyMjQxYTEwNTQ2NjFhMTA2MDAyNmExMDcyMzc1YTEwODI4MDVhMTEwMjM5MGExMzU0MjIwYTExMTJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd5og0fm27k9s738h082g",
+        "name": "chanmaaaji",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGExMGEyNjQ2NzQ5OWExNzAyNDY2YTE0NzIyMTRhMzAxNzRhMTAwNTYzNGEwYTBhMGExMDUzNjE0YTEwNjAwMjZhMTA3Mjk3NWExMDgyNjE2YTExMDIzMzhhMTM1Mjk3OWExNDEyYTBhNGE5OWEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd7gcgbgq0ckc73fsvfv0",
+        "name": "P4thF1nd3r",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTI4MTQxYTBhMGE0NzUyN2ExMDA2NjQ2YTBhMGEwYTEwNDEwNDZhMTA2MTAzOWEwYTBhMGEwYTMzMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd7ktk8mo4vdc73do61hg",
+        "name": "Dua1Blade",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMjYxYTBhMGEzNDgyMGEwYTBhMGEwYTEwNDEwNDZhMTA2MTAzOWEwYTBhMGEwYTQzNGEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd7pl1kj36rfc73eokotg",
+        "name": "kawakaze",
+        "data": {
+          "level": 221,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MWEwYTIxMjAxYTBhMTUzMjA5OGEzNzc3MmExMDA2MzAxYTEwMTI2NjlhMTAyMjIzMWExMDMyMzM5YTEwNTQwMzJhMTA2MjE2OWExMDczMzE5YTEwODI3ODlhMTEwMjMzOGExMzUyOTIzYTUzMmEwYTBhMGEwYTJhMGExYTBhMGEwYTBhMGEwYTA=.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      },
+      {
+        "assetKey": "CHARd87l1098cj7s73au9i20",
+        "name": "ChazPrincetn",
+        "data": {
+          "level": 200,
+          "imageUrl": "https://gamedatahub-static.msu.io/msu/platform/charimages/static/MGEzYTIwNTg5YTBhMGEzNjU3NWEwYTBhMGEwYTEwNDAwMzZhMTA2MDAyNmEwYTBhMGEwYTE1MTJhMGEwYTBhMGEyYTBhMWEwYTBhMGEwYTBhMGEw.png",
+          "job": {
+            "jobName": ""
+          }
+        }
+      }
+    ]
+  }
+}
